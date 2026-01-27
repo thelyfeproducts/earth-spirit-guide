@@ -1,5 +1,9 @@
 import { motion } from "framer-motion";
 import lyfePeace from "@/assets/lyfe-peace.png";
+import herbLavender from "@/assets/herb-lavender.png";
+import herbRosemary from "@/assets/herb-rosemary.png";
+import herbRose from "@/assets/herb-rose.png";
+import herbChamomile from "@/assets/herb-chamomile.png";
 
 const Hero = () => {
   return (
@@ -10,6 +14,38 @@ const Hero = () => {
         <div className="absolute bottom-20 right-10 w-48 h-48 bg-accent/10 rounded-full blur-3xl" />
         <div className="absolute top-1/2 left-1/4 w-24 h-24 bg-primary/5 rounded-full blur-2xl" />
       </div>
+
+      {/* Floating Herbs - Left Side */}
+      <motion.img
+        src={herbLavender}
+        alt=""
+        className="absolute top-32 left-4 md:left-16 w-16 md:w-24 h-auto opacity-70 pointer-events-none"
+        animate={{ y: [0, -10, 0], rotate: [0, 5, 0] }}
+        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <motion.img
+        src={herbRosemary}
+        alt=""
+        className="absolute bottom-32 left-8 md:left-24 w-14 md:w-20 h-auto opacity-60 pointer-events-none"
+        animate={{ y: [0, 8, 0], rotate: [0, -3, 0] }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+      />
+
+      {/* Floating Herbs - Right Side */}
+      <motion.img
+        src={herbRose}
+        alt=""
+        className="absolute top-40 right-4 md:right-20 w-14 md:w-20 h-auto opacity-70 pointer-events-none"
+        animate={{ y: [0, -8, 0], rotate: [0, -5, 0] }}
+        transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+      />
+      <motion.img
+        src={herbChamomile}
+        alt=""
+        className="absolute bottom-40 right-8 md:right-32 w-16 md:w-24 h-auto opacity-60 pointer-events-none"
+        animate={{ y: [0, 10, 0], rotate: [0, 4, 0] }}
+        transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
+      />
 
       <div className="container-lyfe">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
