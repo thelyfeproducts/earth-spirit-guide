@@ -2,6 +2,9 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Send, Check } from "lucide-react";
 import lyfePointing from "@/assets/lyfe-pointing.png";
+import herbLavender from "@/assets/herb-lavender.png";
+import herbRose from "@/assets/herb-rose.png";
+import herbChamomile from "@/assets/herb-chamomile.png";
 
 const FinalCTA = () => {
   const [email, setEmail] = useState("");
@@ -18,6 +21,29 @@ const FinalCTA = () => {
 
   return (
     <section className="section-padding bg-secondary/10 relative overflow-hidden">
+      {/* Floating Herbs */}
+      <motion.img
+        src={herbLavender}
+        alt=""
+        className="absolute top-10 left-4 md:left-20 w-14 md:w-20 h-auto opacity-60 pointer-events-none"
+        animate={{ y: [0, -8, 0], rotate: [0, 5, 0] }}
+        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <motion.img
+        src={herbRose}
+        alt=""
+        className="absolute bottom-20 left-8 md:left-32 w-12 md:w-16 h-auto opacity-50 pointer-events-none"
+        animate={{ y: [0, 6, 0], rotate: [0, -4, 0] }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
+      />
+      <motion.img
+        src={herbChamomile}
+        alt=""
+        className="absolute top-20 right-4 md:right-24 w-16 md:w-24 h-auto opacity-50 pointer-events-none"
+        animate={{ y: [0, 10, 0], rotate: [0, 3, 0] }}
+        transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
+      />
+
       {/* Background decoration */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 right-0 w-96 h-96 bg-secondary/5 rounded-full blur-3xl" />

@@ -1,9 +1,27 @@
 import { motion } from "framer-motion";
 import lyfeWatering from "@/assets/lyfe-watering.png";
+import herbAloe from "@/assets/herb-aloe.png";
+import herbRosemary from "@/assets/herb-rosemary.png";
 
 const StorySection = () => {
   return (
-    <section id="story" className="section-padding overflow-hidden">
+    <section id="story" className="section-padding overflow-hidden relative">
+      {/* Floating Herbs */}
+      <motion.img
+        src={herbAloe}
+        alt=""
+        className="absolute bottom-20 left-4 md:left-16 w-16 md:w-28 h-auto opacity-50 pointer-events-none"
+        animate={{ y: [0, -8, 0] }}
+        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <motion.img
+        src={herbRosemary}
+        alt=""
+        className="absolute top-20 right-8 md:right-20 w-12 md:w-20 h-auto opacity-50 pointer-events-none rotate-45"
+        animate={{ y: [0, 6, 0], rotate: [45, 50, 45] }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+      />
+
       <div className="container-lyfe">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Lyfe Character */}
