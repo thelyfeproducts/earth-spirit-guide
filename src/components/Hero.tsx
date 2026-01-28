@@ -37,7 +37,7 @@ const Hero = () => {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="body-large max-w-xl mx-auto lg:mx-0 mb-12"
             >
-              Plant-powered wellness products made with intention and care, rooted in indigenous wisdom and crafted for modern healing.
+              Plant-powered wellness rooted in indigenous wisdom, crafted for modern healing.
             </motion.p>
             
             <motion.div

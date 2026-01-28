@@ -53,9 +53,9 @@ const ShopByRemedy = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h2 className="heading-section mb-4">The Remedies</h2>
+          <h2 className="heading-section mb-4">Remedies for skin, scalp, and spirit</h2>
           <p className="body-large max-w-2xl mx-auto">
-            Healing solutions for your wellness journey
+            Healing solutions crafted with intention
           </p>
         </motion.div>
 
