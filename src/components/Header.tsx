@@ -30,11 +30,11 @@ const Header = () => {
       <div className="container-lyfe">
         <div className="flex items-center justify-between h-16 md:h-20 px-4">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3">
+          <Link to="/" className="flex items-center gap-2">
             <img 
               src={lyfeInfinity} 
               alt="Lyfe Products" 
-              className="h-10 md:h-12 w-auto"
+              className="h-8 md:h-10 w-auto"
             />
             <span className="font-display font-black text-xl md:text-2xl text-primary">
               Lyfe Products™
