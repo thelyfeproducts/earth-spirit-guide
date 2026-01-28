@@ -2,6 +2,8 @@ import { motion } from "framer-motion";
 import { Leaf, Droplets, Heart, Shield, Sprout, Sun } from "lucide-react";
 import { WhyOrganicHerbs } from "./FloatingHerbs";
 import gardenGrowing from "@/assets/garden-growing.jpeg";
+import gardenWeek1 from "@/assets/garden-week1.jpeg";
+import gardenWeek2 from "@/assets/garden-week2.jpeg";
 
 const benefits = [
   {
@@ -112,6 +114,56 @@ const WhyOrganic = () => {
               </div>
             </motion.div>
           ))}
+        </motion.div>
+
+        {/* Garden Transformation Timeline */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mb-16"
+        >
+          <div className="text-center mb-8">
+            <span className="inline-block bg-secondary/10 text-secondary font-body font-semibold px-4 py-2 rounded-full text-sm mb-4">
+              Our Garden Journey
+            </span>
+            <h3 className="heading-card text-2xl md:text-3xl">
+              From Bare Soil to Blooming Herbs
+            </h3>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              { image: gardenWeek1, label: "The Beginning", desc: "Our garden beds with early plantings" },
+              { image: gardenWeek2, label: "Preparing the Soil", desc: "Tilling and enriching the earth" },
+              { image: gardenGrowing, label: "Thriving Garden", desc: "Rosemary and lavender flourishing" },
+            ].map((stage, index) => (
+              <motion.div
+                key={stage.label}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.15 }}
+                className="relative group"
+              >
+                <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-soft">
+                  <img
+                    src={stage.image}
+                    alt={stage.label}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+                <div className="absolute top-4 left-4 bg-background/90 backdrop-blur-sm px-3 py-1 rounded-full">
+                  <span className="text-sm font-body font-semibold text-secondary">Step {index + 1}</span>
+                </div>
+                <div className="mt-4 text-center">
+                  <h4 className="heading-card text-lg">{stage.label}</h4>
+                  <p className="font-body text-muted-foreground text-sm">{stage.desc}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </motion.div>
 
         {/* Growing Our Own Section */}
