@@ -36,7 +36,8 @@ const QuickShop = () => {
         // Filter out Peppermint Bark and prioritize hair growth products
         const filtered = data.filter(p => 
           !p.node.title.toLowerCase().includes('peppermint bark') &&
-          !p.node.title.toLowerCase().includes('masculine grooming bundle')
+          !p.node.title.toLowerCase().includes('masculine grooming bundle') &&
+          !p.node.title.toLowerCase().includes('herbal hair growth oil duo')
         );
         
         // Sort to put hair growth products first
