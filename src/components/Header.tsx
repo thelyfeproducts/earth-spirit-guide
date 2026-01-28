@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import lyfeInfinity from "@/assets/lyfe-infinity.png";
+import lyfeLogo from "@/assets/lyfe-logo.png";
 import { CartDrawer } from "@/components/CartDrawer";
 
 const shopLinks = [
@@ -32,7 +32,7 @@ const Header = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
             <img 
-              src={lyfeInfinity} 
+              src={lyfeLogo} 
               alt="Lyfe Products" 
               className="h-8 md:h-10 w-auto"
             />
