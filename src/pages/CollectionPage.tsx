@@ -23,7 +23,7 @@ const collections: Record<string, CollectionConfig> = {
   "hair-growth-serums": {
     title: "Hair Growth Serums",
     description: "Nourish your scalp and support healthy hair growth with our herbal-infused oils.",
-    query: "(title:Hair OR title:Growth OR title:Serum OR title:Oil) NOT title:Body Butter",
+    query: "(title:Hair Growth OR title:Hair Oil OR title:Scalp) NOT (title:Bundle OR title:Trio OR title:Duo OR title:Body Butter)",
   },
   "body-butters": {
     title: "Body Butters",
