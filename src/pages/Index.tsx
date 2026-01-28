@@ -8,6 +8,7 @@ import Testimonials from "@/components/Testimonials";
 import Community from "@/components/Community";
 import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
+import LyfeBotWidget from "@/components/LyfeBot/LyfeBotWidget";
 
 const Index = () => {
   return (
@@ -24,6 +25,7 @@ const Index = () => {
         <FinalCTA />
       </main>
       <Footer />
+      <LyfeBotWidget />
     </div>
   );
 };
