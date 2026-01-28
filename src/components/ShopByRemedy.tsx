@@ -44,7 +44,7 @@ const item = {
 
 const ShopByRemedy = () => {
   return (
-    <section className="section-padding bg-background">
+    <section id="remedies" className="section-padding bg-background">
       <div className="container-lyfe">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -53,9 +53,9 @@ const ShopByRemedy = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h2 className="heading-section mb-4">Shop by Remedy</h2>
+          <h2 className="heading-section mb-4">The Remedies</h2>
           <p className="body-large max-w-2xl mx-auto">
-            Find the perfect remedy for your wellness journey
+            Healing solutions for your wellness journey
           </p>
         </motion.div>
 

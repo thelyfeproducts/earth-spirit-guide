@@ -39,14 +39,12 @@ const FinalCTA = () => {
             className="text-center lg:text-left"
           >
             <h2 className="heading-section mb-6">
-              Ready to Return
-              <br />
-              <span className="text-secondary">to the Earth?</span>
+              Join the
+              <span className="text-secondary"> Lyfe</span>
             </h2>
             
             <p className="body-large mb-8 max-w-lg mx-auto lg:mx-0">
-              Join the Lyfe community and be the first to know about new remedies, 
-              Earth wisdom, and exclusive offers.
+              Be the first to know about new remedies, Earth wisdom, and exclusive offers.
             </p>
 
             {/* Email Form */}
@@ -76,16 +74,6 @@ const FinalCTA = () => {
                 )}
               </button>
             </form>
-
-            {/* Quick Links */}
-            <div className="flex flex-wrap gap-4 justify-center lg:justify-start mt-8">
-              <a href="#shop" className="btn-outline-earth text-base py-3 px-6">
-                Shop Now
-              </a>
-              <a href="#story" className="font-body font-semibold text-secondary hover:text-primary transition-colors py-3 px-6">
-                Learn More →
-              </a>
-            </div>
           </motion.div>
 
           {/* Lyfe Character */}
