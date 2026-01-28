@@ -1,4 +1,5 @@
 import { Heart, Instagram, Facebook, Twitter } from "lucide-react";
+import { Link } from "react-router-dom";
 import lyfeInfinity from "@/assets/lyfe-infinity.png";
 
 const footerLinks = {
@@ -9,17 +10,35 @@ const footerLinks = {
     { name: "Face Care", href: "#shop" },
   ],
   learn: [
-    { name: "Our Story", href: "#story" },
-    { name: "Why Organic", href: "#why-organic" },
+    { name: "Our Story", href: "/our-story" },
+    { name: "Why Organic", href: "/why-organic" },
     { name: "Ingredients", href: "#" },
     { name: "Blog", href: "#" },
   ],
   support: [
-    { name: "Contact Us", href: "#" },
+    { name: "Contact Us", href: "/contact" },
     { name: "Shipping", href: "#" },
     { name: "Returns", href: "#" },
     { name: "FAQ", href: "#" },
   ],
+};
+
+const FooterLink = ({ href, children }: { href: string; children: React.ReactNode }) => {
+  const isInternal = href.startsWith("/");
+  
+  if (isInternal) {
+    return (
+      <Link to={href} className="font-body text-cream/70 hover:text-cream transition-colors">
+        {children}
+      </Link>
+    );
+  }
+  
+  return (
+    <a href={href} className="font-body text-cream/70 hover:text-cream transition-colors">
+      {children}
+    </a>
+  );
 };
 
 const Footer = () => {
@@ -29,7 +48,7 @@ const Footer = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
           {/* Brand */}
           <div className="lg:col-span-2">
-            <div className="flex items-center gap-3 mb-6">
+            <Link to="/" className="flex items-center gap-3 mb-6">
               <img 
                 src={lyfeInfinity} 
                 alt="Lyfe Products" 
@@ -38,7 +57,7 @@ const Footer = () => {
               <span className="font-display font-black text-2xl text-cream">
                 Lyfe Products™
               </span>
-            </div>
+            </Link>
             <p className="font-body text-cream/70 mb-6 max-w-sm">
               Organic remedies made with plants, intention, and care. 
               Rooted in indigenous wisdom, crafted for modern healing.
@@ -62,9 +81,7 @@ const Footer = () => {
             <ul className="space-y-3">
               {footerLinks.shop.map((link) => (
                 <li key={link.name}>
-                  <a href={link.href} className="font-body text-cream/70 hover:text-cream transition-colors">
-                    {link.name}
-                  </a>
+                  <FooterLink href={link.href}>{link.name}</FooterLink>
                 </li>
               ))}
             </ul>
@@ -76,9 +93,7 @@ const Footer = () => {
             <ul className="space-y-3">
               {footerLinks.learn.map((link) => (
                 <li key={link.name}>
-                  <a href={link.href} className="font-body text-cream/70 hover:text-cream transition-colors">
-                    {link.name}
-                  </a>
+                  <FooterLink href={link.href}>{link.name}</FooterLink>
                 </li>
               ))}
             </ul>
@@ -90,9 +105,7 @@ const Footer = () => {
             <ul className="space-y-3">
               {footerLinks.support.map((link) => (
                 <li key={link.name}>
-                  <a href={link.href} className="font-body text-cream/70 hover:text-cream transition-colors">
-                    {link.name}
-                  </a>
+                  <FooterLink href={link.href}>{link.name}</FooterLink>
                 </li>
               ))}
             </ul>
