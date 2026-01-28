@@ -53,8 +53,10 @@ const QuickShop = () => {
           if (!aIsHair && bIsHair) return 1;
           return 0;
         });
-        
-        setProducts(sorted.slice(0, 12));
+        // Ensure we have a multiple of 4 for even grid display
+        const count = Math.min(sorted.length, 12);
+        const evenCount = Math.floor(count / 4) * 4;
+        setProducts(sorted.slice(0, evenCount || 4));
       } catch (error) {
         console.error("Failed to fetch products:", error);
       } finally {
