@@ -6,7 +6,7 @@ import storyDorm from "@/assets/story-dorm-making.jpeg";
 import storyCampus from "@/assets/story-campus-sales.jpeg";
 import storyRetail from "@/assets/story-retail-store.jpeg";
 import storyCommunity from "@/assets/story-community.jpeg";
-import storyTeam from "@/assets/story-team.jpeg";
+import storyCompetition from "@/assets/story-competition-win.jpg";
 
 const OurStory = () => {
   return (
@@ -205,13 +205,13 @@ const OurStory = () => {
                 className="relative rounded-3xl overflow-hidden shadow-lyfe-lg order-2 lg:order-1"
               >
                 <img
-                  src={storyTeam}
-                  alt="The Lyfe Products team"
+                  src={storyCompetition}
+                  alt="Winning a pitch competition"
                   className="w-full h-auto"
                 />
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-charcoal/80 to-transparent p-6">
-                  <p className="font-display font-bold text-white text-lg">The Lyfe Family</p>
-                  <p className="font-body text-white/80 text-sm mt-1">Building something bigger than ourselves</p>
+                  <p className="font-display font-bold text-white text-lg">Competition Winners</p>
+                  <p className="font-body text-white/80 text-sm mt-1">Earning recognition the right way</p>
                 </div>
               </motion.div>
               
