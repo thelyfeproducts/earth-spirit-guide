@@ -30,7 +30,8 @@ const QuickShop = () => {
   useEffect(() => {
     const loadProducts = async () => {
       try {
-        const data = await fetchProducts(8);
+        // Fetch more products to ensure variety including hair growth serums
+        const data = await fetchProducts(12);
         setProducts(data);
       } catch (error) {
         console.error("Failed to fetch products:", error);
