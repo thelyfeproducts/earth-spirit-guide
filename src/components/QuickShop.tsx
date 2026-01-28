@@ -40,8 +40,13 @@ const QuickShop = () => {
           !p.node.title.toLowerCase().includes('herbal hair growth oil duo')
         );
         
-        // Sort to put hair growth products first
+        // Sort to put pumpkin spice first, then hair growth products
         const sorted = filtered.sort((a, b) => {
+          const aIsPumpkin = a.node.title.toLowerCase().includes('pumpkin spice');
+          const bIsPumpkin = b.node.title.toLowerCase().includes('pumpkin spice');
+          if (aIsPumpkin && !bIsPumpkin) return -1;
+          if (!aIsPumpkin && bIsPumpkin) return 1;
+          
           const aIsHair = a.node.title.toLowerCase().includes('hair') || a.node.title.toLowerCase().includes('growth');
           const bIsHair = b.node.title.toLowerCase().includes('hair') || b.node.title.toLowerCase().includes('growth');
           if (aIsHair && !bIsHair) return -1;
