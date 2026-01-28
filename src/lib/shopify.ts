@@ -4,7 +4,7 @@ import { toast } from "sonner";
 const SHOPIFY_API_VERSION = '2025-07';
 const SHOPIFY_STORE_PERMANENT_DOMAIN = '00bb4d-de.myshopify.com';
 const SHOPIFY_STOREFRONT_URL = `https://${SHOPIFY_STORE_PERMANENT_DOMAIN}/api/${SHOPIFY_API_VERSION}/graphql.json`;
-const SHOPIFY_STOREFRONT_TOKEN = 'c4fcce46476b7fa62ab9150d12085488';
+const SHOPIFY_STOREFRONT_TOKEN = import.meta.env.VITE_SHOPIFY_STOREFRONT_TOKEN || '';
 
 // Types
 export interface ShopifyProduct {
@@ -53,6 +53,14 @@ export interface ShopifyProduct {
 
 // Storefront API helper function
 export async function storefrontApiRequest(query: string, variables: Record<string, unknown> = {}) {
+  if (!SHOPIFY_STOREFRONT_TOKEN) {
+    console.error('Shopify configuration error: Missing storefront token');
+    toast.error("Store configuration error", {
+      description: "Unable to connect to the store. Please try again later.",
+    });
+    return null;
+  }
+
   const response = await fetch(SHOPIFY_STOREFRONT_URL, {
     method: 'POST',
     headers: {
@@ -66,20 +74,22 @@ export async function storefrontApiRequest(query: string, variables: Record<stri
   });
 
   if (response.status === 402) {
-    toast.error("Shopify: Payment required", {
-      description: "Shopify API access requires an active billing plan. Visit https://admin.shopify.com to upgrade.",
+    toast.error("Store temporarily unavailable", {
+      description: "We're experiencing technical difficulties. Please try again later.",
     });
-    return;
+    return null;
   }
 
   if (!response.ok) {
-    throw new Error(`HTTP error! status: ${response.status}`);
+    console.error('Shopify API error:', response.status);
+    throw new Error('Unable to load products at this time. Please try again.');
   }
 
   const data = await response.json();
   
   if (data.errors) {
-    throw new Error(`Error calling Shopify: ${data.errors.map((e: { message: string }) => e.message).join(', ')}`);
+    console.error('Shopify GraphQL errors:', data.errors);
+    throw new Error('Unable to complete your request. Please try again.');
   }
 
   return data;
@@ -265,7 +275,9 @@ export async function createShopifyCart(item: CartItem): Promise<{ cartId: strin
   });
 
   if (data?.data?.cartCreate?.userErrors?.length > 0) {
-    console.error('Cart creation failed:', data.data.cartCreate.userErrors);
+    if (import.meta.env.DEV) {
+      console.error('Cart creation failed:', data.data.cartCreate.userErrors);
+    }
     return null;
   }
 
@@ -287,7 +299,9 @@ export async function addLineToShopifyCart(cartId: string, item: CartItem): Prom
   const userErrors = data?.data?.cartLinesAdd?.userErrors || [];
   if (isCartNotFoundError(userErrors)) return { success: false, cartNotFound: true };
   if (userErrors.length > 0) {
-    console.error('Add line failed:', userErrors);
+    if (import.meta.env.DEV) {
+      console.error('Add line failed:', userErrors);
+    }
     return { success: false };
   }
 
@@ -305,7 +319,9 @@ export async function updateShopifyCartLine(cartId: string, lineId: string, quan
   const userErrors = data?.data?.cartLinesUpdate?.userErrors || [];
   if (isCartNotFoundError(userErrors)) return { success: false, cartNotFound: true };
   if (userErrors.length > 0) {
-    console.error('Update line failed:', userErrors);
+    if (import.meta.env.DEV) {
+      console.error('Update line failed:', userErrors);
+    }
     return { success: false };
   }
   return { success: true };
@@ -320,7 +336,9 @@ export async function removeLineFromShopifyCart(cartId: string, lineId: string):
   const userErrors = data?.data?.cartLinesRemove?.userErrors || [];
   if (isCartNotFoundError(userErrors)) return { success: false, cartNotFound: true };
   if (userErrors.length > 0) {
-    console.error('Remove line failed:', userErrors);
+    if (import.meta.env.DEV) {
+      console.error('Remove line failed:', userErrors);
+    }
     return { success: false };
   }
   return { success: true };
