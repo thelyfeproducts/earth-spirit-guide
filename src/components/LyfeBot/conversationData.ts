@@ -1,187 +1,116 @@
 import { ButtonOption, ProductRecommendation, QuizAnswers } from "./types";
 
 export const welcomeButtons: ButtonOption[] = [
-  { label: "🌿 Find my remedy", value: "find_remedy", action: "find_remedy_area" },
-  { label: "✨ Help me choose", value: "help_choose", action: "find_remedy_area" },
+  { label: "🌿 Find my remedy", value: "find_remedy", action: "area" },
   { label: "📦 Shipping & returns", value: "shipping", action: "shipping" },
   { label: "🌱 Ingredients & sensitivities", value: "ingredients", action: "ingredients" },
   { label: "💧 How to use", value: "how_to_use", action: "how_to_use" },
 ];
 
 export const areaButtons: ButtonOption[] = [
-  { label: "Hair", value: "hair", action: "find_remedy_goal" },
-  { label: "Skin", value: "skin", action: "find_remedy_goal" },
-  { label: "Both", value: "both", action: "find_remedy_goal" },
+  { label: "💆 Hair", value: "hair", action: "hair_goal" },
+  { label: "✨ Skin", value: "skin", action: "skin_preference" },
+  { label: "🌿 Both", value: "both", action: "recommendation" },
 ];
 
-export const goalButtons: ButtonOption[] = [
-  { label: "Growth & strength", value: "growth", action: "find_remedy_sensitivity" },
-  { label: "Deep moisture", value: "moisture", action: "find_remedy_sensitivity" },
-  { label: "Calm & soothe", value: "calm", action: "find_remedy_sensitivity" },
-  { label: "Repair & restore", value: "repair", action: "find_remedy_sensitivity" },
+export const skinPreferenceButtons: ButtonOption[] = [
+  { label: "🌼 Comforting", value: "comforting", action: "recommendation" },
+  { label: "🌲 Grounding", value: "grounding", action: "recommendation" },
 ];
 
-export const sensitivityButtons: ButtonOption[] = [
-  { label: "Yes, I have sensitivities", value: "yes", action: "recommendation" },
-  { label: "No sensitivities", value: "no", action: "recommendation" },
-  { label: "Not sure", value: "not_sure", action: "recommendation" },
+export const hairGoalButtons: ButtonOption[] = [
+  { label: "🌱 Growth", value: "growth", action: "recommendation" },
+  { label: "🤔 Both / Not sure", value: "both_not_sure", action: "recommendation" },
 ];
+
+export const products: Record<string, ProductRecommendation> = {
+  vanillaBodyButter: {
+    name: "Vanilla Bean Body Butter",
+    description: "This one is gentle, comforting, and perfect for everyday moisture.\n\nMost people love it for dry or sensitive skin, especially as a nighttime or self-care routine.\n\nIf you're new to Lyfe, this is a beautiful place to start 🌱",
+    link: "#shop",
+    icon: "🌼",
+  },
+  sandalwoodBodyButter: {
+    name: "Sandalwood Body Butter",
+    description: "This one is richer and more grounding.\n\nPeople love it for deep moisture and evening routines — especially if you enjoy warm, earthy scents.\n\nIt pairs really well with the hair serum for a full self-care ritual.",
+    link: "#shop",
+    icon: "🌲",
+  },
+  hairSerum: {
+    name: "2oz Hair Growth Serum",
+    description: "This serum is focused on scalp health and growth support.\n\nIt's best if you're dealing with dryness, thinning edges, or just want to support healthier hair over time.\n\nA little goes a long way — consistency matters more than quantity.",
+    link: "#shop",
+    icon: "🌿",
+  },
+};
 
 export const botMessages = {
   welcome: "Hey there! 🌿 I'm Lyfe, your Earth guide. How can I help you today?",
-  find_remedy_area: "Let's find your perfect remedy. What area would you like to focus on?",
-  find_remedy_goal: "Beautiful. And what's your main goal?",
-  find_remedy_sensitivity: "Last one — do you have any skin or scalp sensitivities?",
-  shipping: `📦 **Shipping & Returns**
+  area: "What are you shopping for?",
+  skin_preference: "Do you prefer something comforting or grounding?",
+  hair_goal: "Is your main goal growth or scalp comfort?",
+  shipping: `We ship within 3-5 business days. Returns are accepted within 30 days if unopened.
 
-We ship within 2-3 business days. Free shipping on orders over $50.
-
-Returns are easy — if a remedy doesn't feel right within 30 days, we'll make it right. No questions, just care.
+If something doesn't feel right, just reach out — we're here to help 🌿
 
 Anything else I can help with?`,
-  ingredients: `🌱 **Ingredients & Sensitivities**
+  ingredients: `All our products are plant-based and made with organic ingredients.
 
-Every Lyfe remedy is made with organic, plant-based ingredients. No parabens, sulfates, or synthetic fragrances.
+We always recommend a small patch test, especially if your skin is sensitive.
 
-If you have specific allergies, each product page lists full ingredients. We're also happy to help you find what works for your body.
+Feel free to ask about any specific ingredient — I'm happy to help.
 
-Want me to help you find a gentle option?`,
-  how_to_use: `💧 **How to Use**
+Want me to help you find a remedy?`,
+  how_to_use: `Here's how most people use our products:
 
-Each remedy comes with simple instructions, but here's the heart of it:
+🌿 **Hair Serum**: Apply 2–3 times per week to scalp. Gentle consistency matters more than daily use.
 
-• **Oils**: Warm a small amount in your hands, massage gently, leave for 20+ mins or overnight
-• **Butters**: Apply to damp skin for best absorption
-• **Serums**: A few drops go a long way — less is more
+🌼 **Body Butters**: Apply after bathing while skin is still slightly damp for best absorption.
 
-The Earth works gently. Give it time. 🌿
+A little goes a long way with all Lyfe products.
 
-Need help with a specific product?`,
-  recommendation_intro: "Based on what you shared, here's what I'd suggest:",
-  fallback: "I'm here to help! Feel free to ask about our remedies, ingredients, or how to use them. 🌿",
+Would you like me to help you find the right remedy?`,
+  fallback: "I'm here to help! Feel free to use the buttons above, or ask me about our products, ingredients, or how to use them 🌿",
 };
 
-export function getRecommendations(answers: QuizAnswers): ProductRecommendation[] {
-  const { area, goal, sensitivity } = answers;
-  
-  // Primary recommendations based on area + goal
-  const recommendations: ProductRecommendation[] = [];
-  
-  if (area === "hair" || area === "both") {
-    if (goal === "growth") {
-      recommendations.push({
-        name: "Rosemary Hair Growth Oil",
-        tagline: "Supports healthy, nourished hair with rosemary and botanical oils",
-        price: "$28",
-        link: "#remedies",
-      });
-    } else if (goal === "moisture") {
-      recommendations.push({
-        name: "Lavender Body Butter",
-        tagline: "Deep, lasting moisture with calming lavender",
-        price: "$32",
-        link: "#remedies",
-      });
-    } else if (goal === "calm" || goal === "repair") {
-      recommendations.push({
-        name: "Chamomile Healing Balm",
-        tagline: "Gentle relief and restoration for sensitive areas",
-        price: "$24",
-        link: "#remedies",
-      });
-    }
-  }
-  
-  if (area === "skin" || area === "both") {
-    if (goal === "growth" || goal === "repair") {
-      recommendations.push({
-        name: "Turmeric Glow Serum",
-        tagline: "Radiance and repair from Earth's golden treasure",
-        price: "$38",
-        link: "#remedies",
-      });
-    } else if (goal === "moisture") {
-      recommendations.push({
-        name: "Aloe Hydration Mist",
-        tagline: "Refreshing burst of plant-powered hydration",
-        price: "$22",
-        link: "#remedies",
-      });
-    } else if (goal === "calm") {
-      recommendations.push({
-        name: "Chamomile Healing Balm",
-        tagline: "Soothes and calms irritated skin naturally",
-        price: "$24",
-        link: "#remedies",
-      });
-    }
-  }
-  
-  // Add complementary product as add-on
-  if (recommendations.length > 0) {
-    const addOn = getAddOn(recommendations[0].name, sensitivity);
-    if (addOn) {
-      recommendations.push({ ...addOn, isAddOn: true });
-    }
-  }
-  
-  // Fallback if no specific match
-  if (recommendations.length === 0) {
-    recommendations.push({
-      name: "Rosemary Hair Growth Oil",
-      tagline: "Our bestseller — nourishing care for hair and scalp",
-      price: "$28",
-      link: "#remedies",
-    });
-  }
-  
-  return recommendations;
-}
+export const faqResponses: Record<string, string> = {
+  results: "Everyone's body is different, but most people notice improved moisture and scalp comfort first.\n\nGrowth support comes with consistent use over time.",
+  sensitive: "Yes — we always recommend a small patch test, especially if your skin is sensitive.",
+  frequency: "2–3 times per week is a great place to start for the hair serum.\n\nGentle consistency matters more than daily use.",
+  forWho: "Yes — Lyfe products are for anyone seeking natural, grounded care.",
+};
 
-function getAddOn(primaryProduct: string, sensitivity?: string): ProductRecommendation | null {
-  // Suggest gentle options for sensitive users
-  if (sensitivity === "yes") {
+export function getRecommendation(answers: QuizAnswers): { primary: ProductRecommendation; addOn?: ProductRecommendation; addOnMessage?: string } {
+  const { area, skinPreference } = answers;
+  
+  if (area === "skin") {
+    if (skinPreference === "comforting") {
+      return {
+        primary: products.vanillaBodyButter,
+        addOn: products.hairSerum,
+        addOnMessage: "Some people pair this with our hair serum for a full routine 🌿",
+      };
+    } else {
+      return {
+        primary: products.sandalwoodBodyButter,
+        addOn: products.hairSerum,
+        addOnMessage: "Some people pair this with our hair serum for a full routine 🌿",
+      };
+    }
+  }
+  
+  if (area === "hair") {
     return {
-      name: "Chamomile Healing Balm",
-      tagline: "Extra gentle for sensitive skin",
-      price: "$24",
-      link: "#remedies",
+      primary: products.hairSerum,
+      addOn: products.vanillaBodyButter,
+      addOnMessage: "Many people also use a body butter to support overall skin moisture and self-care.",
     };
   }
   
-  // Complementary products
-  const addOns: Record<string, ProductRecommendation> = {
-    "Rosemary Hair Growth Oil": {
-      name: "Lavender Body Butter",
-      tagline: "Pairs beautifully for full-body care",
-      price: "$32",
-      link: "#remedies",
-    },
-    "Turmeric Glow Serum": {
-      name: "Aloe Hydration Mist",
-      tagline: "Lock in the glow with hydration",
-      price: "$22",
-      link: "#remedies",
-    },
-    "Lavender Body Butter": {
-      name: "Aloe Hydration Mist",
-      tagline: "Prep your skin before moisturizing",
-      price: "$22",
-      link: "#remedies",
-    },
-    "Chamomile Healing Balm": {
-      name: "Aloe Hydration Mist",
-      tagline: "Gentle hydration before healing",
-      price: "$22",
-      link: "#remedies",
-    },
-    "Aloe Hydration Mist": {
-      name: "Lavender Body Butter",
-      tagline: "Seal in moisture for lasting care",
-      price: "$32",
-      link: "#remedies",
-    },
+  // Both
+  return {
+    primary: products.hairSerum,
+    addOn: products.vanillaBodyButter,
+    addOnMessage: "A lot of people start with a simple two-step ritual.\n\nIf you prefer something more grounding, Sandalwood is a great alternative.",
   };
-  
-  return addOns[primaryProduct] || null;
 }

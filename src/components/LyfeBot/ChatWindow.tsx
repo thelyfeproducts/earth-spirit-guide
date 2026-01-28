@@ -5,10 +5,11 @@ import { Message, ConversationStep, QuizAnswers, ButtonOption } from "./types";
 import {
   welcomeButtons,
   areaButtons,
-  goalButtons,
-  sensitivityButtons,
+  skinPreferenceButtons,
+  hairGoalButtons,
   botMessages,
-  getRecommendations,
+  faqResponses,
+  getRecommendation,
 } from "./conversationData";
 
 interface ChatWindowProps {
@@ -58,21 +59,25 @@ const ChatWindow = ({ onClose }: ChatWindowProps) => {
   const handleButtonClick = (button: ButtonOption) => {
     addUserMessage(button.label);
 
-    // Store quiz answers
-    if (currentStep === "find_remedy_area") {
+    // Store quiz answers based on current step
+    if (currentStep === "area") {
       setQuizAnswers((prev) => ({ ...prev, area: button.value as QuizAnswers["area"] }));
-    } else if (currentStep === "find_remedy_goal") {
-      setQuizAnswers((prev) => ({ ...prev, goal: button.value as QuizAnswers["goal"] }));
-    } else if (currentStep === "find_remedy_sensitivity") {
-      const updatedAnswers = { ...quizAnswers, sensitivity: button.value as QuizAnswers["sensitivity"] };
-      setQuizAnswers(updatedAnswers);
       
-      // Generate recommendations
-      setTimeout(() => {
-        const recommendations = getRecommendations(updatedAnswers);
-        addBotMessage(botMessages.recommendation_intro, undefined, recommendations);
-        setCurrentStep("recommendation");
-      }, 500);
+      // If "both" is selected, go straight to recommendation
+      if (button.value === "both") {
+        const updatedAnswers = { ...quizAnswers, area: "both" as const };
+        setTimeout(() => showRecommendation(updatedAnswers), 500);
+        return;
+      }
+    } else if (currentStep === "skin_preference") {
+      const updatedAnswers = { ...quizAnswers, skinPreference: button.value as QuizAnswers["skinPreference"] };
+      setQuizAnswers(updatedAnswers);
+      setTimeout(() => showRecommendation(updatedAnswers), 500);
+      return;
+    } else if (currentStep === "hair_goal") {
+      const updatedAnswers = { ...quizAnswers, hairGoal: button.value as QuizAnswers["hairGoal"] };
+      setQuizAnswers(updatedAnswers);
+      setTimeout(() => showRecommendation(updatedAnswers), 500);
       return;
     }
 
@@ -87,34 +92,67 @@ const ChatWindow = ({ onClose }: ChatWindowProps) => {
     }, 500);
   };
 
+  const showRecommendation = (answers: QuizAnswers) => {
+    const { primary, addOn, addOnMessage } = getRecommendation(answers);
+    
+    // Show primary product
+    addBotMessage(
+      `${primary.icon} **${primary.name}**\n\n${primary.description}`,
+      undefined,
+      [primary]
+    );
+
+    // Show add-on after a delay
+    if (addOn && addOnMessage) {
+      setTimeout(() => {
+        addBotMessage(
+          `${addOnMessage}\n\n${addOn.icon} **${addOn.name}** might be a lovely addition.`,
+          undefined,
+          [{ ...addOn, isAddOn: true }]
+        );
+      }, 1000);
+    }
+
+    // Return to start after recommendations
+    setTimeout(() => {
+      addBotMessage("Is there anything else I can help you with? 🌿", [
+        { label: "🌿 Find another remedy", value: "find_remedy", action: "area" },
+        { label: "📦 Shipping & returns", value: "shipping", action: "shipping" },
+        { label: "💧 How to use", value: "how_to_use", action: "how_to_use" },
+      ]);
+      setCurrentStep("welcome");
+      setQuizAnswers({});
+    }, 2500);
+  };
+
   const handleStep = (step: ConversationStep) => {
     setCurrentStep(step);
 
     switch (step) {
-      case "find_remedy_area":
-        addBotMessage(botMessages.find_remedy_area, areaButtons);
+      case "area":
+        addBotMessage(botMessages.area, areaButtons);
         break;
-      case "find_remedy_goal":
-        addBotMessage(botMessages.find_remedy_goal, goalButtons);
+      case "skin_preference":
+        addBotMessage(botMessages.skin_preference, skinPreferenceButtons);
         break;
-      case "find_remedy_sensitivity":
-        addBotMessage(botMessages.find_remedy_sensitivity, sensitivityButtons);
+      case "hair_goal":
+        addBotMessage(botMessages.hair_goal, hairGoalButtons);
         break;
       case "shipping":
         addBotMessage(botMessages.shipping, [
-          { label: "Find my remedy", value: "find_remedy", action: "find_remedy_area" },
+          { label: "🌿 Find my remedy", value: "find_remedy", action: "area" },
           { label: "Back to start", value: "back", action: "welcome" },
         ]);
         break;
       case "ingredients":
         addBotMessage(botMessages.ingredients, [
-          { label: "Yes, help me find gentle options", value: "gentle", action: "find_remedy_area" },
+          { label: "🌿 Yes, help me find one", value: "find_remedy", action: "area" },
           { label: "Back to start", value: "back", action: "welcome" },
         ]);
         break;
       case "how_to_use":
         addBotMessage(botMessages.how_to_use, [
-          { label: "Find my remedy", value: "find_remedy", action: "find_remedy_area" },
+          { label: "🌿 Find my remedy", value: "find_remedy", action: "area" },
           { label: "Back to start", value: "back", action: "welcome" },
         ]);
         break;
@@ -129,11 +167,29 @@ const ChatWindow = ({ onClose }: ChatWindowProps) => {
   const handleSendMessage = () => {
     if (!inputValue.trim()) return;
     
+    const userMessage = inputValue.trim().toLowerCase();
     addUserMessage(inputValue);
     setInputValue("");
     
+    // Simple keyword matching for common questions
     setTimeout(() => {
-      addBotMessage(botMessages.fallback, welcomeButtons);
+      if (userMessage.includes("result") || userMessage.includes("long") || userMessage.includes("work")) {
+        addBotMessage(faqResponses.results, welcomeButtons);
+      } else if (userMessage.includes("sensitive") || userMessage.includes("allerg")) {
+        addBotMessage(faqResponses.sensitive, welcomeButtons);
+      } else if (userMessage.includes("often") || userMessage.includes("frequent") || userMessage.includes("how many")) {
+        addBotMessage(faqResponses.frequency, welcomeButtons);
+      } else if (userMessage.includes("men") || userMessage.includes("women") || userMessage.includes("who")) {
+        addBotMessage(faqResponses.forWho, welcomeButtons);
+      } else if (userMessage.includes("ship") || userMessage.includes("return") || userMessage.includes("deliver")) {
+        addBotMessage(botMessages.shipping, welcomeButtons);
+      } else if (userMessage.includes("ingredient") || userMessage.includes("natural") || userMessage.includes("organic")) {
+        addBotMessage(botMessages.ingredients, welcomeButtons);
+      } else if (userMessage.includes("use") || userMessage.includes("apply") || userMessage.includes("how to")) {
+        addBotMessage(botMessages.how_to_use, welcomeButtons);
+      } else {
+        addBotMessage(botMessages.fallback, welcomeButtons);
+      }
     }, 500);
   };
 
@@ -144,6 +200,13 @@ const ChatWindow = ({ onClose }: ChatWindowProps) => {
     setTimeout(() => {
       addBotMessage(botMessages.welcome, welcomeButtons);
     }, 100);
+  };
+
+  // Render message content with bold text support
+  const renderContent = (content: string) => {
+    return content.split("**").map((part, i) =>
+      i % 2 === 1 ? <strong key={i}>{part}</strong> : part
+    );
   };
 
   return (
@@ -199,7 +262,9 @@ const ChatWindow = ({ onClose }: ChatWindowProps) => {
                     : "bg-muted text-foreground rounded-bl-md"
                 }`}
               >
-                <p className="font-body text-sm whitespace-pre-line">{message.content}</p>
+                <p className="font-body text-sm whitespace-pre-line leading-relaxed">
+                  {renderContent(message.content)}
+                </p>
                 
                 {/* Product Recommendations */}
                 {message.products && message.products.length > 0 && (
@@ -216,17 +281,14 @@ const ChatWindow = ({ onClose }: ChatWindowProps) => {
                       >
                         {product.isAddOn && (
                           <span className="text-xs font-body font-semibold text-accent-foreground/70 mb-1 block">
-                            ✨ Perfect addition
+                            ✨ Lovely addition
                           </span>
                         )}
                         <p className="font-display font-bold text-sm text-charcoal">
-                          {product.name}
+                          {product.icon} {product.name}
                         </p>
                         <p className="font-body text-xs text-muted-foreground mt-1">
-                          {product.tagline}
-                        </p>
-                        <p className="font-display font-bold text-sm text-secondary mt-2">
-                          {product.price}
+                          View product →
                         </p>
                       </a>
                     ))}
