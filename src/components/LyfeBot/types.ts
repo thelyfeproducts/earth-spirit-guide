@@ -1,8 +1,8 @@
 export type ConversationStep = 
   | "welcome"
-  | "find_remedy_area"
-  | "find_remedy_goal"
-  | "find_remedy_sensitivity"
+  | "area"
+  | "skin_preference"
+  | "hair_goal"
   | "recommendation"
   | "shipping"
   | "ingredients"
@@ -25,14 +25,14 @@ export interface ButtonOption {
 
 export interface ProductRecommendation {
   name: string;
-  tagline: string;
-  price: string;
+  description: string;
   link: string;
+  icon: string;
   isAddOn?: boolean;
 }
 
 export interface QuizAnswers {
   area?: "hair" | "skin" | "both";
-  goal?: "growth" | "moisture" | "calm" | "repair";
-  sensitivity?: "yes" | "no" | "not_sure";
+  skinPreference?: "comforting" | "grounding";
+  hairGoal?: "growth" | "both_not_sure";
 }
