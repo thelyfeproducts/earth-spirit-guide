@@ -10,6 +10,7 @@ const navLinks = [
   { name: "Why Organic", href: "#why-organic" },
   { name: "Community", href: "#community" },
   { name: "Our Team", href: "/team" },
+  { name: "Ambassadors", href: "/ambassadors" },
 ];
 
 const Header = () => {
