@@ -13,6 +13,7 @@ import CommunityPage from "./pages/CommunityPage";
 import ProductPage from "./pages/ProductPage";
 import CollectionPage from "./pages/CollectionPage";
 import TestimonialsPage from "./pages/TestimonialsPage";
+import WhyOrganicPage from "./pages/WhyOrganicPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -34,6 +35,7 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/our-story" element={<OurStory />} />
+            <Route path="/why-organic" element={<WhyOrganicPage />} />
             <Route path="/community" element={<CommunityPage />} />
             <Route path="/team" element={<Team />} />
             <Route path="/ambassadors" element={<Ambassadors />} />
