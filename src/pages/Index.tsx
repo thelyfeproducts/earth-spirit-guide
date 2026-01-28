@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import QuickShop from "@/components/QuickShop";
+import ShopByRemedy from "@/components/ShopByRemedy";
 import StorySection from "@/components/StorySection";
 import WhyOrganic from "@/components/WhyOrganic";
 import Remedies from "@/components/Remedies";
@@ -17,6 +18,7 @@ const Index = () => {
       <main>
         <Hero />
         <QuickShop />
+        <ShopByRemedy />
         <StorySection />
         <WhyOrganic />
         <Remedies />

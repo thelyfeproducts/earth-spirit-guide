@@ -116,19 +116,19 @@ const QuickShop = () => {
                   variants={item}
                   className="product-card group cursor-pointer"
                 >
-                  <Link to={`/product/${product.node.handle}`}>
-                    <div className={`${bgColors[index % 4]} h-56 flex items-center justify-center relative overflow-hidden`}>
-                      {imageUrl ? (
-                        <img
-                          src={imageUrl}
-                          alt={product.node.images.edges[0]?.node.altText || product.node.title}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                        />
-                      ) : (
-                        <div className="w-24 h-24 bg-secondary rounded-full opacity-50" />
-                      )}
-                    </div>
-                  </Link>
+                      <Link to={`/products/${product.node.handle}`}>
+                        <div className={`${bgColors[index % 4]} h-56 flex items-center justify-center relative overflow-hidden`}>
+                          {imageUrl ? (
+                            <img
+                              src={imageUrl}
+                              alt={product.node.images.edges[0]?.node.altText || product.node.title}
+                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                            />
+                          ) : (
+                            <div className="w-24 h-24 bg-secondary rounded-full opacity-50" />
+                          )}
+                        </div>
+                      </Link>
                   
                   {/* Quick Add Button */}
                   <motion.button
@@ -149,25 +149,25 @@ const QuickShop = () => {
                   
                   {/* Product Info */}
                   <div className="p-5">
-                    <Link to={`/product/${product.node.handle}`}>
-                      <h3 className="heading-card mb-2 line-clamp-2 hover:text-secondary transition-colors">
-                        {product.node.title}
-                      </h3>
-                    </Link>
-                    <p className="font-body text-muted-foreground text-sm mb-3 line-clamp-2">
-                      {product.node.description || "Natural, handcrafted wellness"}
-                    </p>
-                    <div className="flex items-center justify-between">
-                      <span className="font-display font-bold text-xl text-secondary">
-                        ${parseFloat(price.amount).toFixed(2)}
-                      </span>
-                      <Link 
-                        to={`/product/${product.node.handle}`}
-                        className="text-sm font-body font-semibold text-primary hover:text-secondary transition-colors"
-                      >
-                        View Details →
+                      <Link to={`/products/${product.node.handle}`}>
+                        <h3 className="heading-card mb-2 line-clamp-2 hover:text-secondary transition-colors">
+                          {product.node.title}
+                        </h3>
                       </Link>
-                    </div>
+                      <p className="font-body text-muted-foreground text-sm mb-3 line-clamp-2">
+                        {product.node.description || "Natural, handcrafted wellness"}
+                      </p>
+                      <div className="flex items-center justify-between">
+                        <span className="font-display font-bold text-xl text-secondary">
+                          ${parseFloat(price.amount).toFixed(2)}
+                        </span>
+                        <Link 
+                          to={`/products/${product.node.handle}`}
+                          className="text-sm font-body font-semibold text-primary hover:text-secondary transition-colors"
+                        >
+                          View Details →
+                        </Link>
+                      </div>
                   </div>
                 </motion.div>
               );
@@ -182,8 +182,8 @@ const QuickShop = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="text-center mt-12"
         >
-          <Link to="/shop" className="btn-outline-earth">
-            View All Products
+          <Link to="/collections/all-remedies" className="btn-outline-earth">
+            View All Remedies
           </Link>
         </motion.div>
       </div>

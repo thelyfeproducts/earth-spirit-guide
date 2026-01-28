@@ -11,6 +11,7 @@ import Ambassadors from "./pages/Ambassadors";
 import OurStory from "./pages/OurStory";
 import CommunityPage from "./pages/CommunityPage";
 import ProductPage from "./pages/ProductPage";
+import CollectionPage from "./pages/CollectionPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -35,7 +36,9 @@ const App = () => (
             <Route path="/community" element={<CommunityPage />} />
             <Route path="/team" element={<Team />} />
             <Route path="/ambassadors" element={<Ambassadors />} />
+            <Route path="/products/:handle" element={<ProductPage />} />
             <Route path="/product/:handle" element={<ProductPage />} />
+            <Route path="/collections/:slug" element={<CollectionPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
