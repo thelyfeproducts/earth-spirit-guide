@@ -6,7 +6,7 @@ import lyfeInfinity from "@/assets/lyfe-infinity.png";
 
 const navLinks = [
   { name: "Shop", href: "#shop" },
-  { name: "Our Story", href: "#story" },
+  { name: "Our Story", href: "/our-story" },
   { name: "Community", href: "#community" },
   { name: "Our Team", href: "/team" },
   { name: "Ambassadors", href: "/ambassadors" },

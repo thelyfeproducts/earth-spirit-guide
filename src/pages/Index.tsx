@@ -2,7 +2,6 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import QuickShop from "@/components/QuickShop";
 import StorySection from "@/components/StorySection";
-import OurStory from "@/components/OurStory";
 import WhyOrganic from "@/components/WhyOrganic";
 import Remedies from "@/components/Remedies";
 import Testimonials from "@/components/Testimonials";
@@ -19,7 +18,6 @@ const Index = () => {
         <Hero />
         <QuickShop />
         <StorySection />
-        <OurStory />
         <WhyOrganic />
         <Remedies />
         <Testimonials />
