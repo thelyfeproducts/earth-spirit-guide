@@ -91,7 +91,7 @@ const OurStory = () => {
                 <img
                   src={storyDorm}
                   alt="Making products in the dorm room - where it all began"
-                  className="w-full h-80 md:h-96 object-cover"
+                  className="w-full h-80 md:h-[450px] object-cover object-top"
                 />
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-charcoal/70 to-transparent p-6">
                   <p className="font-body text-white">Where it all began — making remedies by hand</p>
@@ -111,7 +111,7 @@ const OurStory = () => {
                 <img
                   src={storyCampus}
                   alt="Selling products on campus"
-                  className="w-full h-80 md:h-96 object-cover"
+                  className="w-full h-80 md:h-[450px] object-cover object-top"
                 />
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-charcoal/70 to-transparent p-6">
                   <p className="font-body text-white">First campus sales — sharing the vision</p>
@@ -176,7 +176,7 @@ const OurStory = () => {
                   <img
                     src={storyRetail}
                     alt="First retail store partnership"
-                    className="w-full h-56 object-cover"
+                    className="w-full h-64 object-cover object-top"
                   />
                   <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-charcoal/70 to-transparent p-4">
                     <p className="font-body text-white text-sm">Our first retail partnership</p>
@@ -186,7 +186,7 @@ const OurStory = () => {
                   <img
                     src={storyCommunity}
                     alt="Community supporters with products"
-                    className="w-full h-56 object-cover"
+                    className="w-full h-64 object-cover object-top"
                   />
                   <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-charcoal/70 to-transparent p-4">
                     <p className="font-body text-white text-sm">Community believers</p>
@@ -207,7 +207,7 @@ const OurStory = () => {
                 <img
                   src={storyTeam}
                   alt="The Lyfe Products team"
-                  className="w-full h-80 md:h-96 object-cover"
+                  className="w-full h-80 md:h-[450px] object-cover object-top"
                 />
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-charcoal/80 to-transparent p-6">
                   <p className="font-display font-bold text-white text-lg">The Lyfe Family</p>
