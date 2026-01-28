@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { ShoppingBag, Star } from "lucide-react";
+import { RemediesHerbs } from "./FloatingHerbs";
 
 const remedies = [
   {
@@ -81,7 +82,8 @@ const item = {
 
 const Remedies = () => {
   return (
-    <section id="remedies" className="section-padding">
+    <section id="remedies" className="section-padding relative overflow-hidden">
+      <RemediesHerbs />
       <div className="container-lyfe">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

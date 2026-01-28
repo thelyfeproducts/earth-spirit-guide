@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Users, Heart, Sprout, Award } from "lucide-react";
 import lyfeMeditation from "@/assets/lyfe-meditation.png";
+import { CommunityHerbs } from "./FloatingHerbs";
 
 const stats = [
   { icon: Users, value: "10,000+", label: "Happy Customers" },
@@ -11,7 +12,8 @@ const stats = [
 
 const Community = () => {
   return (
-    <section id="community" className="section-padding overflow-hidden">
+    <section id="community" className="section-padding overflow-hidden relative">
+      <CommunityHerbs />
       <div className="container-lyfe">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Content */}

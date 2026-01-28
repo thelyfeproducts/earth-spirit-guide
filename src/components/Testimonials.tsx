@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Star, Quote } from "lucide-react";
+import { TestimonialsHerbs } from "./FloatingHerbs";
 
 const testimonials = [
   {
@@ -48,7 +49,8 @@ const item = {
 
 const Testimonials = () => {
   return (
-    <section className="section-padding bg-card/50">
+    <section className="section-padding bg-card/50 relative overflow-hidden">
+      <TestimonialsHerbs />
       <div className="container-lyfe">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
