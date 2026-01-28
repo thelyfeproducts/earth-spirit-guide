@@ -85,7 +85,7 @@ const Hero = () => {
               initial={{ opacity: 0, scale: 0.8, x: 20 }}
               animate={{ opacity: 1, scale: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 1 }}
-              className="absolute -top-4 -left-2 md:left-4 lg:left-0 bg-card rounded-xl p-3 shadow-lg max-w-36"
+              className="absolute -top-4 lg:top-4 -left-2 md:left-4 lg:left-0 bg-card rounded-xl p-3 shadow-lg max-w-36"
             >
               <p className="font-body font-semibold text-charcoal text-xs">
                 "You're safe here. Let's heal together." 🌿
