@@ -1,27 +1,33 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import lyfeInfinity from "@/assets/lyfe-infinity.png";
 import { CartDrawer } from "@/components/CartDrawer";
 
+const shopLinks = [
+  { name: "All Remedies", href: "/collections/all-remedies" },
+  { name: "Hair Growth Serums", href: "/collections/hair-growth-serums" },
+  { name: "Body Butters", href: "/collections/body-butters" },
+  { name: "Bundles", href: "/collections/bundles" },
+];
+
 const navLinks = [
-  { name: "Shop", href: "#shop" },
   { name: "Our Story", href: "/our-story" },
+  { name: "Why Organic", href: "/#why-organic" },
   { name: "Community", href: "/community" },
-  { name: "Our Team", href: "/team" },
-  { name: "Ambassadors", href: "/ambassadors" },
 ];
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isShopOpen, setIsShopOpen] = useState(false);
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
       <div className="container-lyfe">
         <div className="flex items-center justify-between h-16 md:h-20 px-4">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-3">
+          <Link to="/" className="flex items-center gap-3">
             <img 
               src={lyfeInfinity} 
               alt="Lyfe Products" 
@@ -30,11 +36,51 @@ const Header = () => {
             <span className="font-display font-black text-xl md:text-2xl text-primary">
               Lyfe Products™
             </span>
-          </a>
+          </Link>
 
           <nav className="hidden md:flex items-center gap-8">
+            {/* Shop Dropdown */}
+            <div 
+              className="relative"
+              onMouseEnter={() => setIsShopOpen(true)}
+              onMouseLeave={() => setIsShopOpen(false)}
+            >
+              <button 
+                className="font-body font-semibold text-charcoal hover:text-secondary transition-colors duration-200 flex items-center gap-1"
+                onClick={() => setIsShopOpen(!isShopOpen)}
+              >
+                Shop
+                <ChevronDown className={`w-4 h-4 transition-transform ${isShopOpen ? 'rotate-180' : ''}`} />
+              </button>
+              
+              <AnimatePresence>
+                {isShopOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute top-full left-0 pt-2 z-50"
+                  >
+                    <div className="bg-background border border-border rounded-xl shadow-lg py-2 min-w-[200px]">
+                      {shopLinks.map((link) => (
+                        <Link
+                          key={link.name}
+                          to={link.href}
+                          className="block px-4 py-2 font-body text-charcoal hover:bg-secondary/10 hover:text-secondary transition-colors"
+                          onClick={() => setIsShopOpen(false)}
+                        >
+                          {link.name}
+                        </Link>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
             {navLinks.map((link) => (
-              link.href.startsWith('/') ? (
+              link.href.startsWith('/') && !link.href.includes('#') ? (
                 <Link
                   key={link.name}
                   to={link.href}
@@ -81,9 +127,27 @@ const Header = () => {
             exit={{ opacity: 0, height: 0 }}
             className="md:hidden bg-card border-t border-border"
           >
-            <nav className="container-lyfe py-6 px-4 flex flex-col gap-4">
+            <nav className="container-lyfe py-6 px-4 flex flex-col gap-2">
+              {/* Shop Section */}
+              <div className="pb-2 mb-2 border-b border-border">
+                <p className="font-body font-semibold text-xs text-muted-foreground uppercase tracking-wide mb-2">
+                  Shop
+                </p>
+                {shopLinks.map((link) => (
+                  <Link
+                    key={link.name}
+                    to={link.href}
+                    className="block font-body text-charcoal hover:text-secondary transition-colors py-2 pl-2"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {link.name}
+                  </Link>
+                ))}
+              </div>
+              
+              {/* Other Links */}
               {navLinks.map((link) => (
-                link.href.startsWith('/') ? (
+                link.href.startsWith('/') && !link.href.includes('#') ? (
                   <Link
                     key={link.name}
                     to={link.href}
@@ -103,13 +167,14 @@ const Header = () => {
                   </a>
                 )
               ))}
-              <a
-                href="#shop"
+              
+              <Link
+                to="/collections/all-remedies"
                 className="btn-earth text-center mt-4"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Shop Remedies
-              </a>
+                Shop All Remedies
+              </Link>
             </nav>
           </motion.div>
         )}
