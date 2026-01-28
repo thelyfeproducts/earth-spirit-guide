@@ -87,21 +87,6 @@ const teamData: TeamSection[] = [
           },
         ],
       },
-      {
-        title: "Sales Team Interns",
-        members: [
-          {
-            name: "Jaden Fuqua",
-            role: "Sales Team Intern",
-            description: "Learning and contributing to sales growth at The Lyfe Products.",
-          },
-          {
-            name: "Mario Townson",
-            role: "Sales Team Intern",
-            description: "Developing sales skills while supporting the team's mission.",
-          },
-        ],
-      },
     ],
   },
   {
@@ -131,9 +116,14 @@ const teamData: TeamSection[] = [
     subtitle: "Spreading the word in local communities",
     members: [
       {
-        name: "Team Member",
+        name: "Jaden Fuqua",
         role: "Street Team Member",
         description: "Community outreach and brand representation.",
+      },
+      {
+        name: "Mario Townson",
+        role: "Street Team Member",
+        description: "Spreading the Lyfe brand through local engagement.",
       },
     ],
   },
