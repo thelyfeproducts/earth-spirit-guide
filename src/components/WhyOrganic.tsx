@@ -74,12 +74,16 @@ const WhyOrganic = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
+          <span className="inline-block bg-accent/20 text-charcoal font-body font-semibold px-4 py-2 rounded-full text-sm mb-6">
+            Why Organic Matters
+          </span>
           <h2 className="heading-section mb-4">
-            Why Organic
-            <span className="text-secondary"> Matters</span>
+            Nature Already
+            <br />
+            <span className="text-secondary">Knows</span>
           </h2>
           <p className="body-large max-w-2xl mx-auto">
-            Nature already knows. Our job is simply to listen and craft with care.
+            We believe the Earth has everything we need. Our job is simply to listen.
           </p>
         </motion.div>
 

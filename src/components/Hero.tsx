@@ -20,32 +20,41 @@ const Hero = () => {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="text-center lg:text-left"
           >
-            <motion.h1
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
+              className="font-body font-semibold text-secondary uppercase tracking-[0.2em] mb-6"
+            >
+              Welcome back to the Earth
+            </motion.p>
+            
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
               className="heading-hero mb-8"
             >
-              Organic remedies
+              Healing the Planet
               <br />
-              <span className="text-secondary">made with love</span>
+              <span className="text-secondary">with God-given ingredients</span>
             </motion.h1>
             
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
               className="body-large max-w-xl mx-auto lg:mx-0 mb-12"
             >
-              Plant-powered wellness rooted in indigenous wisdom, crafted for modern healing.
+              Plant powered remedies rooted in indigenous wisdom for your healing journey.
             </motion.p>
             
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
             >
-              <a href="#remedies" className="btn-earth">
+              <a href="#shop" className="btn-earth">
                 Shop the Remedies
               </a>
             </motion.div>
