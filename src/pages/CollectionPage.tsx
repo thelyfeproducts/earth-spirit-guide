@@ -28,7 +28,7 @@ const collections: Record<string, CollectionConfig> = {
   "body-butters": {
     title: "Body Butters",
     description: "Deep, plant-powered hydration for soft, nourished skin all day long.",
-    query: "title:Body Butter",
+    query: "title:Body Butter NOT title:Collection",
   },
   "bundles": {
     title: "Bundles",
