@@ -75,7 +75,7 @@ const Hero = () => {
             <motion.img
               src={lyfePeace}
               alt="Lyfe - Your Earth Guardian"
-              className="w-80 md:w-96 lg:w-[450px] h-auto drop-shadow-2xl"
+              className="w-64 md:w-72 lg:w-80 h-auto drop-shadow-2xl"
               animate={{ y: [0, -15, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             />
