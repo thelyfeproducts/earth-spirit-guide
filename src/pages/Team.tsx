@@ -3,6 +3,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import LyfeBotWidget from "@/components/LyfeBot/LyfeBotWidget";
 import { Users, Mail } from "lucide-react";
+import founderHeadshot from "@/assets/founder-headshot.jpeg";
 
 interface TeamMember {
   name: string;
@@ -30,6 +31,7 @@ const teamData: TeamSection[] = [
         name: "Justin Pruitt",
         role: "CEO & Founder",
         description: "Justin Pruitt is the founder of The Lyfe Products™, an organic wellness brand built on healing, sustainability, and community empowerment, inspired by his indigenous roots and purpose to heal and inspire.",
+        image: founderHeadshot,
       },
     ],
   },
@@ -161,12 +163,20 @@ const TeamMemberCard = ({ member, index }: { member: TeamMember; index: number }
     className="bg-card rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
   >
     <div className="aspect-square bg-muted flex items-center justify-center">
+    {member.image ? (
+      <img 
+        src={member.image} 
+        alt={member.name}
+        className="w-full h-full object-cover object-top"
+      />
+    ) : (
       <div className="text-center p-6">
         <div className="w-24 h-24 mx-auto bg-secondary/20 rounded-full flex items-center justify-center mb-4">
           <Users className="w-12 h-12 text-secondary" />
         </div>
         <p className="font-body text-muted-foreground text-sm">Coming Soon</p>
       </div>
+    )}
     </div>
     <div className="p-6">
       <h3 className="font-display font-bold text-xl text-charcoal mb-1">
