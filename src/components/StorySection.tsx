@@ -51,12 +51,12 @@ const StorySection = () => {
             </h2>
             
             <p className="body-large mb-6">
-              Born from indigenous wisdom and a return to nature, Lyfe Products™ exists to help people heal — gently, honestly, naturally.
+              Born from indigenous wisdom and a return to nature, Lyfe Products™ exists to help people heal gently, honestly, naturally.
             </p>
             
             <p className="font-body text-muted-foreground mb-8">
               When modern products filled homes with chemicals, sickness followed. 
-              Lyfe was born as a return — a return to plants, to simplicity, 
+              Lyfe was born as a return to plants, to simplicity, 
               to listening to the Earth. We don't sell products. We offer remedies 
               from the Earth, prepared with intention.
             </p>
