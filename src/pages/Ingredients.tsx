@@ -158,6 +158,34 @@ const Ingredients = () => {
           </motion.div>
         </div>
       </section>
+
+      {/* Philosophy Section */}
+      <section className="py-12">
+        <div className="container-lyfe">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="bg-secondary/5 rounded-3xl p-8 md:p-12 text-center max-w-4xl mx-auto"
+          >
+            <div className="flex justify-center gap-4 mb-6">
+              <span className="text-4xl">🌍</span>
+              <span className="text-4xl">💚</span>
+              <span className="text-4xl">🌸</span>
+            </div>
+            <h2 className="heading-card text-2xl md:text-3xl mb-4">
+              From the Earth, With Love
+            </h2>
+            <p className="font-body text-muted-foreground max-w-2xl mx-auto">
+              We believe the Earth already has everything we need. That's why we source ingredients 
+              that have been used for generations—some we even grow ourselves in our own garden! 
+              Each ingredient is selected for its unique healing properties and combined with care 
+              to create products that truly nourish your skin and hair.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Ingredients Grid */}
       <section className="py-16">
         <div className="container-lyfe">
