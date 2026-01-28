@@ -110,16 +110,6 @@ const teamData: TeamSection[] = [
     members: [],
     subsections: [
       {
-        title: "Production Managers",
-        members: [
-          {
-            name: "Team Member",
-            role: "Production Manager",
-            description: "Overseeing product manufacturing with attention to quality.",
-          },
-        ],
-      },
-      {
         title: "Production Interns",
         members: [
           {
