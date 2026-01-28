@@ -12,7 +12,7 @@ const footerLinks = {
   learn: [
     { name: "Our Story", href: "/our-story" },
     { name: "Why Organic", href: "/why-organic" },
-    { name: "Ingredients", href: "#" },
+    { name: "Ingredients", href: "/ingredients" },
     { name: "Blog", href: "#" },
   ],
   support: [
