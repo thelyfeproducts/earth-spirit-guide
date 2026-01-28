@@ -46,8 +46,7 @@ const Hero = () => {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="body-large max-w-xl mx-auto lg:mx-0 mb-12"
             >
-              Plant-powered remedies rooted in indigenous wisdom, 
-              crafted with intention for your natural healing journey.
+              Plant powered remedies rooted in indigenous wisdom for your healing journey.
             </motion.p>
             
             <motion.div
