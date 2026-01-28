@@ -110,12 +110,12 @@ const FinalCTA = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.5 }}
-              className="absolute top-0 right-0 md:right-10 bg-card rounded-2xl p-4 shadow-lg max-w-40"
+              className="absolute -top-8 right-4 md:right-16 lg:right-20 bg-card rounded-xl p-3 shadow-lg max-w-32"
             >
-              <p className="font-body font-semibold text-charcoal text-sm">
+              <p className="font-body font-semibold text-charcoal text-xs">
                 "The Earth provides!" 🌍
               </p>
-              <div className="absolute -bottom-2 left-8 w-4 h-4 bg-card transform rotate-45" />
+              <div className="absolute -bottom-2 left-6 w-3 h-3 bg-card transform rotate-45" />
             </motion.div>
           </motion.div>
         </div>
