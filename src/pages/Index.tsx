@@ -4,6 +4,7 @@ import QuickShop from "@/components/QuickShop";
 import ShopByRemedy from "@/components/ShopByRemedy";
 import StorySection from "@/components/StorySection";
 import WhyOrganic from "@/components/WhyOrganic";
+import CompetitorComparison from "@/components/CompetitorComparison";
 import Testimonials from "@/components/Testimonials";
 import Community from "@/components/Community";
 import FinalCTA from "@/components/FinalCTA";
@@ -20,6 +21,7 @@ const Index = () => {
         <ShopByRemedy />
         <StorySection />
         <WhyOrganic />
+        <CompetitorComparison />
         <Testimonials />
         <Community />
         <FinalCTA />
