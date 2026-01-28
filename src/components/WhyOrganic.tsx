@@ -1,48 +1,26 @@
 import { motion } from "framer-motion";
-import { Leaf, Droplets, Heart, Shield, Sprout, Sun } from "lucide-react";
+import { Leaf, Heart, FlaskConical, Sparkles } from "lucide-react";
 
-const benefits = [
+const values = [
   {
     icon: Leaf,
-    title: "Plant-Infused",
-    description: "Every ingredient comes from the Earth",
-    color: "text-secondary",
-    bgColor: "bg-secondary/10",
-  },
-  {
-    icon: Shield,
-    title: "No Chemicals",
-    description: "Free from harmful synthetics",
-    color: "text-primary",
-    bgColor: "bg-primary/10",
-  },
-  {
-    icon: Droplets,
-    title: "Small-Batch",
-    description: "Crafted with care, not mass-produced",
-    color: "text-sky",
-    bgColor: "bg-sky/10",
+    title: "Recognizable Ingredients",
+    description: "Simple, organic ingredients you can actually pronounce. No mystery chemicals, ever.",
   },
   {
     icon: Heart,
-    title: "Made with Love",
-    description: "Intention in every formulation",
-    color: "text-terracotta",
-    bgColor: "bg-terracotta/10",
+    title: "Gentle on Skin",
+    description: "Formulated for sensitive skin. Nourishing without irritation or harsh reactions.",
   },
   {
-    icon: Sprout,
-    title: "Earth-Respectful",
-    description: "Sustainable practices always",
-    color: "text-moss",
-    bgColor: "bg-moss/10",
+    icon: FlaskConical,
+    title: "Small Batch Made",
+    description: "Crafted in small batches with care and intention. Quality over quantity, always.",
   },
   {
-    icon: Sun,
-    title: "Sun-Dried Herbs",
-    description: "Traditional preparation methods",
-    color: "text-accent",
-    bgColor: "bg-accent/20",
+    icon: Sparkles,
+    title: "Plant-Based Care",
+    description: "Harnessing the healing power of plants. Nature's remedies, bottled with love.",
   },
 ];
 
@@ -52,61 +30,68 @@ const container = {
     opacity: 1,
     transition: {
       staggerChildren: 0.1,
+      delayChildren: 0.2,
     },
   },
 };
 
 const item = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 30 },
   show: { opacity: 1, y: 0 },
 };
 
 const WhyOrganic = () => {
   return (
-    <section id="why-organic" className="section-padding bg-card/50">
-      <div className="container-lyfe">
+    <section id="why-organic" className="section-padding gradient-blue relative overflow-hidden">
+      {/* Decorative elements */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-20 left-10 w-48 h-48 bg-white/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 right-10 w-64 h-64 bg-white/5 rounded-full blur-3xl" />
+      </div>
+
+      <div className="container-lyfe relative z-10">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-14"
         >
-          <span className="inline-block bg-accent/20 text-charcoal font-body font-semibold px-4 py-2 rounded-full text-sm mb-6">
-            Why Organic Matters
+          <span className="font-body font-medium text-white/70 uppercase tracking-widest text-sm mb-4 block">
+            Our Approach
           </span>
-          <h2 className="heading-section mb-4">
-            Nature Already
-            <br />
-            <span className="text-secondary">Knows</span>
+          <h2 className="heading-section text-white mb-4">
+            Why Go Organic?
           </h2>
-          <p className="body-large max-w-2xl mx-auto">
-            We believe the Earth has everything we need. Our job is simply to listen.
+          <p className="body-large text-white/80 max-w-2xl mx-auto">
+            Nature has perfected healing over millions of years. We simply bottle that wisdom.
           </p>
         </motion.div>
 
+        {/* Values Grid */}
         <motion.div
           variants={container}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto"
         >
-          {benefits.map((benefit, index) => (
+          {values.map((value) => (
             <motion.div
-              key={benefit.title}
+              key={value.title}
               variants={item}
-              className="lyfe-card flex items-start gap-4 group"
+              className="value-card text-left flex flex-col items-start"
             >
-              <div className={`${benefit.bgColor} p-4 rounded-2xl transition-transform group-hover:scale-110`}>
-                <benefit.icon className={`w-7 h-7 ${benefit.color}`} />
+              <div className="icon-badge mb-6">
+                <value.icon className="w-7 h-7 text-charcoal" strokeWidth={2.5} />
               </div>
-              <div>
-                <h3 className="heading-card mb-2">{benefit.title}</h3>
-                <p className="font-body text-muted-foreground">
-                  {benefit.description}
-                </p>
-              </div>
+              <h3 className="heading-card text-white mb-3">
+                {value.title}
+              </h3>
+              <p className="font-body text-white/75 leading-relaxed">
+                {value.description}
+              </p>
             </motion.div>
           ))}
         </motion.div>

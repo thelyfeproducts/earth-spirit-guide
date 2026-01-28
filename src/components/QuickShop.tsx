@@ -53,7 +53,7 @@ const item = {
 
 const QuickShop = () => {
   return (
-    <section id="shop" className="section-padding bg-card/50">
+    <section id="shop" className="section-padding bg-background">
       <div className="container-lyfe">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -62,9 +62,14 @@ const QuickShop = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h2 className="heading-section mb-4">Our Bestsellers</h2>
-          <p className="body-large max-w-2xl mx-auto">
-            Crafted to support your body, not fight it.
+          <span className="inline-block bg-secondary/10 text-secondary font-body font-semibold px-4 py-2 rounded-full text-sm mb-4">
+            Shop the Remedies
+          </span>
+          <h2 className="heading-section text-charcoal mb-4">
+            Our Bestsellers
+          </h2>
+          <p className="body-large text-muted-foreground max-w-xl mx-auto">
+            Crafted with intention. Rooted in nature.
           </p>
         </motion.div>
 
@@ -81,40 +86,28 @@ const QuickShop = () => {
               variants={item}
               className="product-card group cursor-pointer"
             >
-              {/* Product Image Placeholder */}
-              <div className={`${product.bgColor} h-56 flex items-center justify-center relative overflow-hidden`}>
+              {/* Product Image Area */}
+              <div className={`${product.bgColor} aspect-square flex items-center justify-center relative overflow-hidden`}>
                 <div className={`w-24 h-24 ${product.accentColor} rounded-full opacity-50`} />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="font-display font-bold text-charcoal/60 text-lg">
-                    {product.name.split(" ")[0]}
-                  </span>
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-charcoal/10">
+                  <button className="bg-white text-charcoal px-4 py-2 rounded-full font-display font-bold text-sm flex items-center gap-2 shadow-medium">
+                    <ShoppingBag className="w-4 h-4" />
+                    Quick Add
+                  </button>
                 </div>
-                
-                {/* Quick Add Button */}
-                <motion.button
-                  initial={{ opacity: 0, y: 20 }}
-                  whileHover={{ scale: 1.05 }}
-                  className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-secondary text-secondary-foreground px-6 py-2 rounded-full font-body font-semibold text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-2"
-                >
-                  <ShoppingBag className="w-4 h-4" />
-                  Quick Add
-                </motion.button>
               </div>
               
               {/* Product Info */}
               <div className="p-5">
-                <h3 className="heading-card mb-2">{product.name}</h3>
-                <p className="font-body text-muted-foreground text-sm mb-3">
+                <h3 className="font-display font-bold text-lg text-charcoal mb-1">
+                  {product.name}
+                </h3>
+                <p className="font-body text-sm text-muted-foreground mb-3">
                   {product.benefit}
                 </p>
-                <div className="flex items-center justify-between">
-                  <span className="font-display font-bold text-xl text-secondary">
-                    {product.price}
-                  </span>
-                  <button className="text-sm font-body font-semibold text-primary hover:text-secondary transition-colors">
-                    View Details →
-                  </button>
-                </div>
+                <p className="font-display font-black text-xl text-secondary">
+                  {product.price}
+                </p>
               </div>
             </motion.div>
           ))}
@@ -125,10 +118,10 @@ const QuickShop = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-center mt-12"
+          className="text-center mt-10"
         >
           <a href="#remedies" className="btn-outline-earth">
-            View All Remedies
+            View All Products
           </a>
         </motion.div>
       </div>

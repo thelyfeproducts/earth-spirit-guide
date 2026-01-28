@@ -24,33 +24,35 @@ const footerLinks = {
 
 const Footer = () => {
   return (
-    <footer className="bg-charcoal text-cream/90 section-padding">
+    <footer className="bg-charcoal text-white py-16 px-4 md:px-8">
       <div className="container-lyfe">
-        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
+        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
           {/* Brand */}
           <div className="lg:col-span-2">
             <div className="flex items-center gap-3 mb-6">
-              <img 
-                src={lyfeInfinity} 
-                alt="Lyfe Products" 
-                className="h-12 w-auto brightness-110"
+              <img
+                src={lyfeInfinity}
+                alt="The Lyfe"
+                className="w-12 h-12"
               />
-              <span className="font-display font-black text-2xl text-cream">
-                Lyfe Products™
+              <span className="font-display font-bold text-2xl">
+                The Lyfe
               </span>
             </div>
-            <p className="font-body text-cream/70 mb-6 max-w-sm">
-              Organic remedies made with plants, intention, and care. 
-              Rooted in indigenous wisdom, crafted for modern healing.
+            <p className="font-body text-white/70 mb-6 max-w-sm">
+              Organic remedies rooted in nature, made with intention. 
+              Healing happens naturally.
             </p>
+            
+            {/* Social Links */}
             <div className="flex gap-4">
-              <a href="#" className="bg-cream/10 hover:bg-cream/20 p-3 rounded-full transition-colors">
+              <a href="#" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-secondary transition-colors">
                 <Instagram className="w-5 h-5" />
               </a>
-              <a href="#" className="bg-cream/10 hover:bg-cream/20 p-3 rounded-full transition-colors">
+              <a href="#" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-secondary transition-colors">
                 <Facebook className="w-5 h-5" />
               </a>
-              <a href="#" className="bg-cream/10 hover:bg-cream/20 p-3 rounded-full transition-colors">
+              <a href="#" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-secondary transition-colors">
                 <Twitter className="w-5 h-5" />
               </a>
             </div>
@@ -58,11 +60,11 @@ const Footer = () => {
 
           {/* Shop Links */}
           <div>
-            <h4 className="font-display font-bold text-lg mb-4 text-cream">Shop</h4>
+            <h4 className="font-display font-bold text-lg mb-4">Shop</h4>
             <ul className="space-y-3">
               {footerLinks.shop.map((link) => (
                 <li key={link.name}>
-                  <a href={link.href} className="font-body text-cream/70 hover:text-cream transition-colors">
+                  <a href={link.href} className="font-body text-white/70 hover:text-white transition-colors">
                     {link.name}
                   </a>
                 </li>
@@ -72,11 +74,11 @@ const Footer = () => {
 
           {/* Learn Links */}
           <div>
-            <h4 className="font-display font-bold text-lg mb-4 text-cream">Learn</h4>
+            <h4 className="font-display font-bold text-lg mb-4">Learn</h4>
             <ul className="space-y-3">
               {footerLinks.learn.map((link) => (
                 <li key={link.name}>
-                  <a href={link.href} className="font-body text-cream/70 hover:text-cream transition-colors">
+                  <a href={link.href} className="font-body text-white/70 hover:text-white transition-colors">
                     {link.name}
                   </a>
                 </li>
@@ -86,11 +88,11 @@ const Footer = () => {
 
           {/* Support Links */}
           <div>
-            <h4 className="font-display font-bold text-lg mb-4 text-cream">Support</h4>
+            <h4 className="font-display font-bold text-lg mb-4">Support</h4>
             <ul className="space-y-3">
               {footerLinks.support.map((link) => (
                 <li key={link.name}>
-                  <a href={link.href} className="font-body text-cream/70 hover:text-cream transition-colors">
+                  <a href={link.href} className="font-body text-white/70 hover:text-white transition-colors">
                     {link.name}
                   </a>
                 </li>
@@ -100,11 +102,11 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-cream/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="font-body text-sm text-cream/50">
-            © 2025 Lyfe Products™. All rights reserved.
+        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="font-body text-sm text-white/50">
+            © 2024 The Lyfe Products™. All rights reserved.
           </p>
-          <p className="font-body text-sm text-cream/50 flex items-center gap-2">
+          <p className="font-body text-sm text-white/50 flex items-center gap-2">
             Made with <Heart className="w-4 h-4 text-terracotta fill-terracotta" /> for the Earth
           </p>
         </div>

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Quicksand:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,95 +6,104 @@
 
 @layer base {
   :root {
-    /* Lyfe Products™ Design System */
+    /* The Lyfe Design System - Base44 Inspired */
     
-    /* Core Canvas - Warm Beige World */
-    --background: 37 61% 82%;
+    /* Off-White Background */
+    --background: 60 20% 97%;
     --foreground: 0 0% 4%;
     
-    /* Off-White for Cards & Contrast */
-    --card: 43 50% 94%;
+    /* Cards - White with warmth */
+    --card: 0 0% 100%;
     --card-foreground: 0 0% 4%;
     
-    --popover: 43 50% 94%;
+    --popover: 0 0% 100%;
     --popover-foreground: 0 0% 4%;
     
-    /* Primary - Earth Blue */
-    --primary: 209 79% 28%;
-    --primary-foreground: 43 50% 94%;
+    /* Primary - Deep Blue #0E4F8A */
+    --primary: 207 81% 30%;
+    --primary-foreground: 0 0% 100%;
     
-    /* Secondary - Forest Green */
-    --secondary: 146 59% 30%;
-    --secondary-foreground: 43 50% 94%;
+    /* Secondary - Forest Green #1F7A3F */
+    --secondary: 143 59% 30%;
+    --secondary-foreground: 0 0% 100%;
     
-    /* Muted - Softer Beige */
-    --muted: 37 40% 88%;
-    --muted-foreground: 0 0% 25%;
+    /* Muted - Soft gray */
+    --muted: 60 10% 92%;
+    --muted-foreground: 0 0% 35%;
     
-    /* Accent - Sun Yellow */
+    /* Accent - Sun Yellow #F4C430 */
     --accent: 47 90% 57%;
     --accent-foreground: 0 0% 4%;
     
+    /* Warm Beige sections #EED9B7 */
+    --beige: 37 61% 82%;
+    
     /* Destructive */
     --destructive: 0 84% 60%;
-    --destructive-foreground: 43 50% 94%;
+    --destructive-foreground: 0 0% 100%;
     
     /* Borders & Inputs */
-    --border: 37 30% 70%;
-    --input: 37 30% 75%;
-    --ring: 209 79% 28%;
+    --border: 60 10% 85%;
+    --input: 60 10% 90%;
+    --ring: 207 81% 30%;
     
     --radius: 1rem;
     
     /* Extended Palette */
-    --moss: 146 45% 45%;
+    --moss: 143 45% 45%;
     --olive: 80 35% 40%;
-    --forest: 146 59% 30%;
+    --forest: 143 59% 30%;
     --terracotta: 20 70% 55%;
     --sky: 200 80% 65%;
-    --cream: 43 50% 94%;
+    --cream: 60 20% 97%;
     --clay: 37 61% 82%;
     --charcoal: 0 0% 4%;
     
+    /* Gradients */
+    --gradient-green: linear-gradient(135deg, hsl(143 59% 30%) 0%, hsl(143 50% 40%) 100%);
+    --gradient-blue: linear-gradient(135deg, hsl(207 81% 30%) 0%, hsl(200 70% 45%) 100%);
+    --gradient-hero: linear-gradient(180deg, hsl(143 59% 35%) 0%, hsl(200 70% 40%) 100%);
+    
     /* Sidebar */
-    --sidebar-background: 43 50% 94%;
+    --sidebar-background: 0 0% 100%;
     --sidebar-foreground: 0 0% 4%;
-    --sidebar-primary: 209 79% 28%;
-    --sidebar-primary-foreground: 43 50% 94%;
-    --sidebar-accent: 37 40% 88%;
+    --sidebar-primary: 207 81% 30%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 60 10% 92%;
     --sidebar-accent-foreground: 0 0% 4%;
-    --sidebar-border: 37 30% 70%;
-    --sidebar-ring: 209 79% 28%;
+    --sidebar-border: 60 10% 85%;
+    --sidebar-ring: 207 81% 30%;
   }
 
   .dark {
     --background: 0 0% 4%;
-    --foreground: 43 50% 94%;
+    --foreground: 60 20% 97%;
     --card: 0 0% 8%;
-    --card-foreground: 43 50% 94%;
+    --card-foreground: 60 20% 97%;
     --popover: 0 0% 8%;
-    --popover-foreground: 43 50% 94%;
-    --primary: 209 70% 50%;
+    --popover-foreground: 60 20% 97%;
+    --primary: 207 70% 50%;
     --primary-foreground: 0 0% 4%;
-    --secondary: 146 50% 40%;
-    --secondary-foreground: 43 50% 94%;
+    --secondary: 143 50% 40%;
+    --secondary-foreground: 60 20% 97%;
     --muted: 0 0% 15%;
-    --muted-foreground: 37 30% 70%;
+    --muted-foreground: 60 10% 70%;
     --accent: 47 90% 57%;
     --accent-foreground: 0 0% 4%;
     --destructive: 0 62% 30%;
-    --destructive-foreground: 43 50% 94%;
+    --destructive-foreground: 60 20% 97%;
     --border: 0 0% 20%;
     --input: 0 0% 20%;
-    --ring: 209 70% 50%;
+    --ring: 207 70% 50%;
+    --beige: 37 30% 20%;
     --sidebar-background: 0 0% 8%;
-    --sidebar-foreground: 43 50% 94%;
-    --sidebar-primary: 209 70% 50%;
+    --sidebar-foreground: 60 20% 97%;
+    --sidebar-primary: 207 70% 50%;
     --sidebar-primary-foreground: 0 0% 4%;
     --sidebar-accent: 0 0% 15%;
-    --sidebar-accent-foreground: 43 50% 94%;
+    --sidebar-accent-foreground: 60 20% 97%;
     --sidebar-border: 0 0% 20%;
-    --sidebar-ring: 209 70% 50%;
+    --sidebar-ring: 207 70% 50%;
   }
 }
 
@@ -109,13 +118,23 @@
   
   body {
     @apply bg-background text-foreground font-body antialiased;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-    background-blend-mode: overlay;
-    background-size: 200px;
   }
 }
 
 @layer components {
+  /* Gradient Sections */
+  .gradient-green {
+    background: linear-gradient(180deg, hsl(143 59% 32%) 0%, hsl(143 50% 38%) 100%);
+  }
+  
+  .gradient-blue {
+    background: linear-gradient(180deg, hsl(207 81% 32%) 0%, hsl(200 70% 42%) 100%);
+  }
+  
+  .gradient-hero {
+    background: linear-gradient(180deg, hsl(143 59% 35%) 0%, hsl(207 70% 38%) 100%);
+  }
+  
   /* Lyfe Button Variants */
   .btn-earth {
     @apply bg-secondary text-secondary-foreground px-8 py-4 rounded-full font-display font-bold text-lg transition-all duration-300 hover:scale-105 hover:shadow-lg;
@@ -129,39 +148,64 @@
     @apply border-2 border-secondary text-secondary bg-transparent px-8 py-4 rounded-full font-display font-bold text-lg transition-all duration-300 hover:bg-secondary hover:text-secondary-foreground;
   }
   
-  /* Card Styles */
+  .btn-white {
+    @apply bg-white text-charcoal px-8 py-4 rounded-full font-display font-bold text-lg transition-all duration-300 hover:scale-105 hover:shadow-lg;
+  }
+  
+  .btn-lyfe-back {
+    @apply bg-white/20 backdrop-blur-sm text-white px-6 py-3 rounded-full font-display font-semibold transition-all duration-300 hover:bg-white/30 flex items-center gap-3;
+  }
+  
+  /* Card Styles - Base44 Inspired */
   .lyfe-card {
-    @apply bg-card rounded-2xl p-6 shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+    @apply bg-card rounded-3xl p-6 shadow-soft transition-all duration-300 hover:shadow-medium hover:-translate-y-1;
+  }
+  
+  .stat-card {
+    @apply bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center transition-all duration-300;
+  }
+  
+  .value-card {
+    @apply bg-white/15 backdrop-blur-sm rounded-3xl p-8 text-center transition-all duration-300;
   }
   
   .product-card {
-    @apply bg-card rounded-3xl overflow-hidden shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-2;
+    @apply bg-card rounded-3xl overflow-hidden shadow-soft transition-all duration-300 hover:shadow-medium hover:-translate-y-2;
   }
   
   /* Section Styling */
   .section-padding {
-    @apply py-16 md:py-24 px-4 md:px-8;
+    @apply py-20 md:py-28 px-4 md:px-8;
   }
   
   .container-lyfe {
     @apply max-w-7xl mx-auto;
   }
   
-  /* Typography */
+  /* Typography - Calm & Modern */
   .heading-hero {
-    @apply font-display text-4xl md:text-6xl lg:text-7xl font-black leading-tight tracking-tight text-charcoal;
+    @apply font-display text-4xl md:text-5xl lg:text-6xl font-black leading-tight tracking-tight;
   }
   
   .heading-section {
-    @apply font-display text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-charcoal;
+    @apply font-display text-3xl md:text-4xl lg:text-5xl font-bold leading-tight;
   }
   
   .heading-card {
-    @apply font-display text-xl md:text-2xl font-bold text-charcoal;
+    @apply font-display text-xl md:text-2xl font-bold;
   }
   
   .body-large {
-    @apply font-body text-lg md:text-xl text-muted-foreground leading-relaxed;
+    @apply font-body text-lg md:text-xl leading-relaxed;
+  }
+  
+  /* Icon Badge */
+  .icon-badge {
+    @apply bg-accent w-14 h-14 rounded-2xl flex items-center justify-center shadow-soft;
+  }
+  
+  .icon-badge-outline {
+    @apply w-14 h-14 rounded-2xl flex items-center justify-center border-2 border-white/30;
   }
   
   /* Animations */
@@ -178,12 +222,6 @@
   .text-balance {
     text-wrap: balance;
   }
-  
-  .grain-overlay {
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-    background-blend-mode: overlay;
-    opacity: 0.03;
-  }
 }
 
 @keyframes floatGentle {
@@ -191,7 +229,7 @@
     transform: translateY(0) rotate(0deg);
   }
   50% {
-    transform: translateY(-20px) rotate(2deg);
+    transform: translateY(-15px) rotate(1deg);
   }
 }
 

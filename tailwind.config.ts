@@ -15,7 +15,7 @@ export default {
     extend: {
       fontFamily: {
         display: ["Nunito", "system-ui", "sans-serif"],
-        body: ["Quicksand", "system-ui", "sans-serif"],
+        body: ["Inter", "system-ui", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -52,6 +52,7 @@ export default {
           foreground: "hsl(var(--card-foreground))",
         },
         // Extended Lyfe Palette
+        beige: "hsl(var(--beige))",
         moss: "hsl(var(--moss))",
         olive: "hsl(var(--olive))",
         forest: "hsl(var(--forest))",
@@ -77,7 +78,8 @@ export default {
         sm: "calc(var(--radius) - 4px)",
         xl: "calc(var(--radius) + 4px)",
         "2xl": "calc(var(--radius) + 8px)",
-        "3xl": "calc(var(--radius) + 16px)",
+        "3xl": "1.5rem",
+        "4xl": "2rem",
       },
       keyframes: {
         "accordion-down": {
@@ -124,6 +126,8 @@ export default {
         "bounce-gentle": "bounce-gentle 2s ease-in-out infinite",
       },
       boxShadow: {
+        "soft": "0 4px 20px -4px rgba(0, 0, 0, 0.08)",
+        "medium": "0 10px 40px -10px rgba(0, 0, 0, 0.12)",
         "lyfe": "0 4px 20px -4px rgba(31, 122, 63, 0.15)",
         "lyfe-lg": "0 10px 40px -10px rgba(31, 122, 63, 0.2)",
         "card": "0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05)",
