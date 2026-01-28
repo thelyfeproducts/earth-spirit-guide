@@ -19,7 +19,7 @@ const StorySection = () => {
             <motion.img
               src={lyfeWatering}
               alt="Lyfe watering plants"
-              className="w-72 md:w-80 lg:w-96 h-auto drop-shadow-xl"
+              className="w-56 md:w-64 lg:w-72 h-auto drop-shadow-xl"
               animate={{ rotate: [0, 2, 0, -2, 0] }}
               transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
             />
