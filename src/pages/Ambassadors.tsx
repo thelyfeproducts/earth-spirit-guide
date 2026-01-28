@@ -4,9 +4,9 @@ import Footer from "@/components/Footer";
 import LyfeBotWidget from "@/components/LyfeBot/LyfeBotWidget";
 import { ExternalLink, Users, Gift, TrendingUp, DollarSign } from "lucide-react";
 
-// Social media links - update these with actual URLs
-const TIKTOK_URL = "https://tiktok.com/@lyfeproducts";
-const INSTAGRAM_URL = "https://instagram.com/lyfeproducts";
+// Social media links
+const TIKTOK_URL = "https://tiktok.com/@thelyfeproducts";
+const INSTAGRAM_URL = "https://instagram.com/thelyfeproducts";
 
 interface Ambassador {
   name: string;
