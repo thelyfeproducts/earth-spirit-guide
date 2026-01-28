@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Menu, X, ShoppingBag } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import lyfeInfinity from "@/assets/lyfe-infinity.png";
+import { CartDrawer } from "@/components/CartDrawer";
 
 const navLinks = [
   { name: "Shop", href: "#shop" },
@@ -55,12 +56,7 @@ const Header = () => {
 
           {/* Cart & Menu */}
           <div className="flex items-center gap-4">
-            <button className="relative p-2 hover:bg-muted rounded-full transition-colors">
-              <ShoppingBag className="w-6 h-6 text-charcoal" />
-              <span className="absolute -top-1 -right-1 bg-secondary text-secondary-foreground text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">
-                0
-              </span>
-            </button>
+            <CartDrawer />
             
             <button 
               className="md:hidden p-2"
