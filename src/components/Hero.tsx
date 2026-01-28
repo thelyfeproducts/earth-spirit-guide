@@ -24,7 +24,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="font-body font-semibold text-secondary uppercase tracking-widest mb-4"
+              className="font-body font-semibold text-secondary uppercase tracking-[0.2em] mb-6"
             >
               Welcome back to the Earth
             </motion.p>
@@ -33,34 +33,30 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="heading-hero mb-6"
+              className="heading-hero mb-8"
             >
-              Organic Remedies
+              Healing the Earth
               <br />
-              <span className="text-secondary">Made with Love</span>
+              <span className="text-secondary">with God-given ingredients</span>
             </motion.h1>
             
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="body-large max-w-xl mx-auto lg:mx-0 mb-8"
+              className="body-large max-w-xl mx-auto lg:mx-0 mb-12"
             >
-              Plant-powered wellness products made with intention and care. 
-              Rooted in indigenous wisdom, crafted for modern healing.
+              Plant-powered remedies rooted in indigenous wisdom, 
+              crafted with intention for your natural healing journey.
             </motion.p>
             
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
             >
               <a href="#shop" className="btn-earth">
                 Shop the Remedies
-              </a>
-              <a href="#story" className="btn-outline-earth">
-                Meet Lyfe
               </a>
             </motion.div>
           </motion.div>
