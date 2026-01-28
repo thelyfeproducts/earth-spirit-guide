@@ -70,7 +70,7 @@ const Hero = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-            className="relative flex justify-center lg:justify-end"
+            className="relative flex justify-center lg:justify-end pt-8"
           >
             <motion.img
               src={lyfePeace}
@@ -85,12 +85,12 @@ const Hero = () => {
               initial={{ opacity: 0, scale: 0.8, x: 20 }}
               animate={{ opacity: 1, scale: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 1 }}
-              className="absolute top-10 -left-4 md:left-0 lg:-left-10 bg-card rounded-2xl p-4 shadow-lg max-w-48"
+              className="absolute -top-4 -left-2 md:left-4 lg:left-0 bg-card rounded-xl p-3 shadow-lg max-w-36"
             >
-              <p className="font-body font-semibold text-charcoal text-sm">
+              <p className="font-body font-semibold text-charcoal text-xs">
                 "You're safe here. Let's heal together." 🌿
               </p>
-              <div className="absolute -bottom-2 right-8 w-4 h-4 bg-card transform rotate-45" />
+              <div className="absolute -bottom-2 right-6 w-3 h-3 bg-card transform rotate-45" />
             </motion.div>
           </motion.div>
         </div>
