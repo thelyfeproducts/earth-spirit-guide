@@ -20,41 +20,32 @@ const Hero = () => {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="text-center lg:text-left"
           >
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="font-body font-semibold text-secondary uppercase tracking-[0.2em] mb-6"
-            >
-              Welcome back to the Earth
-            </motion.p>
-            
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
               className="heading-hero mb-8"
             >
-              Healing the Planet
+              Organic remedies
               <br />
-              <span className="text-secondary">with God-given ingredients</span>
+              <span className="text-secondary">made with love</span>
             </motion.h1>
             
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
               className="body-large max-w-xl mx-auto lg:mx-0 mb-12"
             >
-              Plant powered remedies rooted in indigenous wisdom for your healing journey.
+              Plant-powered wellness products made with intention and care, rooted in indigenous wisdom and crafted for modern healing.
             </motion.p>
             
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
             >
-              <a href="#shop" className="btn-earth">
+              <a href="#remedies" className="btn-earth">
                 Shop the Remedies
               </a>
             </motion.div>

@@ -4,9 +4,8 @@ import lyfeMeditation from "@/assets/lyfe-meditation.png";
 import { CommunityHerbs } from "./FloatingHerbs";
 
 const stats = [
-  { icon: Users, value: "10,000+", label: "Happy Customers" },
-  { icon: Heart, value: "100%", label: "Natural Ingredients" },
-  { icon: Sprout, value: "50+", label: "Youth Helped" },
+  { icon: Users, value: "10K+", label: "Happy Customers" },
+  { icon: Sprout, value: "50+", label: "Youth Mentored" },
   { icon: Award, value: "4.9", label: "Average Rating" },
 ];
 
@@ -23,20 +22,14 @@ const Community = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <span className="inline-block bg-primary/10 text-primary font-body font-semibold px-4 py-2 rounded-full text-sm mb-6">
-              Our Impact
-            </span>
-            
             <h2 className="heading-section mb-6">
-              Growing Together
-              <br />
-              <span className="text-secondary">as a Community</span>
+              Community
+              <span className="text-secondary"> & Impact</span>
             </h2>
             
             <p className="body-large mb-8">
-              Lyfe Products™ is more than wellness — it's a movement. 
-              We're committed to healing our communities, supporting youth programs, 
-              and giving back to the Earth that gives us so much.
+              Real people, real transformations. We're committed to healing communities 
+              and supporting youth through mentorship and wellness.
             </p>
 
             {/* Stats Grid */}
