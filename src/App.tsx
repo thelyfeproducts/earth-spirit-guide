@@ -4,14 +4,22 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop";
+import { useCartSync } from "./hooks/useCartSync";
 import Index from "./pages/Index";
 import Team from "./pages/Team";
 import Ambassadors from "./pages/Ambassadors";
 import OurStory from "./pages/OurStory";
 import CommunityPage from "./pages/CommunityPage";
+import ProductPage from "./pages/ProductPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
+
+// Cart sync wrapper component
+function CartSyncProvider({ children }: { children: React.ReactNode }) {
+  useCartSync();
+  return <>{children}</>;
+}
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -19,16 +27,19 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <ScrollToTop />
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/our-story" element={<OurStory />} />
-          <Route path="/community" element={<CommunityPage />} />
-          <Route path="/team" element={<Team />} />
-          <Route path="/ambassadors" element={<Ambassadors />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <CartSyncProvider>
+          <ScrollToTop />
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/our-story" element={<OurStory />} />
+            <Route path="/community" element={<CommunityPage />} />
+            <Route path="/team" element={<Team />} />
+            <Route path="/ambassadors" element={<Ambassadors />} />
+            <Route path="/product/:handle" element={<ProductPage />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </CartSyncProvider>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
