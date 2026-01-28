@@ -30,9 +30,24 @@ const QuickShop = () => {
   useEffect(() => {
     const loadProducts = async () => {
       try {
-        // Fetch more products to ensure variety including hair growth serums
-        const data = await fetchProducts(12);
-        setProducts(data);
+        // Fetch products and filter to show variety with hair growth serums
+        const data = await fetchProducts(20);
+        
+        // Filter out Peppermint Bark and prioritize hair growth products
+        const filtered = data.filter(p => 
+          !p.node.title.toLowerCase().includes('peppermint bark')
+        );
+        
+        // Sort to put hair growth products first
+        const sorted = filtered.sort((a, b) => {
+          const aIsHair = a.node.title.toLowerCase().includes('hair') || a.node.title.toLowerCase().includes('growth');
+          const bIsHair = b.node.title.toLowerCase().includes('hair') || b.node.title.toLowerCase().includes('growth');
+          if (aIsHair && !bIsHair) return -1;
+          if (!aIsHair && bIsHair) return 1;
+          return 0;
+        });
+        
+        setProducts(sorted.slice(0, 12));
       } catch (error) {
         console.error("Failed to fetch products:", error);
       } finally {
