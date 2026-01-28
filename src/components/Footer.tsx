@@ -13,7 +13,7 @@ const footerLinks = {
     { name: "Our Story", href: "/our-story" },
     { name: "Why Organic", href: "/why-organic" },
     { name: "Ingredients", href: "/ingredients" },
-    { name: "Blog", href: "#" },
+    { name: "Blog", href: "/blog" },
   ],
   support: [
     { name: "Contact Us", href: "/contact" },
