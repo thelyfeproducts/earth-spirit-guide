@@ -187,7 +187,7 @@ const WhyOrganic = () => {
                 We decided to buy two garden beds to grow our own ingredients. This was a very hard task and took a lot of time and effort, but we decided to do it because we believe in growing our own ingredients that God gave us.
               </p>
               <p className="font-body text-muted-foreground leading-relaxed">
-                We grew rosemary and lavender, nurturing each plant with care and intention. When you use our products, you're experiencing herbs that were planted, tended, and harvested by our own hands.
+                We grew rosemary and lavender alongside vegetables, nurturing each plant with care and intention. When you use our products, you're experiencing herbs that were planted, tended, and harvested by our own hands.
               </p>
             </div>
             <motion.div
