@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { motion } from "framer-motion";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -10,10 +9,6 @@ import storyCommunity from "@/assets/story-community.jpeg";
 import storyCompetition from "@/assets/story-competition-win.jpg";
 
 const OurStory = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   return (
     <div className="min-h-screen">
       <Header />
