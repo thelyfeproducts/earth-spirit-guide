@@ -24,7 +24,7 @@ const footerLinks = {
 
 const Footer = () => {
   return (
-    <footer className="bg-charcoal text-cream/90 section-padding">
+    <footer className="bg-primary text-cream/90 section-padding">
       <div className="container-lyfe">
         <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
           {/* Brand */}
