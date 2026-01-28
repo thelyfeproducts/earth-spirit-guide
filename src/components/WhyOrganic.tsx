@@ -136,7 +136,7 @@ const WhyOrganic = () => {
           
           <div className="grid md:grid-cols-3 gap-6">
             {[
-              { image: gardenWeek1, label: "The Beginning", desc: "Our garden beds with early plantings" },
+              { image: gardenWeek1, label: "The Beginning", desc: "Our garden beds with old plantings" },
               { image: gardenWeek2, label: "Preparing the Soil", desc: "Tilling and enriching the earth" },
               { image: gardenWeek3, label: "Growing Together", desc: "Herbs and vegetables thriving side by side" },
             ].map((stage, index) => (
