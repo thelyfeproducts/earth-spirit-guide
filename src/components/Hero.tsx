@@ -3,7 +3,7 @@ import lyfePeace from "@/assets/lyfe-peace.png";
 
 const Hero = () => {
   return (
-    <section className="min-h-screen flex items-center justify-center pt-20 section-padding relative overflow-hidden">
+    <section className="min-h-screen flex items-center justify-center pt-32 section-padding relative overflow-hidden">
       {/* Background decorative elements */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-20 left-10 w-32 h-32 bg-secondary/10 rounded-full blur-3xl" />
