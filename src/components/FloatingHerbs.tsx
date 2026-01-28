@@ -40,11 +40,11 @@ export const FloatingHerb = ({
     <motion.img
       src={herbImages[type]}
       alt={`${type} herb`}
-      className={`${sizeClasses[size]} h-auto pointer-events-none select-none ${className}`}
+      className={`${sizeClasses[size]} h-auto pointer-events-none select-none mix-blend-multiply ${className}`}
       style={{ rotate: `${rotate}deg` }}
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{ 
-        opacity: 0.85, 
+        opacity: 0.7, 
         scale: 1,
         y: [0, -8, 0],
       }}
@@ -57,29 +57,22 @@ export const FloatingHerb = ({
   );
 };
 
-// Pre-configured herb arrangements for different sections
+// Pre-configured herb arrangements for different sections - positioned at edges
 export const HeroHerbs = () => (
   <>
     <FloatingHerb 
       type="lavender" 
-      className="absolute top-32 left-8 hidden lg:block" 
-      size="md" 
+      className="absolute top-40 left-2 hidden xl:block" 
+      size="sm" 
       rotate={-15}
       animationDelay={0.5}
     />
     <FloatingHerb 
       type="chamomile" 
-      className="absolute bottom-32 left-16 hidden md:block" 
+      className="absolute bottom-20 left-4 hidden xl:block" 
       size="sm" 
       rotate={10}
       animationDelay={0.8}
-    />
-    <FloatingHerb 
-      type="rosemary" 
-      className="absolute top-48 right-4 hidden lg:block" 
-      size="sm" 
-      rotate={25}
-      animationDelay={0.6}
     />
   </>
 );
@@ -88,14 +81,14 @@ export const StoryHerbs = () => (
   <>
     <FloatingHerb 
       type="rose" 
-      className="absolute top-12 right-12 hidden lg:block" 
-      size="md" 
+      className="absolute top-8 right-2 hidden xl:block" 
+      size="sm" 
       rotate={-5}
       animationDelay={0.3}
     />
     <FloatingHerb 
       type="aloe" 
-      className="absolute bottom-20 left-8 hidden md:block" 
+      className="absolute bottom-8 left-2 hidden xl:block" 
       size="sm" 
       rotate={15}
       animationDelay={0.5}
@@ -107,15 +100,15 @@ export const WhyOrganicHerbs = () => (
   <>
     <FloatingHerb 
       type="chamomile" 
-      className="absolute top-16 left-4 hidden lg:block" 
-      size="lg" 
+      className="absolute top-8 left-2 hidden xl:block" 
+      size="sm" 
       rotate={-10}
       animationDelay={0.2}
     />
     <FloatingHerb 
       type="lavender" 
-      className="absolute bottom-16 right-8 hidden md:block" 
-      size="md" 
+      className="absolute bottom-8 right-2 hidden xl:block" 
+      size="sm" 
       rotate={20}
       animationDelay={0.4}
     />
@@ -126,24 +119,17 @@ export const RemediesHerbs = () => (
   <>
     <FloatingHerb 
       type="rosemary" 
-      className="absolute top-8 left-12 hidden lg:block" 
-      size="md" 
+      className="absolute top-4 left-2 hidden xl:block" 
+      size="sm" 
       rotate={-20}
       animationDelay={0.3}
     />
     <FloatingHerb 
       type="rose" 
-      className="absolute bottom-24 right-4 hidden lg:block" 
+      className="absolute bottom-8 right-2 hidden xl:block" 
       size="sm" 
       rotate={15}
       animationDelay={0.6}
-    />
-    <FloatingHerb 
-      type="aloe" 
-      className="absolute top-1/2 right-8 hidden xl:block" 
-      size="sm" 
-      rotate={-5}
-      animationDelay={0.5}
     />
   </>
 );
@@ -152,14 +138,14 @@ export const TestimonialsHerbs = () => (
   <>
     <FloatingHerb 
       type="lavender" 
-      className="absolute top-20 right-16 hidden lg:block" 
-      size="md" 
+      className="absolute top-12 right-2 hidden xl:block" 
+      size="sm" 
       rotate={10}
       animationDelay={0.4}
     />
     <FloatingHerb 
       type="chamomile" 
-      className="absolute bottom-12 left-8 hidden md:block" 
+      className="absolute bottom-8 left-2 hidden xl:block" 
       size="sm" 
       rotate={-15}
       animationDelay={0.6}
@@ -171,15 +157,15 @@ export const CommunityHerbs = () => (
   <>
     <FloatingHerb 
       type="rose" 
-      className="absolute top-8 left-8 hidden lg:block" 
+      className="absolute top-4 left-2 hidden xl:block" 
       size="sm" 
       rotate={20}
       animationDelay={0.3}
     />
     <FloatingHerb 
       type="rosemary" 
-      className="absolute bottom-16 right-12 hidden md:block" 
-      size="md" 
+      className="absolute bottom-8 right-2 hidden xl:block" 
+      size="sm" 
       rotate={-10}
       animationDelay={0.5}
     />
@@ -190,24 +176,17 @@ export const CTAHerbs = () => (
   <>
     <FloatingHerb 
       type="aloe" 
-      className="absolute top-12 left-8 hidden lg:block" 
-      size="md" 
+      className="absolute top-8 left-2 hidden xl:block" 
+      size="sm" 
       rotate={-15}
       animationDelay={0.2}
     />
     <FloatingHerb 
       type="lavender" 
-      className="absolute bottom-8 right-16 hidden md:block" 
+      className="absolute bottom-4 right-2 hidden xl:block" 
       size="sm" 
       rotate={25}
       animationDelay={0.4}
-    />
-    <FloatingHerb 
-      type="chamomile" 
-      className="absolute top-1/2 right-4 hidden xl:block" 
-      size="sm" 
-      rotate={5}
-      animationDelay={0.6}
     />
   </>
 );
