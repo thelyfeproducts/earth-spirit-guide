@@ -35,7 +35,7 @@ const Hero = () => {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="heading-hero mb-8"
             >
-              Healing the Earth
+              Healing the Planet
               <br />
               <span className="text-secondary">with God-given ingredients</span>
             </motion.h1>
