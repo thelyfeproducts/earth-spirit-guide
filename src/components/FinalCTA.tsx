@@ -17,11 +17,11 @@ const FinalCTA = () => {
   };
 
   return (
-    <section className="section-padding bg-beige relative overflow-hidden">
+    <section className="section-padding bg-secondary/10 relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 right-0 w-96 h-96 bg-secondary/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-64 h-64 bg-accent/10 rounded-full blur-3xl" />
       </div>
 
       <div className="container-lyfe relative z-10">
@@ -34,14 +34,14 @@ const FinalCTA = () => {
             transition={{ duration: 0.8 }}
             className="text-center lg:text-left"
           >
-            <h2 className="heading-section text-charcoal mb-6">
+            <h2 className="heading-section mb-6">
               Ready to Return
               <br />
               <span className="text-secondary">to the Earth?</span>
             </h2>
             
-            <p className="body-large text-charcoal/80 mb-8 max-w-lg mx-auto lg:mx-0">
-              Join The Lyfe community and be the first to know about new remedies, 
+            <p className="body-large mb-8 max-w-lg mx-auto lg:mx-0">
+              Join the Lyfe community and be the first to know about new remedies, 
               Earth wisdom, and exclusive offers.
             </p>
 
@@ -52,7 +52,7 @@ const FinalCTA = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
-                className="flex-1 px-6 py-4 rounded-full bg-white border border-border font-body text-charcoal placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent shadow-soft"
+                className="flex-1 px-6 py-4 rounded-full bg-card border border-border font-body text-charcoal placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent"
                 required
               />
               <button
@@ -95,7 +95,7 @@ const FinalCTA = () => {
             <motion.img
               src={lyfePointing}
               alt="Lyfe pointing up"
-              className="w-56 md:w-64 lg:w-72 h-auto drop-shadow-xl"
+              className="w-64 md:w-72 lg:w-80 h-auto drop-shadow-xl"
               animate={{ y: [0, -8, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             />
@@ -106,12 +106,12 @@ const FinalCTA = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.5 }}
-              className="absolute top-0 right-0 md:right-10 bg-white rounded-2xl p-4 shadow-medium max-w-40"
+              className="absolute top-0 right-0 md:right-10 bg-card rounded-2xl p-4 shadow-lg max-w-40"
             >
               <p className="font-body font-semibold text-charcoal text-sm">
                 "The Earth provides!" 🌍
               </p>
-              <div className="absolute -bottom-2 left-8 w-4 h-4 bg-white transform rotate-45" />
+              <div className="absolute -bottom-2 left-8 w-4 h-4 bg-card transform rotate-45" />
             </motion.div>
           </motion.div>
         </div>

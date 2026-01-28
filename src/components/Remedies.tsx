@@ -81,7 +81,7 @@ const item = {
 
 const Remedies = () => {
   return (
-    <section id="remedies" className="section-padding bg-muted/30">
+    <section id="remedies" className="section-padding">
       <div className="container-lyfe">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -90,14 +90,16 @@ const Remedies = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <span className="inline-block bg-secondary/10 text-secondary font-body font-semibold px-4 py-2 rounded-full text-sm mb-4">
+          <span className="inline-block bg-secondary/10 text-secondary font-body font-semibold px-4 py-2 rounded-full text-sm mb-6">
             Our Remedies
           </span>
-          <h2 className="heading-section text-charcoal mb-4">
-            Crafted for Healing
+          <h2 className="heading-section mb-4">
+            Earth's Healing
+            <br />
+            <span className="text-secondary">Gifts</span>
           </h2>
-          <p className="body-large text-muted-foreground max-w-xl mx-auto">
-            Each product is a remedy — plant-powered, small-batch, made with love.
+          <p className="body-large max-w-2xl mx-auto">
+            Prepared in small batches with plant-infused intention.
           </p>
         </motion.div>
 
@@ -106,40 +108,45 @@ const Remedies = () => {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8"
         >
           {remedies.map((remedy) => (
             <motion.div
               key={remedy.id}
               variants={item}
-              className="product-card group cursor-pointer"
+              className="product-card group"
             >
               {/* Product Image */}
-              <div className={`${remedy.bgColor} h-64 relative overflow-hidden flex items-center justify-center`}>
+              <div className={`${remedy.bgColor} h-64 relative overflow-hidden`}>
                 {remedy.tag && (
-                  <span className="absolute top-4 left-4 bg-charcoal text-white font-body font-semibold text-xs px-3 py-1 rounded-full">
+                  <span className="absolute top-4 left-4 bg-secondary text-secondary-foreground px-3 py-1 rounded-full text-xs font-body font-bold">
                     {remedy.tag}
                   </span>
                 )}
                 
-                <div className="w-28 h-28 rounded-full bg-card/60 flex items-center justify-center">
-                  <span className="font-display font-bold text-charcoal/50 text-center text-sm px-4">
-                    {remedy.name.split(" ")[0]}
-                  </span>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-28 h-28 rounded-full bg-card/60 flex items-center justify-center">
+                    <span className="font-display font-bold text-charcoal/50 text-center text-sm px-4">
+                      {remedy.name.split(" ")[0]}
+                    </span>
+                  </div>
                 </div>
 
                 {/* Hover Add to Cart */}
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-charcoal/10">
-                  <button className="bg-white text-charcoal px-5 py-2.5 rounded-full font-display font-bold text-sm flex items-center gap-2 shadow-medium hover:scale-105 transition-transform">
-                    <ShoppingBag className="w-4 h-4" />
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-charcoal/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                >
+                  <button className="w-full bg-secondary text-secondary-foreground py-3 rounded-full font-body font-bold flex items-center justify-center gap-2 hover:bg-secondary/90 transition-colors">
+                    <ShoppingBag className="w-5 h-5" />
                     Add to Cart
                   </button>
-                </div>
+                </motion.div>
               </div>
 
               {/* Product Info */}
               <div className="p-6">
-                <h3 className="font-display font-bold text-lg text-charcoal mb-2">{remedy.name}</h3>
+                <h3 className="heading-card mb-2">{remedy.name}</h3>
                 <p className="font-body text-muted-foreground text-sm mb-4">
                   {remedy.tagline}
                 </p>

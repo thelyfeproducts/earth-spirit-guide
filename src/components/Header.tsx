@@ -1,131 +1,98 @@
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
 import { Menu, X, ShoppingBag } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import lyfeInfinity from "@/assets/lyfe-infinity.png";
 
-const navItems = [
-  { label: "Shop", href: "#shop" },
-  { label: "Our Story", href: "#story" },
-  { label: "Why Organic", href: "#why-organic" },
-  { label: "Community", href: "#community" },
+const navLinks = [
+  { name: "Shop", href: "#shop" },
+  { name: "Our Story", href: "#story" },
+  { name: "Why Organic", href: "#why-organic" },
+  { name: "Community", href: "#community" },
 ];
 
 const Header = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-white/95 backdrop-blur-md shadow-soft py-3"
-          : "bg-transparent py-5"
-      }`}
-    >
+    <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
       <div className="container-lyfe">
-        <nav className="flex items-center justify-between px-4">
+        <div className="flex items-center justify-between h-16 md:h-20 px-4">
           {/* Logo */}
-          <a href="/" className="flex items-center gap-3 group">
-            <img
-              src={lyfeInfinity}
-              alt="The Lyfe"
-              className="w-10 h-10 transition-transform group-hover:scale-110"
+          <a href="#" className="flex items-center gap-3">
+            <img 
+              src={lyfeInfinity} 
+              alt="Lyfe Products" 
+              className="h-10 md:h-12 w-auto"
             />
-            <span className={`font-display font-bold text-xl transition-colors ${
-              isScrolled ? "text-charcoal" : "text-white"
-            }`}>
-              The Lyfe
+            <span className="font-display font-black text-xl md:text-2xl text-primary">
+              Lyfe Products™
             </span>
           </a>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
-            {navItems.map((item) => (
+          <nav className="hidden md:flex items-center gap-8">
+            {navLinks.map((link) => (
               <a
-                key={item.label}
-                href={item.href}
-                className={`font-body font-medium transition-colors relative group ${
-                  isScrolled ? "text-charcoal hover:text-secondary" : "text-white/90 hover:text-white"
-                }`}
+                key={link.name}
+                href={link.href}
+                className="font-body font-semibold text-charcoal hover:text-secondary transition-colors duration-200"
               >
-                {item.label}
-                <span className={`absolute -bottom-1 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full ${
-                  isScrolled ? "bg-secondary" : "bg-white"
-                }`} />
+                {link.name}
               </a>
             ))}
-          </div>
+          </nav>
 
-          {/* CTA Buttons */}
-          <div className="hidden md:flex items-center gap-4">
-            <button className={`p-2 rounded-full transition-colors ${
-              isScrolled ? "hover:bg-muted" : "hover:bg-white/10"
-            }`}>
-              <ShoppingBag className={`w-5 h-5 ${isScrolled ? "text-charcoal" : "text-white"}`} />
+          {/* Cart & Menu */}
+          <div className="flex items-center gap-4">
+            <button className="relative p-2 hover:bg-muted rounded-full transition-colors">
+              <ShoppingBag className="w-6 h-6 text-charcoal" />
+              <span className="absolute -top-1 -right-1 bg-secondary text-secondary-foreground text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">
+                0
+              </span>
             </button>
-            <a
-              href="#shop"
-              className={`font-display font-bold px-6 py-2.5 rounded-full transition-all duration-300 hover:scale-105 ${
-                isScrolled
-                  ? "bg-secondary text-white"
-                  : "bg-white text-charcoal"
-              }`}
+            
+            <button 
+              className="md:hidden p-2"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
-              Shop Now
-            </a>
+              {isMenuOpen ? (
+                <X className="w-6 h-6 text-charcoal" />
+              ) : (
+                <Menu className="w-6 h-6 text-charcoal" />
+              )}
+            </button>
           </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 rounded-lg"
-          >
-            {isMobileMenuOpen ? (
-              <X className={`w-6 h-6 ${isScrolled ? "text-charcoal" : "text-white"}`} />
-            ) : (
-              <Menu className={`w-6 h-6 ${isScrolled ? "text-charcoal" : "text-white"}`} />
-            )}
-          </button>
-        </nav>
+        </div>
       </div>
 
       {/* Mobile Menu */}
       <AnimatePresence>
-        {isMobileMenuOpen && (
+        {isMenuOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="md:hidden bg-white border-t border-border"
+            className="md:hidden bg-card border-t border-border"
           >
-            <div className="container-lyfe py-6 px-4 space-y-4">
-              {navItems.map((item) => (
+            <nav className="container-lyfe py-6 px-4 flex flex-col gap-4">
+              {navLinks.map((link) => (
                 <a
-                  key={item.label}
-                  href={item.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="block font-body font-medium text-charcoal hover:text-secondary transition-colors py-2"
+                  key={link.name}
+                  href={link.href}
+                  className="font-body font-semibold text-lg text-charcoal hover:text-secondary transition-colors py-2"
+                  onClick={() => setIsMenuOpen(false)}
                 >
-                  {item.label}
+                  {link.name}
                 </a>
               ))}
               <a
                 href="#shop"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="block btn-earth text-center mt-4"
+                className="btn-earth text-center mt-4"
+                onClick={() => setIsMenuOpen(false)}
               >
-                Shop Now
+                Shop Remedies
               </a>
-            </div>
+            </nav>
           </motion.div>
         )}
       </AnimatePresence>

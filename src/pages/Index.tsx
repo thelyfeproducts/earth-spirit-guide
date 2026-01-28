@@ -2,10 +2,10 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import QuickShop from "@/components/QuickShop";
 import StorySection from "@/components/StorySection";
-import ImpactSection from "@/components/ImpactSection";
 import WhyOrganic from "@/components/WhyOrganic";
 import Remedies from "@/components/Remedies";
 import Testimonials from "@/components/Testimonials";
+import Community from "@/components/Community";
 import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
 
@@ -17,10 +17,10 @@ const Index = () => {
         <Hero />
         <QuickShop />
         <StorySection />
-        <ImpactSection />
         <WhyOrganic />
         <Remedies />
         <Testimonials />
+        <Community />
         <FinalCTA />
       </main>
       <Footer />

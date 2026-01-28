@@ -48,7 +48,7 @@ const item = {
 
 const Testimonials = () => {
   return (
-    <section className="section-padding bg-background">
+    <section className="section-padding bg-card/50">
       <div className="container-lyfe">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -57,15 +57,14 @@ const Testimonials = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <span className="inline-block bg-accent/20 text-charcoal font-body font-semibold px-4 py-2 rounded-full text-sm mb-4">
-            Real Stories
+          <span className="inline-block bg-terracotta/10 text-terracotta font-body font-semibold px-4 py-2 rounded-full text-sm mb-6">
+            Real Results
           </span>
-          <h2 className="heading-section text-charcoal mb-4">
-            People Feel the Difference
+          <h2 className="heading-section mb-4">
+            People Feel
+            <br />
+            <span className="text-secondary">the Difference</span>
           </h2>
-          <p className="body-large text-muted-foreground max-w-xl mx-auto">
-            Honest words from our community.
-          </p>
         </motion.div>
 
         <motion.div
@@ -73,30 +72,35 @@ const Testimonials = () => {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="grid md:grid-cols-3 gap-6"
+          className="grid md:grid-cols-3 gap-8"
         >
           {testimonials.map((testimonial) => (
             <motion.div
               key={testimonial.id}
               variants={item}
-              className="lyfe-card"
+              className="lyfe-card relative"
             >
-              {/* Rating */}
-              <div className="flex gap-1 mb-4">
+              {/* Quote Icon */}
+              <div className="absolute -top-3 -left-3 bg-secondary text-secondary-foreground p-3 rounded-full">
+                <Quote className="w-5 h-5" />
+              </div>
+
+              {/* Stars */}
+              <div className="flex gap-1 mb-4 pt-2">
                 {[...Array(testimonial.rating)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 fill-accent text-accent" />
+                  <Star key={i} className="w-5 h-5 text-accent fill-accent" />
                 ))}
               </div>
-              
+
               {/* Quote */}
-              <p className="font-body text-muted-foreground mb-6 leading-relaxed">
+              <p className="font-body text-charcoal leading-relaxed mb-6">
                 "{testimonial.quote}"
               </p>
-              
+
               {/* Author */}
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-secondary/20 rounded-full flex items-center justify-center">
-                  <span className="font-display font-bold text-secondary">
+              <div className="flex items-center gap-4 pt-4 border-t border-border">
+                <div className="w-12 h-12 bg-secondary/20 rounded-full flex items-center justify-center">
+                  <span className="font-display font-bold text-secondary text-lg">
                     {testimonial.avatar}
                   </span>
                 </div>
@@ -105,9 +109,16 @@ const Testimonials = () => {
                     {testimonial.name}
                   </p>
                   <p className="font-body text-sm text-muted-foreground">
-                    {testimonial.product}
+                    {testimonial.location}
                   </p>
                 </div>
+              </div>
+
+              {/* Product Tag */}
+              <div className="mt-4">
+                <span className="inline-block bg-muted text-muted-foreground px-3 py-1 rounded-full text-xs font-body font-medium">
+                  Purchased: {testimonial.product}
+                </span>
               </div>
             </motion.div>
           ))}
