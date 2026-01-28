@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Menu, X, ShoppingBag } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import lyfeInfinity from "@/assets/lyfe-infinity.png";
@@ -8,6 +9,7 @@ const navLinks = [
   { name: "Our Story", href: "#story" },
   { name: "Why Organic", href: "#why-organic" },
   { name: "Community", href: "#community" },
+  { name: "Our Team", href: "/team" },
 ];
 
 const Header = () => {
@@ -29,16 +31,25 @@ const Header = () => {
             </span>
           </a>
 
-          {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="font-body font-semibold text-charcoal hover:text-secondary transition-colors duration-200"
-              >
-                {link.name}
-              </a>
+              link.href.startsWith('/') ? (
+                <Link
+                  key={link.name}
+                  to={link.href}
+                  className="font-body font-semibold text-charcoal hover:text-secondary transition-colors duration-200"
+                >
+                  {link.name}
+                </Link>
+              ) : (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className="font-body font-semibold text-charcoal hover:text-secondary transition-colors duration-200"
+                >
+                  {link.name}
+                </a>
+              )
             ))}
           </nav>
 
@@ -76,14 +87,25 @@ const Header = () => {
           >
             <nav className="container-lyfe py-6 px-4 flex flex-col gap-4">
               {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  className="font-body font-semibold text-lg text-charcoal hover:text-secondary transition-colors py-2"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {link.name}
-                </a>
+                link.href.startsWith('/') ? (
+                  <Link
+                    key={link.name}
+                    to={link.href}
+                    className="font-body font-semibold text-lg text-charcoal hover:text-secondary transition-colors py-2"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {link.name}
+                  </Link>
+                ) : (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    className="font-body font-semibold text-lg text-charcoal hover:text-secondary transition-colors py-2"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {link.name}
+                  </a>
+                )
               ))}
               <a
                 href="#shop"
