@@ -4,6 +4,7 @@ import { WhyOrganicHerbs } from "./FloatingHerbs";
 import gardenGrowing from "@/assets/garden-growing.jpeg";
 import gardenWeek1 from "@/assets/garden-week1.jpeg";
 import gardenWeek2 from "@/assets/garden-week2.jpeg";
+import gardenWeek3 from "@/assets/garden-week3.jpeg";
 
 const benefits = [
   {
@@ -133,10 +134,11 @@ const WhyOrganic = () => {
             </h3>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-4 gap-6">
             {[
               { image: gardenWeek1, label: "The Beginning", desc: "Our garden beds with early plantings" },
               { image: gardenWeek2, label: "Preparing the Soil", desc: "Tilling and enriching the earth" },
+              { image: gardenWeek3, label: "Growing Together", desc: "Herbs and vegetables thriving side by side" },
               { image: gardenGrowing, label: "Thriving Garden", desc: "Rosemary and lavender flourishing" },
             ].map((stage, index) => (
               <motion.div
