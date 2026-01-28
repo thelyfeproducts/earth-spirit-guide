@@ -138,7 +138,7 @@ const WhyOrganic = () => {
             {[
               { image: gardenWeek1, label: "The Beginning", desc: "Our garden beds with old plantings" },
               { image: gardenWeek2, label: "Preparing the Soil", desc: "Tilling and enriching the earth" },
-              { image: gardenWeek3, label: "Growing Together", desc: "Herbs and vegetables thriving side by side" },
+              { image: gardenWeek3, label: "Growing Together", desc: "Our garden beds with amazing growth!" },
             ].map((stage, index) => (
               <motion.div
                 key={stage.label}
