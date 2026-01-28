@@ -44,13 +44,13 @@ const Footer = () => {
               Rooted in indigenous wisdom, crafted for modern healing.
             </p>
             <div className="flex gap-4">
-              <a href="#" className="bg-cream/10 hover:bg-cream/20 p-3 rounded-full transition-colors">
+              <a href="https://instagram.com/thelyfeproducts" target="_blank" rel="noopener noreferrer" className="bg-cream/10 hover:bg-cream/20 p-3 rounded-full transition-colors">
                 <Instagram className="w-5 h-5" />
               </a>
-              <a href="#" className="bg-cream/10 hover:bg-cream/20 p-3 rounded-full transition-colors">
+              <a href="https://facebook.com/thelyfeproducts" target="_blank" rel="noopener noreferrer" className="bg-cream/10 hover:bg-cream/20 p-3 rounded-full transition-colors">
                 <Facebook className="w-5 h-5" />
               </a>
-              <a href="#" className="bg-cream/10 hover:bg-cream/20 p-3 rounded-full transition-colors">
+              <a href="https://tiktok.com/@thelyfeproducts" target="_blank" rel="noopener noreferrer" className="bg-cream/10 hover:bg-cream/20 p-3 rounded-full transition-colors">
                 <Twitter className="w-5 h-5" />
               </a>
             </div>
