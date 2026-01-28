@@ -74,7 +74,7 @@ const OurStory = () => {
                   <span className="text-secondary">awareness.</span>
                 </h2>
                 <p className="body-large mb-4">
-                  As a college student, I began paying attention to what I was putting on my body — the ingredients in everyday products, the chemicals we accept as normal.
+                  As a college student, I began paying attention to what I was putting on my body: the ingredients in everyday products, the chemicals we accept as normal.
                 </p>
                 <p className="font-body text-muted-foreground leading-relaxed">
                   That awareness changed everything. I started researching, experimenting, and learning about plant-based alternatives. What began as curiosity became a calling.
@@ -90,11 +90,11 @@ const OurStory = () => {
               >
                 <img
                   src={storyDorm}
-                  alt="Making products in the dorm room - where it all began"
+                  alt="Making products in the dorm room, where it all began"
                   className="w-full h-auto"
                 />
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-charcoal/70 to-transparent p-6">
-                  <p className="font-body text-white">Where it all began — making remedies by hand</p>
+                  <p className="font-body text-white">Where it all began, making remedies by hand</p>
                 </div>
               </motion.div>
             </div>
@@ -114,7 +114,7 @@ const OurStory = () => {
                   className="w-full h-auto"
                 />
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-charcoal/70 to-transparent p-6">
-                  <p className="font-body text-white">First campus sales — sharing the vision</p>
+                  <p className="font-body text-white">First campus sales, sharing the vision</p>
                 </div>
               </motion.div>
               
@@ -132,7 +132,7 @@ const OurStory = () => {
                   <span className="text-secondary">honest.</span>
                 </h2>
                 <p className="body-large mb-4">
-                  I couldn't find products that felt honest — clean, plant-based, and made with real intention.
+                  I couldn't find products that felt honest: clean, plant based, and made with real intention.
                 </p>
                 <p className="font-body text-muted-foreground leading-relaxed">
                   So I started making them myself. Small batches. Simple ingredients. Remedies that actually worked. Each product was crafted with purpose, not profit margins.
@@ -155,13 +155,13 @@ const OurStory = () => {
                   <span className="text-secondary">community.</span>
                 </h2>
                 <p className="body-large mb-4">
-                  What happened next wasn't marketing — it was community.
+                  What happened next wasn't marketing. It was community.
                 </p>
                 <p className="font-body text-muted-foreground leading-relaxed mb-4">
                   Classmates started asking for more. Friends told their families. Word spread through trust, not ads. That organic growth led to our products being carried in <strong className="text-charcoal">6 retail stores</strong> across the region.
                 </p>
                 <p className="font-body text-muted-foreground leading-relaxed">
-                  Every store partnership started the same way — someone believed in what we were doing because they experienced it themselves.
+                  Every store partnership started the same way: someone believed in what we were doing because they experienced it themselves.
                 </p>
               </motion.div>
               
@@ -229,7 +229,7 @@ const OurStory = () => {
                   <span className="text-secondary">the right way.</span>
                 </h2>
                 <p className="body-large mb-4">
-                  Along the way, I shared this mission through pitch competitions — not for clout, but to be heard.
+                  Along the way, I shared this mission through pitch competitions. Not for clout, but to be heard.
                 </p>
                 <p className="font-body text-muted-foreground leading-relaxed">
                   Winning <strong className="text-charcoal">10+ competitions</strong> helped validate what we already knew: people are ready for something real. Something healing. Something honest. These wins opened doors, but they never changed our heart.
@@ -259,7 +259,7 @@ const OurStory = () => {
               </div>
               <div className="bg-card rounded-2xl p-6 shadow-card">
                 <p className="font-display font-black text-4xl md:text-5xl text-secondary">100%</p>
-                <p className="font-body text-muted-foreground mt-2">Plant-Based</p>
+                <p className="font-body text-muted-foreground mt-2">Plant Based</p>
               </div>
               <div className="bg-card rounded-2xl p-6 shadow-card">
                 <p className="font-display font-black text-4xl md:text-5xl text-secondary">∞</p>
