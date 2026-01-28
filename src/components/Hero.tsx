@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import lyfePeace from "@/assets/lyfe-peace.png";
+import herbLavenderClean from "@/assets/herb-lavender-clean.png";
+import herbRoseClean from "@/assets/herb-rose-clean.png";
 import { HeroHerbs } from "./FloatingHerbs";
 
 const Hero = () => {
@@ -7,6 +9,44 @@ const Hero = () => {
     <section className="min-h-screen flex items-center justify-center pt-32 section-padding relative overflow-hidden">
       {/* Floating Herbs */}
       <HeroHerbs />
+      
+      {/* Clean Lavender & Rose - Top of page */}
+      <motion.img
+        src={herbLavenderClean}
+        alt="Lavender"
+        className="absolute top-24 left-4 md:left-12 lg:left-20 w-16 md:w-20 lg:w-24 h-auto pointer-events-none mix-blend-multiply"
+        style={{ rotate: "-20deg" }}
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 0.8, y: [0, -6, 0] }}
+        transition={{ 
+          opacity: { duration: 1, delay: 0.3 },
+          y: { duration: 5, repeat: Infinity, ease: "easeInOut" }
+        }}
+      />
+      <motion.img
+        src={herbRoseClean}
+        alt="Rose"
+        className="absolute top-20 right-4 md:right-12 lg:right-24 w-14 md:w-18 lg:w-20 h-auto pointer-events-none mix-blend-multiply"
+        style={{ rotate: "15deg" }}
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 0.75, y: [0, -8, 0] }}
+        transition={{ 
+          opacity: { duration: 1, delay: 0.5 },
+          y: { duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.5 }
+        }}
+      />
+      <motion.img
+        src={herbLavenderClean}
+        alt="Lavender"
+        className="absolute top-32 right-8 md:right-32 lg:right-48 w-12 md:w-14 h-auto pointer-events-none mix-blend-multiply hidden md:block"
+        style={{ rotate: "30deg" }}
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 0.6, y: [0, -5, 0] }}
+        transition={{ 
+          opacity: { duration: 1, delay: 0.7 },
+          y: { duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }
+        }}
+      />
       
       {/* Background decorative elements */}
       <div className="absolute inset-0 pointer-events-none">
