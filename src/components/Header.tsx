@@ -7,7 +7,6 @@ import lyfeInfinity from "@/assets/lyfe-infinity.png";
 const navLinks = [
   { name: "Shop", href: "#shop" },
   { name: "Our Story", href: "#story" },
-  { name: "Why Organic", href: "#why-organic" },
   { name: "Community", href: "#community" },
   { name: "Our Team", href: "/team" },
   { name: "Ambassadors", href: "/ambassadors" },
