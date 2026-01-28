@@ -95,68 +95,42 @@ const Shipping = () => {
           </div>
 
           {/* Detailed Shipping Info */}
-          <div className="grid lg:grid-cols-2 gap-12">
+          <div className="max-w-2xl mx-auto space-y-6">
             <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="bg-card rounded-3xl p-8 shadow-soft"
+              className="bg-secondary/5 rounded-3xl p-8"
             >
-              <h2 className="heading-card text-2xl mb-6">Shipping Rates</h2>
-              <div className="space-y-4">
-                <div className="flex justify-between items-center py-3 border-b border-border">
-                  <span className="font-body text-charcoal">Orders under $35</span>
-                  <span className="font-body font-semibold text-charcoal">$5.99</span>
+              <div className="flex items-start gap-4 mb-4">
+                <div className="bg-secondary/10 p-3 rounded-xl">
+                  <Heart className="w-6 h-6 text-secondary" />
                 </div>
-                <div className="flex justify-between items-center py-3 border-b border-border">
-                  <span className="font-body text-charcoal">Orders $35 and over</span>
-                  <span className="font-body font-semibold text-secondary">FREE</span>
-                </div>
-                <div className="flex justify-between items-center py-3">
-                  <span className="font-body text-charcoal">Express Shipping (2-3 days)</span>
-                  <span className="font-body font-semibold text-charcoal">$12.99</span>
+                <div>
+                  <h3 className="heading-card text-xl mb-2">Small Batch, Big Love</h3>
+                  <p className="font-body text-muted-foreground">
+                    As a small family business, we personally prepare each order. This means your products 
+                    are always fresh and made with intention. Please allow 1-2 business days for us to 
+                    lovingly package your remedies before they ship.
+                  </p>
                 </div>
               </div>
-              <p className="font-body text-muted-foreground text-sm mt-6">
-                * Shipping times are estimates and may vary based on location and carrier delays.
-              </p>
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="space-y-6"
+              className="bg-accent/10 rounded-3xl p-8"
             >
-              <div className="bg-secondary/5 rounded-3xl p-8">
-                <div className="flex items-start gap-4 mb-4">
-                  <div className="bg-secondary/10 p-3 rounded-xl">
-                    <Heart className="w-6 h-6 text-secondary" />
-                  </div>
-                  <div>
-                    <h3 className="heading-card text-xl mb-2">Small Batch, Big Love</h3>
-                    <p className="font-body text-muted-foreground">
-                      As a small family business, we personally prepare each order. This means your products 
-                      are always fresh and made with intention. Please allow 1-2 business days for us to 
-                      lovingly package your remedies before they ship.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-accent/10 rounded-3xl p-8">
-                <h3 className="heading-card text-xl mb-4">Order Tracking</h3>
-                <p className="font-body text-muted-foreground mb-4">
-                  Once your order ships, you'll receive an email with tracking information. 
-                  You can follow your package's journey right to your doorstep.
-                </p>
-                <p className="font-body text-muted-foreground text-sm">
-                  Questions about your order? Email us at{" "}
-                  <a href="mailto:thelyfeproducts@gmail.com" className="text-secondary hover:underline">
-                    thelyfeproducts@gmail.com
-                  </a>
-                </p>
-              </div>
+              <h3 className="heading-card text-xl mb-4">Questions About Your Order?</h3>
+              <p className="font-body text-muted-foreground">
+                We're always here to help! Email us at{" "}
+                <a href="mailto:thelyfeproducts@gmail.com" className="text-secondary hover:underline font-semibold">
+                  thelyfeproducts@gmail.com
+                </a>
+                {" "}and we'll get back to you as soon as possible.
+              </p>
             </motion.div>
           </div>
         </div>
