@@ -1,9 +1,11 @@
 import { motion } from "framer-motion";
 import lyfeWatering from "@/assets/lyfe-watering.png";
+import { StoryHerbs } from "./FloatingHerbs";
 
 const StorySection = () => {
   return (
-    <section id="story" className="section-padding overflow-hidden">
+    <section id="story" className="section-padding overflow-hidden relative">
+      <StoryHerbs />
       <div className="container-lyfe">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Lyfe Character */}

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Send, Check } from "lucide-react";
 import lyfePointing from "@/assets/lyfe-pointing.png";
+import { CTAHerbs } from "./FloatingHerbs";
 
 const FinalCTA = () => {
   const [email, setEmail] = useState("");
@@ -18,6 +19,9 @@ const FinalCTA = () => {
 
   return (
     <section className="section-padding bg-secondary/10 relative overflow-hidden">
+      {/* Floating Herbs */}
+      <CTAHerbs />
+      
       {/* Background decoration */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 right-0 w-96 h-96 bg-secondary/5 rounded-full blur-3xl" />

@@ -1,9 +1,13 @@
 import { motion } from "framer-motion";
 import lyfePeace from "@/assets/lyfe-peace.png";
+import { HeroHerbs } from "./FloatingHerbs";
 
 const Hero = () => {
   return (
     <section className="min-h-screen flex items-center justify-center pt-32 section-padding relative overflow-hidden">
+      {/* Floating Herbs */}
+      <HeroHerbs />
+      
       {/* Background decorative elements */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-20 left-10 w-32 h-32 bg-secondary/10 rounded-full blur-3xl" />

@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Leaf, Droplets, Heart, Shield, Sprout, Sun } from "lucide-react";
+import { WhyOrganicHerbs } from "./FloatingHerbs";
 
 const benefits = [
   {
@@ -63,7 +64,8 @@ const item = {
 
 const WhyOrganic = () => {
   return (
-    <section id="why-organic" className="section-padding bg-card/50">
+    <section id="why-organic" className="section-padding bg-card/50 relative overflow-hidden">
+      <WhyOrganicHerbs />
       <div className="container-lyfe">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
