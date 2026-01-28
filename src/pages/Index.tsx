@@ -2,7 +2,6 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import QuickShop from "@/components/QuickShop";
 import ShopByRemedy from "@/components/ShopByRemedy";
-import StorySection from "@/components/StorySection";
 import CompetitorComparison from "@/components/CompetitorComparison";
 import Testimonials from "@/components/Testimonials";
 import FeaturedTransformation from "@/components/FeaturedTransformation";
@@ -19,9 +18,8 @@ const Index = () => {
         <Hero />
         <QuickShop />
         <ShopByRemedy />
-        <StorySection />
-        <CompetitorComparison />
         <FeaturedTransformation />
+        <CompetitorComparison />
         <Testimonials />
         <Community />
         <FinalCTA />
