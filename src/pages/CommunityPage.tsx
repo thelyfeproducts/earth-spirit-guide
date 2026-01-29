@@ -403,7 +403,7 @@ const CommunityPage = () => {
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                  <a href="#shop" className="btn-earth">
+                  <a href="/donate" className="btn-earth">
                     Support the Mission
                   </a>
                   <a 
