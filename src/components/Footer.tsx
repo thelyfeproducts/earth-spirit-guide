@@ -4,10 +4,9 @@ import lyfeInfinity from "@/assets/lyfe-infinity.png";
 
 const footerLinks = {
   shop: [
-    { name: "All Products", href: "#shop" },
-    { name: "Hair Care", href: "#shop" },
-    { name: "Body Care", href: "#shop" },
-    { name: "Face Care", href: "#shop" },
+    { name: "All Products", href: "/#shop" },
+    { name: "Hair Care", href: "/collections/hair-care" },
+    { name: "Body Care", href: "/collections/body-care" },
   ],
   learn: [
     { name: "Our Story", href: "/our-story" },
