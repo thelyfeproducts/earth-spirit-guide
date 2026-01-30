@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import LyfeBotWidget from "@/components/LyfeBot/LyfeBotWidget";
 import { Users, Mail } from "lucide-react";
 import founderHeadshot from "@/assets/founder-headshot.jpeg";
+import maliHeadshot from "@/assets/mali-headshot.jpeg";
 
 interface TeamMember {
   name: string;
@@ -43,6 +44,7 @@ const teamData: TeamSection[] = [
         name: "Mali Strayhorn",
         role: "Head of Operations",
         description: "Driving operational excellence and ensuring smooth day-to-day business operations.",
+        image: maliHeadshot,
       },
     ],
   },
