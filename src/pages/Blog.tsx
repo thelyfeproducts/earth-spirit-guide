@@ -225,34 +225,38 @@ const Blog = () => {
               <motion.article
                 key={post.id}
                 variants={item}
-                className="bg-card border border-border rounded-3xl overflow-hidden hover:shadow-lg transition-all duration-300 group"
               >
-                <div className={`${post.color} p-8 flex justify-center`}>
-                  <span className="text-6xl group-hover:scale-110 transition-transform duration-300">
-                    {post.image}
-                  </span>
-                </div>
-                <div className="p-6">
-                  <span className="inline-block bg-secondary/10 text-secondary font-body font-semibold px-3 py-1 rounded-full text-xs mb-3">
-                    {post.category}
-                  </span>
-                  <h3 className="heading-card text-lg mb-3 group-hover:text-secondary transition-colors">
-                    {post.title}
-                  </h3>
-                  <p className="font-body text-sm text-muted-foreground mb-4 line-clamp-2">
-                    {post.excerpt}
-                  </p>
-                  <div className="flex items-center justify-between text-xs text-muted-foreground">
-                    <span className="flex items-center gap-1">
-                      <Calendar className="w-3 h-3" />
-                      {post.date}
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <Clock className="w-3 h-3" />
-                      {post.readTime}
+                <Link
+                  to={`/blog/${post.id}`}
+                  className="block bg-card border border-border rounded-3xl overflow-hidden hover:shadow-lg transition-all duration-300 group"
+                >
+                  <div className={`${post.color} p-8 flex justify-center`}>
+                    <span className="text-6xl group-hover:scale-110 transition-transform duration-300">
+                      {post.image}
                     </span>
                   </div>
-                </div>
+                  <div className="p-6">
+                    <span className="inline-block bg-secondary/10 text-secondary font-body font-semibold px-3 py-1 rounded-full text-xs mb-3">
+                      {post.category}
+                    </span>
+                    <h3 className="heading-card text-lg mb-3 group-hover:text-secondary transition-colors">
+                      {post.title}
+                    </h3>
+                    <p className="font-body text-sm text-muted-foreground mb-4 line-clamp-2">
+                      {post.excerpt}
+                    </p>
+                    <div className="flex items-center justify-between text-xs text-muted-foreground">
+                      <span className="flex items-center gap-1">
+                        <Calendar className="w-3 h-3" />
+                        {post.date}
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <Clock className="w-3 h-3" />
+                        {post.readTime}
+                      </span>
+                    </div>
+                  </div>
+                </Link>
               </motion.article>
             ))}
           </motion.div>
