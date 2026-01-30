@@ -6,65 +6,65 @@
 
 @layer base {
   :root {
-    /* Lyfe Products™ Design System */
+    /* Lyfe Products™ Valentine's Day Design System */
     
-    /* Core Canvas - Warm Beige World */
-    --background: 37 61% 82%;
-    --foreground: 0 0% 4%;
+    /* Core Canvas - Soft Blush Pink */
+    --background: 350 60% 92%;
+    --foreground: 350 30% 15%;
     
-    /* Off-White for Cards & Contrast */
-    --card: 43 50% 94%;
-    --card-foreground: 0 0% 4%;
+    /* Cream Rose for Cards & Contrast */
+    --card: 20 50% 96%;
+    --card-foreground: 350 30% 15%;
     
-    --popover: 43 50% 94%;
-    --popover-foreground: 0 0% 4%;
+    --popover: 20 50% 96%;
+    --popover-foreground: 350 30% 15%;
     
-    /* Primary - Earth Blue */
-    --primary: 209 79% 28%;
-    --primary-foreground: 43 50% 94%;
+    /* Primary - Deep Rose */
+    --primary: 350 70% 45%;
+    --primary-foreground: 20 50% 96%;
     
-    /* Secondary - Forest Green */
-    --secondary: 146 59% 30%;
-    --secondary-foreground: 43 50% 94%;
+    /* Secondary - Romantic Burgundy */
+    --secondary: 340 60% 35%;
+    --secondary-foreground: 20 50% 96%;
     
-    /* Muted - Softer Beige */
-    --muted: 37 40% 88%;
-    --muted-foreground: 0 0% 25%;
+    /* Muted - Soft Blush */
+    --muted: 350 40% 90%;
+    --muted-foreground: 350 20% 30%;
     
-    /* Accent - Sun Yellow */
-    --accent: 47 90% 57%;
-    --accent-foreground: 0 0% 4%;
+    /* Accent - Rose Gold */
+    --accent: 15 70% 65%;
+    --accent-foreground: 350 30% 15%;
     
     /* Destructive */
     --destructive: 0 84% 60%;
-    --destructive-foreground: 43 50% 94%;
+    --destructive-foreground: 20 50% 96%;
     
     /* Borders & Inputs */
-    --border: 37 30% 70%;
-    --input: 37 30% 75%;
-    --ring: 209 79% 28%;
+    --border: 350 30% 80%;
+    --input: 350 30% 85%;
+    --ring: 350 70% 45%;
     
     --radius: 1rem;
     
     /* Extended Palette */
-    --moss: 146 45% 45%;
-    --olive: 80 35% 40%;
-    --forest: 146 59% 30%;
-    --terracotta: 20 70% 55%;
-    --sky: 200 80% 65%;
-    --cream: 43 50% 94%;
-    --clay: 37 61% 82%;
-    --charcoal: 0 0% 4%;
+    --moss: 340 45% 50%;
+    --olive: 350 35% 55%;
+    --forest: 340 60% 35%;
+    --terracotta: 15 70% 55%;
+    --sky: 350 50% 75%;
+    --cream: 20 50% 96%;
+    --clay: 350 60% 92%;
+    --charcoal: 350 30% 15%;
     
     /* Sidebar */
-    --sidebar-background: 43 50% 94%;
-    --sidebar-foreground: 0 0% 4%;
-    --sidebar-primary: 209 79% 28%;
-    --sidebar-primary-foreground: 43 50% 94%;
-    --sidebar-accent: 37 40% 88%;
-    --sidebar-accent-foreground: 0 0% 4%;
-    --sidebar-border: 37 30% 70%;
-    --sidebar-ring: 209 79% 28%;
+    --sidebar-background: 20 50% 96%;
+    --sidebar-foreground: 350 30% 15%;
+    --sidebar-primary: 350 70% 45%;
+    --sidebar-primary-foreground: 20 50% 96%;
+    --sidebar-accent: 350 40% 90%;
+    --sidebar-accent-foreground: 350 30% 15%;
+    --sidebar-border: 350 30% 80%;
+    --sidebar-ring: 350 70% 45%;
   }
 
   .dark {
