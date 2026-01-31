@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import QuickShop from "@/components/QuickShop";
+import ValentinesGiftBundles from "@/components/ValentinesGiftBundles";
 import ShopByRemedy from "@/components/ShopByRemedy";
 import CompetitorComparison from "@/components/CompetitorComparison";
 import Testimonials from "@/components/Testimonials";
@@ -17,6 +18,7 @@ const Index = () => {
       <main>
         <Hero />
         <QuickShop />
+        <ValentinesGiftBundles />
         <ShopByRemedy />
         <FeaturedTransformation />
         <CompetitorComparison />

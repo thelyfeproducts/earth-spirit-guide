@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import lyfeLogo from "@/assets/lyfe-logo.png";
+import ValentinesBanner from "./ValentinesBanner";
 import { CartDrawer } from "@/components/CartDrawer";
 
 const shopLinks = [
@@ -26,7 +27,9 @@ const Header = () => {
   const [isShopOpen, setIsShopOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
+    <header className="fixed top-0 left-0 right-0 z-50">
+      <ValentinesBanner />
+      <div className="bg-background/95 backdrop-blur-sm border-b border-border">
       <div className="container-lyfe">
         <div className="flex items-center justify-between h-16 md:h-20 px-4">
           {/* Logo */}
@@ -118,6 +121,7 @@ const Header = () => {
               )}
             </button>
           </div>
+        </div>
         </div>
       </div>
 
