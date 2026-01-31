@@ -94,11 +94,14 @@ const ValentinesGiftBundles = () => {
 
     const matchingProducts = products.filter(p => {
       const title = p.node.title.toLowerCase();
-      const description = (p.node.description || '').toLowerCase();
-      // Check both title and description for matches
-      return category.matchTerms.some(term => 
-        title.includes(term.toLowerCase()) || description.includes(term.toLowerCase())
-      );
+      
+      // Exclude bundles, duos, and trios
+      if (title.includes('bundle') || title.includes('duo') || title.includes('trio')) {
+        return false;
+      }
+      
+      // Check if title matches any of the category terms
+      return category.matchTerms.some(term => title.includes(term.toLowerCase()));
     });
 
     return matchingProducts.slice(0, 3);
