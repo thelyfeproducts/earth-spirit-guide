@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { fetchProducts, ShopifyProduct } from "@/lib/shopify";
 import { useCartStore } from "@/stores/cartStore";
 import { toast } from "sonner";
+import ValentinesBadge, { getValentineBadgeType } from "./ValentinesBadge";
 
 const container = {
   hidden: { opacity: 0 },
@@ -151,6 +152,12 @@ const QuickShop = () => {
                             />
                           ) : (
                             <div className="w-24 h-24 bg-secondary rounded-full opacity-50" />
+                          )}
+                          {/* Valentine's Badge */}
+                          {getValentineBadgeType(product.node.title) && (
+                            <div className="absolute top-3 left-3 z-10">
+                              <ValentinesBadge type={getValentineBadgeType(product.node.title)!} />
+                            </div>
                           )}
                         </div>
                       </Link>
