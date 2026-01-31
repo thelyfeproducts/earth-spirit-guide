@@ -17,11 +17,10 @@ export const CartDrawer = () => {
 
   const handleCheckout = () => {
     const checkoutUrl = getCheckoutUrl();
-    console.log('Checkout URL:', checkoutUrl); // Debug log
+    console.log('Checkout URL:', checkoutUrl);
     if (checkoutUrl) {
-      // Ensure URL opens in new tab properly
-      window.open(checkoutUrl, '_blank', 'noopener,noreferrer');
-      setIsOpen(false);
+      // Hard redirect to Shopify checkout (avoids pop-up blockers)
+      window.location.href = checkoutUrl;
     } else {
       console.error('No checkout URL available');
     }
