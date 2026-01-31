@@ -11,8 +11,8 @@ const ValentinesBanner = () => {
   });
 
   useEffect(() => {
-    // Valentine's Day 2025: February 14
-    const valentinesDay = new Date("2025-02-14T23:59:59");
+    // Valentine's Day 2026: February 14
+    const valentinesDay = new Date("2026-02-14T23:59:59");
     
     const calculateTimeLeft = () => {
       const now = new Date();

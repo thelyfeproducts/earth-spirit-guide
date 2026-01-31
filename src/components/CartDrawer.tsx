@@ -17,9 +17,13 @@ export const CartDrawer = () => {
 
   const handleCheckout = () => {
     const checkoutUrl = getCheckoutUrl();
+    console.log('Checkout URL:', checkoutUrl); // Debug log
     if (checkoutUrl) {
-      window.open(checkoutUrl, '_blank');
+      // Ensure URL opens in new tab properly
+      window.open(checkoutUrl, '_blank', 'noopener,noreferrer');
       setIsOpen(false);
+    } else {
+      console.error('No checkout URL available');
     }
   };
 
