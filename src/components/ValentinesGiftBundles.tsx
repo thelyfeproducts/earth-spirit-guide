@@ -13,8 +13,7 @@ const giftCategories = [
     subtitle: "Luxurious self-care",
     icon: Heart,
     gradient: "from-primary/20 to-accent/10",
-    // Updated with new romantic products
-    matchTerms: ["velvet kiss", "lavender", "rose", "vanilla bean", "coconut", "healing butter"],
+    matchTerms: ["slow burn", "velvet kiss", "vanilla"],
   },
   {
     id: "for-him",
@@ -22,17 +21,7 @@ const giftCategories = [
     subtitle: "Refined grooming",
     icon: Sparkles,
     gradient: "from-secondary/20 to-primary/10",
-    // Masculine and unscented products
-    matchTerms: ["masculine", "black butter", "sandalwood", "unscented", "grooming"],
-  },
-  {
-    id: "self-love",
-    title: "Self-Love",
-    subtitle: "Treat yourself",
-    icon: Gift,
-    gradient: "from-accent/20 to-secondary/10",
-    // Sensual and indulgent products + bundles
-    matchTerms: ["midnight jazz", "slow burn", "cinnamon", "bundle", "trio", "duo", "collection", "pumpkin spice"],
+    matchTerms: ["midnight jazz", "sandalwood"],
   },
 ];
 
