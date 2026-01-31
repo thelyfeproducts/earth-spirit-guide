@@ -26,7 +26,7 @@ const Hero = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="font-body font-semibold text-secondary uppercase tracking-[0.2em] mb-6"
             >
-              💝 Valentine's Day Special 💝
+              Welcome Back to the Earth
             </motion.p>
             
             <motion.h1
@@ -35,9 +35,9 @@ const Hero = () => {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="heading-hero mb-8"
             >
-              Love Yourself,
+              Healing the Planet
               <br />
-              <span className="text-secondary">Love the Earth</span>
+              <span className="text-secondary">with God-given ingredients</span>
             </motion.h1>
             
             <motion.p
@@ -46,7 +46,7 @@ const Hero = () => {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="body-large max-w-xl mx-auto lg:mx-0 mb-12"
             >
-              This Valentine's Day, gift yourself and your loved ones nature's purest remedies. 🌹
+              Plant powered remedies rooted in indigenous wisdom for your healing journey.
             </motion.p>
             
             <motion.div
@@ -83,7 +83,7 @@ const Hero = () => {
               className="absolute -top-4 lg:top-4 -left-2 md:left-4 lg:left-0 bg-card rounded-xl p-3 shadow-lg max-w-36"
             >
               <p className="font-body font-semibold text-charcoal text-xs">
-                "Spread love, naturally!" 💕🌿
+                "Welcome back to the Earth!" 🌿
               </p>
               <div className="absolute -bottom-2 right-6 w-3 h-3 bg-card transform rotate-45" />
             </motion.div>
