@@ -13,7 +13,8 @@ const giftCategories = [
     subtitle: "Luxurious self-care",
     icon: Heart,
     gradient: "from-primary/20 to-accent/10",
-    searchTerms: ["lavender", "rose", "body butter", "feminine"],
+    // Updated with new romantic products
+    matchTerms: ["velvet kiss", "lavender", "rose", "vanilla bean", "coconut", "healing butter"],
   },
   {
     id: "for-him",
@@ -21,7 +22,8 @@ const giftCategories = [
     subtitle: "Refined grooming",
     icon: Sparkles,
     gradient: "from-secondary/20 to-primary/10",
-    searchTerms: ["beard", "grooming", "masculine", "men"],
+    // Masculine and unscented products
+    matchTerms: ["masculine", "black butter", "sandalwood", "unscented", "grooming"],
   },
   {
     id: "self-love",
@@ -29,7 +31,8 @@ const giftCategories = [
     subtitle: "Treat yourself",
     icon: Gift,
     gradient: "from-accent/20 to-secondary/10",
-    searchTerms: ["bundle", "set", "collection", "care"],
+    // Sensual and indulgent products + bundles
+    matchTerms: ["midnight jazz", "slow burn", "cinnamon", "bundle", "trio", "duo", "collection", "pumpkin spice"],
   },
 ];
 
@@ -94,33 +97,17 @@ const ValentinesGiftBundles = () => {
     }
   };
 
-  // Filter products based on active category
+  // Filter products based on active category using matchTerms
   const getFilteredProducts = () => {
     const category = giftCategories.find(c => c.id === activeCategory);
     if (!category) return products.slice(0, 3);
 
-    // For demo, just show different slices for each category
-    // In production, you'd filter by actual product tags/types
-    switch (activeCategory) {
-      case "for-her":
-        return products.filter(p => 
-          p.node.title.toLowerCase().includes("lavender") ||
-          p.node.title.toLowerCase().includes("rose") ||
-          p.node.title.toLowerCase().includes("body butter")
-        ).slice(0, 3);
-      case "for-him":
-        return products.filter(p =>
-          p.node.title.toLowerCase().includes("beard") ||
-          p.node.title.toLowerCase().includes("grooming")
-        ).slice(0, 3);
-      case "self-love":
-        return products.filter(p =>
-          p.node.title.toLowerCase().includes("bundle") ||
-          p.node.title.toLowerCase().includes("set")
-        ).slice(0, 3);
-      default:
-        return products.slice(0, 3);
-    }
+    const matchingProducts = products.filter(p => {
+      const title = p.node.title.toLowerCase();
+      return category.matchTerms.some(term => title.includes(term.toLowerCase()));
+    });
+
+    return matchingProducts.slice(0, 3);
   };
 
   const filteredProducts = getFilteredProducts();
