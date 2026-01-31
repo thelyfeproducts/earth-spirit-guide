@@ -23,7 +23,7 @@ const collections: Record<string, CollectionConfig> = {
   "valentines": {
     title: "Valentine's Day Scents",
     description: "Limited edition romantic scents crafted with love. Perfect for gifting or treating yourself.",
-    query: "title:Velvet Kiss OR title:Slow Burn OR title:Midnight Jazz OR title:Vanilla Bean",
+    query: "(title:*Velvet Kiss* OR title:*Slow Burn* OR title:*Midnight Jazz* OR title:*Vanilla Bean* OR title:*Sandalwood*) NOT (title:*Bundle* OR title:*Duo* OR title:*Trio*)",
   },
   "hair-growth-serums": {
     title: "Hair Growth Serums",
