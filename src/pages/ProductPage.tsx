@@ -318,27 +318,39 @@ const ProductPage = () => {
                       <>
                         <li className="flex items-start gap-3">
                           <span className="text-secondary">•</span>
-                          <span><strong className="text-charcoal">Castor Oil</strong> — Promotes hair growth and strengthens follicles</span>
+                          <span><strong className="text-charcoal">Rosemary</strong> — Stimulates hair growth and improves circulation</span>
                         </li>
                         <li className="flex items-start gap-3">
                           <span className="text-secondary">•</span>
-                          <span><strong className="text-charcoal">Rosemary Essential Oil</strong> — Stimulates circulation to the scalp</span>
+                          <span><strong className="text-charcoal">Jojoba Seed Oil</strong> — Mimics natural scalp oils, deeply nourishing</span>
                         </li>
                         <li className="flex items-start gap-3">
                           <span className="text-secondary">•</span>
-                          <span><strong className="text-charcoal">Jojoba Oil</strong> — Mimics natural scalp oils, deeply nourishing</span>
+                          <span><strong className="text-charcoal">Fenugreek</strong> — Promotes hair thickness and strengthens follicles</span>
                         </li>
                         <li className="flex items-start gap-3">
                           <span className="text-secondary">•</span>
-                          <span><strong className="text-charcoal">Peppermint Oil</strong> — Invigorates and cools the scalp</span>
+                          <span><strong className="text-charcoal">Cloves</strong> — Improves blood circulation to the scalp</span>
                         </li>
                         <li className="flex items-start gap-3">
                           <span className="text-secondary">•</span>
-                          <span><strong className="text-charcoal">Argan Oil</strong> — Rich in antioxidants, adds shine</span>
+                          <span><strong className="text-charcoal">Lavender</strong> — Soothes scalp and promotes healthy growth</span>
                         </li>
                         <li className="flex items-start gap-3">
                           <span className="text-secondary">•</span>
-                          <span><strong className="text-charcoal">Vitamin E</strong> — Antioxidant protection for hair health</span>
+                          <span><strong className="text-charcoal">Grape Seed Oil</strong> — Lightweight moisture, tightens pores</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="text-secondary">•</span>
+                          <span><strong className="text-charcoal">Tea Tree Oil</strong> — Natural antibacterial, soothes scalp</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="text-secondary">•</span>
+                          <span><strong className="text-charcoal">Hemp Seed Oil</strong> — Omega-rich, reduces inflammation</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="text-secondary">•</span>
+                          <span><strong className="text-charcoal">Coconut Oil</strong> — Deep conditioning, locks in moisture</span>
                         </li>
                       </>
                     ) : (
