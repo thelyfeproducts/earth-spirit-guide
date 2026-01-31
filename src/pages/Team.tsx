@@ -43,7 +43,7 @@ const teamData: TeamSection[] = [
       {
         name: "Mali Strayhorn",
         role: "Head of Operations",
-        description: "Driving operational excellence and ensuring smooth day-to-day business operations.",
+        description: "As Head of Operations at Lyfe Products, I apply the discipline and leadership forged through collegiate football and graduation to drive operational excellence. I manage daily operations, optimize systems, and lead teams with a results-driven, execution-focused mindset built on accountability and long-term growth.",
         image: maliHeadshot,
       },
     ],
