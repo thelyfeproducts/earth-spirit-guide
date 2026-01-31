@@ -100,18 +100,23 @@ const ValentinesGiftBundles = () => {
   // Filter products based on active category using matchTerms
   const getFilteredProducts = () => {
     const category = giftCategories.find(c => c.id === activeCategory);
-    if (!category) return products.slice(0, 3);
+    if (!category || products.length === 0) return [];
 
     const matchingProducts = products.filter(p => {
       const title = p.node.title.toLowerCase();
-      return category.matchTerms.some(term => title.includes(term.toLowerCase()));
+      const description = (p.node.description || '').toLowerCase();
+      // Check both title and description for matches
+      return category.matchTerms.some(term => 
+        title.includes(term.toLowerCase()) || description.includes(term.toLowerCase())
+      );
     });
 
     return matchingProducts.slice(0, 3);
   };
 
   const filteredProducts = getFilteredProducts();
-  // Fallback to first 3 products if no matches
+  
+  // Fallback: if no category matches, show first 3 products
   const displayProducts = filteredProducts.length > 0 ? filteredProducts : products.slice(0, 3);
 
   return (
