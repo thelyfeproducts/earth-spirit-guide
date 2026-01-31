@@ -44,14 +44,17 @@ const ValentinesGiftBundles = () => {
   const [products, setProducts] = useState<ShopifyProduct[]>([]);
   const [loading, setLoading] = useState(true);
   const [activeCategory, setActiveCategory] = useState("for-her");
+  const [displayProducts, setDisplayProducts] = useState<ShopifyProduct[]>([]);
   const { addItem, isLoading: cartLoading } = useCartStore();
   const [addingProduct, setAddingProduct] = useState<string | null>(null);
 
+  // Fetch products once on mount
   useEffect(() => {
     const loadProducts = async () => {
       try {
         // Fetch more products to ensure we get all Valentine's items
-        const data = await fetchProducts(50);
+        const data = await fetchProducts(100);
+        console.log("Valentine's products fetched:", data.map(p => p.node.title));
         setProducts(data);
       } catch (error) {
         console.error("Failed to fetch products:", error);
@@ -61,6 +64,35 @@ const ValentinesGiftBundles = () => {
     };
     loadProducts();
   }, []);
+
+  // Filter products when category changes or products load
+  useEffect(() => {
+    if (products.length === 0) {
+      setDisplayProducts([]);
+      return;
+    }
+
+    const category = giftCategories.find(c => c.id === activeCategory);
+    if (!category) {
+      setDisplayProducts([]);
+      return;
+    }
+
+    const matchingProducts = products.filter(p => {
+      const title = p.node.title.toLowerCase();
+      
+      // Exclude bundles, duos, and trios
+      if (title.includes('bundle') || title.includes('duo') || title.includes('trio')) {
+        return false;
+      }
+      
+      // Check if title matches any of the category terms
+      return category.matchTerms.some(term => title.includes(term));
+    });
+
+    console.log(`Filtering for ${activeCategory}:`, category.matchTerms, "Found:", matchingProducts.map(p => p.node.title));
+    setDisplayProducts(matchingProducts.slice(0, 3));
+  }, [activeCategory, products]);
 
   const handleAddToCart = async (product: ShopifyProduct) => {
     const variant = product.node.variants.edges[0]?.node;
@@ -86,31 +118,6 @@ const ValentinesGiftBundles = () => {
       setAddingProduct(null);
     }
   };
-
-  // Filter products based on active category using matchTerms
-  const getFilteredProducts = () => {
-    const category = giftCategories.find(c => c.id === activeCategory);
-    if (!category || products.length === 0) return [];
-
-    const matchingProducts = products.filter(p => {
-      const title = p.node.title.toLowerCase();
-      
-      // Exclude bundles, duos, and trios
-      if (title.includes('bundle') || title.includes('duo') || title.includes('trio')) {
-        return false;
-      }
-      
-      // Check if title matches any of the category terms
-      return category.matchTerms.some(term => title.includes(term.toLowerCase()));
-    });
-
-    return matchingProducts.slice(0, 3);
-  };
-
-  const filteredProducts = getFilteredProducts();
-  
-  // Fallback: if no category matches, show first 3 products
-  const displayProducts = filteredProducts.length > 0 ? filteredProducts : products.slice(0, 3);
 
   return (
     <section className="section-padding bg-gradient-to-b from-background to-card/50 relative overflow-hidden">
@@ -176,10 +183,10 @@ const ValentinesGiftBundles = () => {
           </div>
         ) : (
           <motion.div
+            key={activeCategory}
             variants={container}
             initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
+            animate="show"
             className="grid md:grid-cols-3 gap-6"
           >
             {displayProducts.map((product, index) => {
