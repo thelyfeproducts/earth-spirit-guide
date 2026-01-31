@@ -313,30 +313,62 @@ const ProductPage = () => {
                 <div className="bg-card rounded-2xl p-6 border border-border">
                   <h3 className="font-display font-bold text-lg mb-4">Key Ingredients</h3>
                   <ul className="space-y-3 font-body text-muted-foreground">
-                    <li className="flex items-start gap-3">
-                      <span className="text-secondary">•</span>
-                      <span><strong className="text-charcoal">Mango Butter</strong> — Deeply moisturizing, rich in vitamins A and E</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="text-secondary">•</span>
-                      <span><strong className="text-charcoal">Shea Butter</strong> — Nourishing, anti-inflammatory, skin-softening</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="text-secondary">•</span>
-                      <span><strong className="text-charcoal">Jojoba Oil</strong> — Mimics natural skin oils, fast-absorbing</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="text-secondary">•</span>
-                      <span><strong className="text-charcoal">Hemp Seed Oil</strong> — Omega-rich, supports skin barrier</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="text-secondary">•</span>
-                      <span><strong className="text-charcoal">Herbal Infusion</strong> — Lavender, rosemary, cloves, fenugreek</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="text-secondary">•</span>
-                      <span><strong className="text-charcoal">Vitamin E</strong> — Antioxidant protection</span>
-                    </li>
+                    {/* Hair Growth Serums have different ingredients */}
+                    {product.title.toLowerCase().includes('serum') || product.title.toLowerCase().includes('hair growth oil') ? (
+                      <>
+                        <li className="flex items-start gap-3">
+                          <span className="text-secondary">•</span>
+                          <span><strong className="text-charcoal">Castor Oil</strong> — Promotes hair growth and strengthens follicles</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="text-secondary">•</span>
+                          <span><strong className="text-charcoal">Rosemary Essential Oil</strong> — Stimulates circulation to the scalp</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="text-secondary">•</span>
+                          <span><strong className="text-charcoal">Jojoba Oil</strong> — Mimics natural scalp oils, deeply nourishing</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="text-secondary">•</span>
+                          <span><strong className="text-charcoal">Peppermint Oil</strong> — Invigorates and cools the scalp</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="text-secondary">•</span>
+                          <span><strong className="text-charcoal">Argan Oil</strong> — Rich in antioxidants, adds shine</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="text-secondary">•</span>
+                          <span><strong className="text-charcoal">Vitamin E</strong> — Antioxidant protection for hair health</span>
+                        </li>
+                      </>
+                    ) : (
+                      <>
+                        <li className="flex items-start gap-3">
+                          <span className="text-secondary">•</span>
+                          <span><strong className="text-charcoal">Mango Butter</strong> — Deeply moisturizing, rich in vitamins A and E</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="text-secondary">•</span>
+                          <span><strong className="text-charcoal">Shea Butter</strong> — Nourishing, anti-inflammatory, skin-softening</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="text-secondary">•</span>
+                          <span><strong className="text-charcoal">Jojoba Oil</strong> — Mimics natural skin oils, fast-absorbing</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="text-secondary">•</span>
+                          <span><strong className="text-charcoal">Hemp Seed Oil</strong> — Omega-rich, supports skin barrier</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="text-secondary">•</span>
+                          <span><strong className="text-charcoal">Herbal Infusion</strong> — Lavender, rosemary, cloves, fenugreek</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="text-secondary">•</span>
+                          <span><strong className="text-charcoal">Vitamin E</strong> — Antioxidant protection</span>
+                        </li>
+                      </>
+                    )}
                   </ul>
                 </div>
               </TabsContent>
