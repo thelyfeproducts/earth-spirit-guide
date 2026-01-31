@@ -20,6 +20,11 @@ const collections: Record<string, CollectionConfig> = {
     title: "All Remedies",
     description: "Our complete collection of handcrafted, organic wellness products.",
   },
+  "valentines": {
+    title: "Valentine's Day Scents",
+    description: "Limited edition romantic scents crafted with love. Perfect for gifting or treating yourself.",
+    query: "title:Velvet Kiss OR title:Slow Burn OR title:Midnight Jazz OR title:Vanilla Bean",
+  },
   "hair-growth-serums": {
     title: "Hair Growth Serums",
     description: "Nourish your scalp and support healthy hair growth with our herbal-infused oils.",

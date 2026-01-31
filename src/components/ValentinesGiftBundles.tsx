@@ -265,7 +265,7 @@ const ValentinesGiftBundles = () => {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="text-center mt-10"
         >
-          <Link to="/collections/all-remedies" className="btn-earth inline-flex items-center gap-2">
+          <Link to="/collections/valentines" className="btn-earth inline-flex items-center gap-2">
             <Heart className="w-5 h-5" />
             Shop All Valentine's Gifts
           </Link>
