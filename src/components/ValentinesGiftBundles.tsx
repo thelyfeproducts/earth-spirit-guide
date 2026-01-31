@@ -50,7 +50,8 @@ const ValentinesGiftBundles = () => {
   useEffect(() => {
     const loadProducts = async () => {
       try {
-        const data = await fetchProducts(20);
+        // Fetch more products to ensure we get all Valentine's items
+        const data = await fetchProducts(50);
         setProducts(data);
       } catch (error) {
         console.error("Failed to fetch products:", error);
