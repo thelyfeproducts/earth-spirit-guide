@@ -69,8 +69,21 @@ const CollectionPage = () => {
       if (!collection) return;
       setLoading(true);
       try {
-        const data = await fetchProducts(50, collection.query);
-        setProducts(data);
+        // Shopify search queries can be finicky depending on title formatting.
+        // For Valentine's we fetch a wider set and filter client-side to guarantee results.
+        if (slug === "valentines") {
+          const data = await fetchProducts(100);
+          const terms = ["slow burn", "velvet kiss", "midnight jazz", "sandalwood"];
+          const filtered = data.filter((p) => {
+            const title = p.node.title.toLowerCase();
+            if (title.includes("bundle") || title.includes("duo") || title.includes("trio")) return false;
+            return terms.some((t) => title.includes(t));
+          });
+          setProducts(filtered);
+        } else {
+          const data = await fetchProducts(50, collection.query);
+          setProducts(data);
+        }
       } catch (error) {
         console.error("Failed to fetch products:", error);
       } finally {

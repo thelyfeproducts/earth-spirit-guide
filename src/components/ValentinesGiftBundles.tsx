@@ -13,7 +13,7 @@ const giftCategories = [
     subtitle: "Luxurious self-care",
     icon: Heart,
     gradient: "from-primary/20 to-accent/10",
-    matchTerms: ["slow burn", "velvet kiss", "vanilla"],
+    matchTerms: ["slow burn", "velvet kiss"],
   },
   {
     id: "for-him",
