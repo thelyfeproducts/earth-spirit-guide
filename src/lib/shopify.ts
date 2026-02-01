@@ -243,13 +243,19 @@ export const CART_LINES_REMOVE_MUTATION = `
 `;
 
 // Helper functions
+// The customer-facing Shopify store domain for all cart/checkout URLs
+const SHOPIFY_STORE_PUBLIC_DOMAIN = 'shop.thelyfeproducts.com';
+
 function formatCheckoutUrl(checkoutUrl: string): string {
   try {
     const url = new URL(checkoutUrl);
+    // Rewrite to use the public Shopify store domain instead of myshopify.com
+    url.hostname = SHOPIFY_STORE_PUBLIC_DOMAIN;
     url.searchParams.set('channel', 'online_store');
     return url.toString();
   } catch {
-    return checkoutUrl;
+    // Fallback to direct Shopify store URL
+    return `https://${SHOPIFY_STORE_PUBLIC_DOMAIN}`;
   }
 }
 
