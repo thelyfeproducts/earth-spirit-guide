@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { ShoppingBag, Minus, Plus, Trash2, ExternalLink, Loader2 } from "lucide-react";
 import { useCartStore } from "@/stores/cartStore";
+import { toast } from "sonner";
 
 export const CartDrawer = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,8 +22,10 @@ export const CartDrawer = () => {
       // Redirect to Shopify checkout with the cart items
       window.location.href = checkoutUrl;
     } else {
-      // Fallback to Shopify store if no checkout URL available
-      window.location.href = 'https://shop.thelyfeproducts.com';
+      // Show error if cart checkout URL is missing
+      toast.error("Unable to proceed to checkout", {
+        description: "Please try adding items to your cart again.",
+      });
     }
   };
 

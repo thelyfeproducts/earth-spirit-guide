@@ -243,20 +243,12 @@ export const CART_LINES_REMOVE_MUTATION = `
 `;
 
 // Helper functions
-// The customer-facing Shopify store domain for all cart/checkout URLs
-const SHOPIFY_STORE_PUBLIC_DOMAIN = 'shop.thelyfeproducts.com';
-
 function formatCheckoutUrl(checkoutUrl: string): string {
-  try {
-    const url = new URL(checkoutUrl);
-    // Rewrite to use the public Shopify store domain instead of myshopify.com
-    url.hostname = SHOPIFY_STORE_PUBLIC_DOMAIN;
-    url.searchParams.set('channel', 'online_store');
-    return url.toString();
-  } catch {
-    // Fallback to direct Shopify store URL
-    return `https://${SHOPIFY_STORE_PUBLIC_DOMAIN}`;
-  }
+  // IMPORTANT: Do NOT rewrite the hostname for checkout URLs.
+  // Shopify's Storefront API returns checkout URLs with cart tokens (e.g., /cart/c/...)
+  // that ONLY work on the myshopify.com domain. Rewriting to a custom domain causes 404 errors.
+  // Shopify will handle any necessary redirects to the custom domain after checkout.
+  return checkoutUrl;
 }
 
 function isCartNotFoundError(userErrors: Array<{ field: string[] | null; message: string }>): boolean {
