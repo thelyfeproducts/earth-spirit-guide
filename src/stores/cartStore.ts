@@ -1,10 +1,11 @@
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
-import { 
-  CartItem, 
-  createShopifyCart, 
-  addLineToShopifyCart, 
-  updateShopifyCartLine, 
+import { toast } from 'sonner';
+import {
+  CartItem,
+  createShopifyCart,
+  addLineToShopifyCart,
+  updateShopifyCartLine,
   removeLineFromShopifyCart,
   storefrontApiRequest,
   CART_QUERY
@@ -37,7 +38,7 @@ export const useCartStore = create<CartStore>()(
       addItem: async (item) => {
         const { items, cartId, clearCart } = get();
         const existingItem = items.find(i => i.variantId === item.variantId);
-        
+
         set({ isLoading: true });
         try {
           if (!cartId) {
@@ -48,11 +49,13 @@ export const useCartStore = create<CartStore>()(
                 checkoutUrl: result.checkoutUrl,
                 items: [{ ...item, lineId: result.lineId }]
               });
+            } else {
+              toast.error("Failed to add item to cart", { description: "Please try again." });
             }
           } else if (existingItem) {
             const newQuantity = existingItem.quantity + item.quantity;
             if (!existingItem.lineId) {
-              console.error('Cannot update quantity for item without lineId:', existingItem);
+              toast.error("Failed to update cart", { description: "Please try again." });
               return;
             }
             const result = await updateShopifyCartLine(cartId, existingItem.lineId, newQuantity);
@@ -61,6 +64,9 @@ export const useCartStore = create<CartStore>()(
               set({ items: currentItems.map(i => i.variantId === item.variantId ? { ...i, quantity: newQuantity } : i) });
             } else if (result.cartNotFound) {
               clearCart();
+              toast.error("Cart expired", { description: "Please add items again." });
+            } else {
+              toast.error("Failed to update cart", { description: "Please try again." });
             }
           } else {
             const result = await addLineToShopifyCart(cartId, { ...item, lineId: null });
@@ -69,10 +75,14 @@ export const useCartStore = create<CartStore>()(
               set({ items: [...currentItems, { ...item, lineId: result.lineId ?? null }] });
             } else if (result.cartNotFound) {
               clearCart();
+              toast.error("Cart expired", { description: "Please add items again." });
+            } else {
+              toast.error("Failed to add item", { description: "Please try again." });
             }
           }
         } catch (error) {
           console.error('Failed to add item:', error);
+          toast.error("Something went wrong", { description: "Please try again." });
         } finally {
           set({ isLoading: false });
         }
@@ -83,7 +93,7 @@ export const useCartStore = create<CartStore>()(
           await get().removeItem(variantId);
           return;
         }
-        
+
         const { items, cartId, clearCart } = get();
         const item = items.find(i => i.variantId === variantId);
         if (!item?.lineId || !cartId) return;
@@ -96,9 +106,13 @@ export const useCartStore = create<CartStore>()(
             set({ items: currentItems.map(i => i.variantId === variantId ? { ...i, quantity } : i) });
           } else if (result.cartNotFound) {
             clearCart();
+            toast.error("Cart expired", { description: "Please add items again." });
+          } else {
+            toast.error("Failed to update quantity", { description: "Please try again." });
           }
         } catch (error) {
           console.error('Failed to update quantity:', error);
+          toast.error("Something went wrong", { description: "Please try again." });
         } finally {
           set({ isLoading: false });
         }
@@ -118,9 +132,13 @@ export const useCartStore = create<CartStore>()(
             newItems.length === 0 ? clearCart() : set({ items: newItems });
           } else if (result.cartNotFound) {
             clearCart();
+            toast.error("Cart expired", { description: "Please add items again." });
+          } else {
+            toast.error("Failed to remove item", { description: "Please try again." });
           }
         } catch (error) {
           console.error('Failed to remove item:', error);
+          toast.error("Something went wrong", { description: "Please try again." });
         } finally {
           set({ isLoading: false });
         }
@@ -133,7 +151,7 @@ export const useCartStore = create<CartStore>()(
       getTotalItems: () => get().items.reduce((sum, item) => sum + item.quantity, 0),
 
       syncCart: async () => {
-        const { cartId, isSyncing, clearCart } = get();
+        const { cartId, checkoutUrl, isSyncing, clearCart } = get();
         if (!cartId || isSyncing) return;
 
         set({ isSyncing: true });
@@ -141,7 +159,17 @@ export const useCartStore = create<CartStore>()(
           const data = await storefrontApiRequest(CART_QUERY, { id: cartId });
           if (!data) return;
           const cart = data?.data?.cart;
-          if (!cart || cart.totalQuantity === 0) clearCart();
+          if (!cart || cart.totalQuantity === 0) {
+            clearCart();
+            return;
+          }
+
+          // Fix stale checkout URLs that were incorrectly rewritten to custom domain
+          // Shopify checkout URLs must use myshopify.com domain to work correctly
+          const isStaleUrl = checkoutUrl && !checkoutUrl.includes('.myshopify.com');
+          if (cart.checkoutUrl && isStaleUrl) {
+            set({ checkoutUrl: cart.checkoutUrl });
+          }
         } catch (error) {
           console.error('Failed to sync cart with Shopify:', error);
         } finally {

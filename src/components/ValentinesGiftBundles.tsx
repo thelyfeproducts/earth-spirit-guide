@@ -54,7 +54,6 @@ const ValentinesGiftBundles = () => {
       try {
         // Fetch more products to ensure we get all Valentine's items
         const data = await fetchProducts(100);
-        console.log("Valentine's products fetched:", data.map(p => p.node.title));
         setProducts(data);
       } catch (error) {
         console.error("Failed to fetch products:", error);
@@ -90,7 +89,6 @@ const ValentinesGiftBundles = () => {
       return category.matchTerms.some(term => title.includes(term));
     });
 
-    console.log(`Filtering for ${activeCategory}:`, category.matchTerms, "Found:", matchingProducts.map(p => p.node.title));
     setDisplayProducts(matchingProducts.slice(0, 3));
   }, [activeCategory, products]);
 
