@@ -133,7 +133,7 @@ export const useCartStore = create<CartStore>()(
       getTotalItems: () => get().items.reduce((sum, item) => sum + item.quantity, 0),
 
       syncCart: async () => {
-        const { cartId, isSyncing, clearCart } = get();
+        const { cartId, checkoutUrl, isSyncing, clearCart } = get();
         if (!cartId || isSyncing) return;
 
         set({ isSyncing: true });
@@ -141,7 +141,17 @@ export const useCartStore = create<CartStore>()(
           const data = await storefrontApiRequest(CART_QUERY, { id: cartId });
           if (!data) return;
           const cart = data?.data?.cart;
-          if (!cart || cart.totalQuantity === 0) clearCart();
+          if (!cart || cart.totalQuantity === 0) {
+            clearCart();
+            return;
+          }
+
+          // Fix stale checkout URLs that were incorrectly rewritten to custom domain
+          // Shopify checkout URLs must use myshopify.com domain to work correctly
+          const isStaleUrl = checkoutUrl && !checkoutUrl.includes('.myshopify.com');
+          if (cart.checkoutUrl && isStaleUrl) {
+            set({ checkoutUrl: cart.checkoutUrl });
+          }
         } catch (error) {
           console.error('Failed to sync cart with Shopify:', error);
         } finally {

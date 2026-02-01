@@ -195,7 +195,7 @@ export const PRODUCT_BY_HANDLE_QUERY = `
 // Cart Queries
 export const CART_QUERY = `
   query cart($id: ID!) {
-    cart(id: $id) { id totalQuantity }
+    cart(id: $id) { id totalQuantity checkoutUrl }
   }
 `;
 
