@@ -16,8 +16,14 @@ export const CartDrawer = () => {
   }, [isOpen, syncCart]);
 
   const handleCheckout = () => {
-    // Hard redirect to Shopify store - all commerce handled externally
-    window.location.href = 'https://shop.thelyfeproducts.com';
+    const checkoutUrl = getCheckoutUrl();
+    if (checkoutUrl) {
+      // Redirect to Shopify checkout with the cart items
+      window.location.href = checkoutUrl;
+    } else {
+      // Fallback to Shopify store if no checkout URL available
+      window.location.href = 'https://shop.thelyfeproducts.com';
+    }
   };
 
   return (
