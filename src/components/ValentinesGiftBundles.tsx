@@ -90,11 +90,15 @@ const ValentinesGiftBundles = () => {
     });
 
     // Sort products by matchTerms order (first term = first position)
-    const sortedProducts = matchingProducts.sort((a, b) => {
+    const sortedProducts = [...matchingProducts].sort((a, b) => {
       const titleA = a.node.title.toLowerCase();
       const titleB = b.node.title.toLowerCase();
+
+      // Find which term each product matches
       const indexA = category.matchTerms.findIndex(term => titleA.includes(term));
       const indexB = category.matchTerms.findIndex(term => titleB.includes(term));
+
+      // Products matching earlier terms come first
       return indexA - indexB;
     });
 
