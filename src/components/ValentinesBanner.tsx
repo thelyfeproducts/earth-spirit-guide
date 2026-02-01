@@ -8,27 +8,29 @@ const ValentinesBanner = () => {
     days: 0,
     hours: 0,
     minutes: 0,
+    seconds: 0,
   });
 
   useEffect(() => {
     // Valentine's Day 2026: February 14
     const valentinesDay = new Date("2026-02-14T23:59:59");
-    
+
     const calculateTimeLeft = () => {
       const now = new Date();
       const difference = valentinesDay.getTime() - now.getTime();
-      
+
       if (difference > 0) {
         setTimeLeft({
           days: Math.floor(difference / (1000 * 60 * 60 * 24)),
           hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
           minutes: Math.floor((difference / 1000 / 60) % 60),
+          seconds: Math.floor((difference / 1000) % 60),
         });
       }
     };
 
     calculateTimeLeft();
-    const timer = setInterval(calculateTimeLeft, 60000); // Update every minute
+    const timer = setInterval(calculateTimeLeft, 1000); // Update every second
 
     return () => clearInterval(timer);
   }, []);
@@ -78,6 +80,9 @@ const ValentinesBanner = () => {
               </span>
               <span className="bg-secondary-foreground/20 px-1.5 py-0.5 rounded text-xs">
                 {timeLeft.minutes}m
+              </span>
+              <span className="bg-secondary-foreground/20 px-1.5 py-0.5 rounded text-xs">
+                {timeLeft.seconds}s
               </span>
             </div>
           </div>
