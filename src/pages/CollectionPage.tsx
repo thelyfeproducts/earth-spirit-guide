@@ -23,7 +23,7 @@ const collections: Record<string, CollectionConfig> = {
   "valentines": {
     title: "Valentine's Day Scents",
     description: "Limited edition romantic scents crafted with love. Perfect for gifting or treating yourself.",
-    query: "(title:*Velvet Kiss* OR title:*Slow Burn* OR title:*Midnight Jazz* OR title:*Vanilla Bean* OR title:*Sandalwood*) NOT (title:*Bundle* OR title:*Duo* OR title:*Trio*)",
+    query: "(title:*Velvet Kiss* OR title:*Slow Burn* OR title:*Midnight Jazz* OR title:*Vanilla Bean* OR title:*Sandalwood* OR title:*Black Butter*) NOT (title:*Bundle* OR title:*Duo* OR title:*Trio*)",
   },
   "hair-growth-serums": {
     title: "Hair Growth Serums",
@@ -73,7 +73,7 @@ const CollectionPage = () => {
         // For Valentine's we fetch a wider set and filter client-side to guarantee results.
         if (slug === "valentines") {
           const data = await fetchProducts(100);
-          const terms = ["slow burn", "velvet kiss", "midnight jazz", "sandalwood"];
+          const terms = ["slow burn", "velvet kiss", "midnight jazz", "sandalwood", "vanilla bean", "black butter"];
           const filtered = data.filter((p) => {
             const title = p.node.title.toLowerCase();
             if (title.includes("bundle") || title.includes("duo") || title.includes("trio")) return false;
