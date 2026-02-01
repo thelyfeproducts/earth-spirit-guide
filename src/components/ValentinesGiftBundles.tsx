@@ -13,7 +13,7 @@ const giftCategories = [
     subtitle: "Luxurious self-care",
     icon: Heart,
     gradient: "from-primary/20 to-accent/10",
-    matchTerms: ["slow burn", "velvet kiss"],
+    matchTerms: ["velvet kiss", "slow burn"],
   },
   {
     id: "for-him",
@@ -79,17 +79,26 @@ const ValentinesGiftBundles = () => {
 
     const matchingProducts = products.filter(p => {
       const title = p.node.title.toLowerCase();
-      
+
       // Exclude bundles, duos, and trios
       if (title.includes('bundle') || title.includes('duo') || title.includes('trio')) {
         return false;
       }
-      
+
       // Check if title matches any of the category terms
       return category.matchTerms.some(term => title.includes(term));
     });
 
-    setDisplayProducts(matchingProducts.slice(0, 3));
+    // Sort products by matchTerms order (first term = first position)
+    const sortedProducts = matchingProducts.sort((a, b) => {
+      const titleA = a.node.title.toLowerCase();
+      const titleB = b.node.title.toLowerCase();
+      const indexA = category.matchTerms.findIndex(term => titleA.includes(term));
+      const indexB = category.matchTerms.findIndex(term => titleB.includes(term));
+      return indexA - indexB;
+    });
+
+    setDisplayProducts(sortedProducts.slice(0, 3));
   }, [activeCategory, products]);
 
   const handleAddToCart = async (product: ShopifyProduct) => {
