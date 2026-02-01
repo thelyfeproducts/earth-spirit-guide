@@ -19,6 +19,7 @@ const footerLinks = {
     { name: "Shipping", href: "/shipping" },
     { name: "Returns", href: "/returns" },
     { name: "FAQ", href: "/faq" },
+    { name: "Reviews", href: "/reviews" },
   ],
 };
 

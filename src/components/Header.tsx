@@ -17,6 +17,7 @@ const navLinks = [
   { name: "Our Story", href: "/our-story" },
   { name: "Why Organic", href: "/why-organic" },
   { name: "Testimonials", href: "/testimonials" },
+  { name: "Reviews", href: "/reviews" },
   { name: "Community", href: "/community" },
   { name: "Team", href: "/team" },
   { name: "Ambassadors", href: "/ambassadors" },
