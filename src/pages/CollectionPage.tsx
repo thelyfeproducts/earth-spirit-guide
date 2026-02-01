@@ -76,8 +76,10 @@ const CollectionPage = () => {
           const terms = ["slow burn", "velvet kiss", "midnight jazz", "sandalwood", "vanilla bean", "black butter"];
           const filtered = data.filter((p) => {
             const title = p.node.title.toLowerCase();
-            if (title.includes("bundle") || title.includes("duo") || title.includes("trio")) return false;
-            return terms.some((t) => title.includes(t));
+            // Allow Valentine's Romance Trio bundle, exclude other bundles/duos/trios
+            const isValentineBundle = title.includes("valentine") && (title.includes("trio") || title.includes("bundle"));
+            if (!isValentineBundle && (title.includes("bundle") || title.includes("duo") || title.includes("trio"))) return false;
+            return isValentineBundle || terms.some((t) => title.includes(t));
           });
           setProducts(filtered);
         } else {
