@@ -163,6 +163,24 @@ const PreOrdersPage = () => {
           const isBundle = DROP_CONFIG.excludeTerms.some((term) => title.includes(term.toLowerCase()));
           return matchesScent && !isBundle;
         });
+        
+        // Sort: Velvet Kiss first, then Midnight Jazz, then others
+        const priorityOrder = ["velvet kiss", "midnight jazz"];
+        filtered.sort((a, b) => {
+          const titleA = a.node.title.toLowerCase();
+          const titleB = b.node.title.toLowerCase();
+          const priorityA = priorityOrder.findIndex((term) => titleA.includes(term));
+          const priorityB = priorityOrder.findIndex((term) => titleB.includes(term));
+          // If both have priority, sort by priority order
+          if (priorityA !== -1 && priorityB !== -1) return priorityA - priorityB;
+          // If only A has priority, A comes first
+          if (priorityA !== -1) return -1;
+          // If only B has priority, B comes first
+          if (priorityB !== -1) return 1;
+          // Otherwise keep original order
+          return 0;
+        });
+        
         setProducts(filtered);
       } catch (error) {
         console.error("Failed to fetch pre-order products:", error);
