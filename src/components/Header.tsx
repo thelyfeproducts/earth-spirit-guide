@@ -11,6 +11,7 @@ const shopLinks = [
   { name: "Hair Growth Serums", href: "/collections/hair-growth-serums" },
   { name: "Body Butters", href: "/collections/body-butters" },
   { name: "Bundles", href: "/collections/bundles" },
+  { name: "Pre-orders", href: "/pre-orders" },
 ];
 
 const navLinks = [

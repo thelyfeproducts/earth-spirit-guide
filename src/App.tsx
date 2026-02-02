@@ -12,6 +12,7 @@ import OurStory from "./pages/OurStory";
 import CommunityPage from "./pages/CommunityPage";
 import ProductPage from "./pages/ProductPage";
 import CollectionPage from "./pages/CollectionPage";
+import PreOrdersPage from "./pages/PreOrdersPage";
 import TestimonialsPage from "./pages/TestimonialsPage";
 import WhyOrganicPage from "./pages/WhyOrganicPage";
 import Contact from "./pages/Contact";
@@ -51,6 +52,7 @@ const App = () => (
             <Route path="/products/:handle" element={<ProductPage />} />
             <Route path="/product/:handle" element={<ProductPage />} />
             <Route path="/collections/:slug" element={<CollectionPage />} />
+            <Route path="/pre-orders" element={<PreOrdersPage />} />
             <Route path="/testimonials" element={<TestimonialsPage />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/shipping" element={<Shipping />} />

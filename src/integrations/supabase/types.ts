@@ -14,6 +14,30 @@ export type Database = {
   }
   public: {
     Tables: {
+      preorder_signups: {
+        Row: {
+          collection_slug: string | null
+          created_at: string
+          email: string
+          id: string
+          product_handle: string | null
+        }
+        Insert: {
+          collection_slug?: string | null
+          created_at?: string
+          email: string
+          id?: string
+          product_handle?: string | null
+        }
+        Update: {
+          collection_slug?: string | null
+          created_at?: string
+          email?: string
+          id?: string
+          product_handle?: string | null
+        }
+        Relationships: []
+      }
       reviews: {
         Row: {
           created_at: string
