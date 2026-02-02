@@ -31,11 +31,14 @@ const DROP_CONFIG = {
   // Styling theme (valentines | spring | summer | fall | winter | holiday)
   theme: "valentines" as const,
   
-  // Product search terms - individual Valentine's scents only
-  searchTerms: ["slow burn", "velvet kiss", "midnight jazz", "sandalwood", "vanilla bean", "black butter"],
+  // Product search terms - Valentine's scents
+  searchTerms: ["slow burn", "velvet kiss", "midnight jazz", "sandalwood", "vanilla bean", "black butter", "valentine"],
   
-  // Exclude bundles, trios, duos, etc.
-  excludeTerms: ["bundle", "trio", "duo", "collection", "essentials", "grooming", "holiday", "radiance"],
+  // Exclude bundles, trios, duos, etc. (except allowed ones)
+  excludeTerms: ["trio", "duo", "collection", "essentials", "grooming", "holiday", "radiance", "masculine", "autumn", "fall", "seasonal", "complete"],
+  
+  // Allowed bundles (exceptions to the exclude rule) - Valentine's Romance Trio is allowed
+  allowedBundles: ["valentine's romance trio", "valentines romance trio"],
   
   // Badge text
   badgeText: "Pre-order",
@@ -159,26 +162,38 @@ const PreOrdersPage = () => {
           const title = p.node.title.toLowerCase();
           // Must match a Valentine's scent term
           const matchesScent = DROP_CONFIG.searchTerms.some((term) => title.includes(term.toLowerCase()));
-          // Must NOT be a bundle/trio/duo
-          const isBundle = DROP_CONFIG.excludeTerms.some((term) => title.includes(term.toLowerCase()));
-          return matchesScent && !isBundle;
+          // Check if it's an allowed bundle (exception)
+          const isAllowedBundle = DROP_CONFIG.allowedBundles.some((term) => title.includes(term.toLowerCase()));
+          // Check if it's a disallowed bundle/trio/duo
+          const isExcludedBundle = DROP_CONFIG.excludeTerms.some((term) => title.includes(term.toLowerCase()));
+          // Include if: matches scent AND (is allowed bundle OR not an excluded bundle)
+          return matchesScent && (isAllowedBundle || !isExcludedBundle);
         });
         
-        // Sort: Velvet Kiss first, then Midnight Jazz, then others
-        const priorityOrder = ["velvet kiss", "midnight jazz"];
+        // Sort: Velvet Kiss first, then Midnight Jazz, then Slow Burn (individual), then Valentine's Trio, then others
+        // Note: More specific matches first to avoid false positives
+        const priorityOrder = [
+          { term: "velvet kiss", exclude: "trio" },
+          { term: "midnight jazz", exclude: "trio" },
+          { term: "slow burn", exclude: "trio" },
+          { term: "valentine's romance trio", exclude: null },
+        ];
+        
         filtered.sort((a, b) => {
           const titleA = a.node.title.toLowerCase();
           const titleB = b.node.title.toLowerCase();
-          const priorityA = priorityOrder.findIndex((term) => titleA.includes(term));
-          const priorityB = priorityOrder.findIndex((term) => titleB.includes(term));
-          // If both have priority, sort by priority order
-          if (priorityA !== -1 && priorityB !== -1) return priorityA - priorityB;
-          // If only A has priority, A comes first
-          if (priorityA !== -1) return -1;
-          // If only B has priority, B comes first
-          if (priorityB !== -1) return 1;
-          // Otherwise keep original order
-          return 0;
+          
+          const getPriority = (title: string) => {
+            for (let i = 0; i < priorityOrder.length; i++) {
+              const { term, exclude } = priorityOrder[i];
+              if (title.includes(term) && (!exclude || !title.includes(exclude))) {
+                return i;
+              }
+            }
+            return priorityOrder.length; // Not in priority list
+          };
+          
+          return getPriority(titleA) - getPriority(titleB);
         });
         
         setProducts(filtered);
