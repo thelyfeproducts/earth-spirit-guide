@@ -71,6 +71,39 @@ export type Database = {
         }
         Relationships: []
       }
+      team_applications: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          message: string
+          name: string
+          phone: string | null
+          resume_url: string | null
+          role_interest: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          message: string
+          name: string
+          phone?: string | null
+          resume_url?: string | null
+          role_interest: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          message?: string
+          name?: string
+          phone?: string | null
+          resume_url?: string | null
+          role_interest?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
