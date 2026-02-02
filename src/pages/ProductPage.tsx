@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ShoppingBag, Loader2, ArrowLeft, Minus, Plus, Truck, Leaf, Star } from "lucide-react";
+import { ShoppingBag, Loader2, ArrowLeft, Minus, Plus, Truck, Leaf, Heart, Clock, Star } from "lucide-react";
 import { fetchProductByHandle, ShopifyProduct } from "@/lib/shopify";
 import { useCartStore } from "@/stores/cartStore";
 import { toast } from "sonner";
@@ -11,6 +11,15 @@ import LyfeBotWidget from "@/components/LyfeBot/LyfeBotWidget";
 import RelatedProducts from "@/components/RelatedProducts";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Badge } from "@/components/ui/badge";
+
+// Valentine's product detection - matches the pre-orders page config
+const VALENTINES_TERMS = ["slow burn", "velvet kiss", "midnight jazz", "sandalwood", "vanilla bean", "black butter", "valentine"];
+
+const isValentinesProduct = (title: string): boolean => {
+  const lowerTitle = title.toLowerCase();
+  return VALENTINES_TERMS.some((term) => lowerTitle.includes(term));
+};
 
 const ProductPage = () => {
   const { handle } = useParams<{ handle: string }>();
@@ -117,7 +126,16 @@ const ProductPage = () => {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
+              className="relative"
             >
+              {/* Valentine's Pre-order Badge */}
+              {isValentinesProduct(product.title) && (
+                <Badge className="absolute top-4 left-4 z-10 bg-[#C4213B] text-white text-sm px-3 py-1.5">
+                  <Heart className="w-4 h-4 mr-1.5 fill-current" />
+                  Valentine's Pre-order
+                </Badge>
+              )}
+
               <div className="bg-secondary/10 rounded-2xl overflow-hidden aspect-square mb-4">
                 {product.images.edges[selectedImage]?.node.url ? (
                   <img
@@ -164,6 +182,14 @@ const ProductPage = () => {
               <h1 className="font-display font-black text-3xl md:text-4xl text-charcoal mb-4">
                 {product.title}
               </h1>
+
+              {/* Valentine's notice */}
+              {isValentinesProduct(product.title) && (
+                <div className="flex items-center gap-2 bg-[#C4213B]/10 text-[#C4213B] px-4 py-2 rounded-lg mb-4 font-body text-sm">
+                  <Heart className="w-4 h-4 fill-current" />
+                  <span>Part of our limited Valentine's Day Collection</span>
+                </div>
+              )}
               
               <p className="font-display font-bold text-3xl text-secondary mb-6">
                 ${parseFloat(currentVariant?.price.amount || product.priceRange.minVariantPrice.amount).toFixed(2)}
@@ -244,14 +270,24 @@ const ProductPage = () => {
                 onClick={handleAddToCart}
                 disabled={cartLoading || !currentVariant?.availableForSale}
                 size="lg"
-                className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground font-body font-semibold mb-6"
+                className={`w-full font-body font-semibold mb-6 ${
+                  isValentinesProduct(product.title)
+                    ? 'bg-[#C4213B] hover:bg-[#8C2339] text-white'
+                    : 'bg-secondary hover:bg-secondary/90 text-secondary-foreground'
+                }`}
               >
                 {cartLoading ? (
                   <Loader2 className="w-5 h-5 animate-spin" />
                 ) : (
                   <>
-                    <ShoppingBag className="w-5 h-5 mr-2" />
-                    {currentVariant?.availableForSale ? "Add to Cart" : "Out of Stock"}
+                    {isValentinesProduct(product.title) ? (
+                      <Heart className="w-5 h-5 mr-2 fill-current" />
+                    ) : (
+                      <ShoppingBag className="w-5 h-5 mr-2" />
+                    )}
+                    {currentVariant?.availableForSale 
+                      ? isValentinesProduct(product.title) ? "Pre-order Now" : "Add to Cart"
+                      : "Out of Stock"}
                   </>
                 )}
               </Button>
