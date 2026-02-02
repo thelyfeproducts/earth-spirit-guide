@@ -31,8 +31,11 @@ const DROP_CONFIG = {
   // Styling theme (valentines | spring | summer | fall | winter | holiday)
   theme: "valentines" as const,
   
-  // Product search terms (how products are tagged in Shopify)
-  searchTerms: ["slow burn", "velvet kiss", "midnight jazz", "sandalwood", "vanilla bean", "black butter", "valentine"],
+  // Product search terms - individual Valentine's scents only
+  searchTerms: ["slow burn", "velvet kiss", "midnight jazz", "sandalwood", "vanilla bean", "black butter"],
+  
+  // Exclude bundles, trios, duos, etc.
+  excludeTerms: ["bundle", "trio", "duo", "collection", "essentials", "grooming", "holiday", "radiance"],
   
   // Badge text
   badgeText: "Pre-order",
@@ -154,7 +157,11 @@ const PreOrdersPage = () => {
         const data = await fetchProducts(100);
         const filtered = data.filter((p) => {
           const title = p.node.title.toLowerCase();
-          return DROP_CONFIG.searchTerms.some((term) => title.includes(term.toLowerCase()));
+          // Must match a Valentine's scent term
+          const matchesScent = DROP_CONFIG.searchTerms.some((term) => title.includes(term.toLowerCase()));
+          // Must NOT be a bundle/trio/duo
+          const isBundle = DROP_CONFIG.excludeTerms.some((term) => title.includes(term.toLowerCase()));
+          return matchesScent && !isBundle;
         });
         setProducts(filtered);
       } catch (error) {
