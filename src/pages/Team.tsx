@@ -1,10 +1,26 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import LyfeBotWidget from "@/components/LyfeBot/LyfeBotWidget";
-import { Users, Mail } from "lucide-react";
+import { Users, Mail, Send, CheckCircle, Loader2 } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
+import { z } from "zod";
 import founderHeadshot from "@/assets/founder-headshot.jpeg";
 import maliHeadshot from "@/assets/mali-headshot.jpeg";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+
+// Form validation schema
+const applicationSchema = z.object({
+  name: z.string().trim().min(2, "Name must be at least 2 characters").max(100),
+  email: z.string().trim().email("Please enter a valid email").max(255),
+  phone: z.string().trim().max(20).optional(),
+  role_interest: z.string().min(1, "Please select a role"),
+  message: z.string().trim().min(10, "Please tell us a bit more about yourself").max(2000),
+});
 
 interface TeamMember {
   name: string;
@@ -230,6 +246,185 @@ const TeamSectionComponent = ({ section, index }: { section: TeamSection; index:
   </motion.div>
 );
 
+const JoinTeamForm = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    role_interest: "",
+    message: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    const result = applicationSchema.safeParse(formData);
+    if (!result.success) {
+      toast.error(result.error.errors[0].message);
+      return;
+    }
+
+    setIsSubmitting(true);
+    try {
+      const { error } = await supabase
+        .from("team_applications")
+        .insert({
+          name: result.data.name,
+          email: result.data.email,
+          phone: result.data.phone || null,
+          role_interest: result.data.role_interest,
+          message: result.data.message,
+        });
+
+      if (error) throw error;
+
+      setIsSubmitted(true);
+      toast.success("Application submitted!", {
+        description: "We'll be in touch soon.",
+      });
+    } catch (error) {
+      console.error("Submission error:", error);
+      toast.error("Something went wrong. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  if (isSubmitted) {
+    return (
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        className="text-center py-12"
+      >
+        <div className="w-16 h-16 mx-auto bg-green-100 rounded-full flex items-center justify-center mb-4">
+          <CheckCircle className="w-8 h-8 text-green-600" />
+        </div>
+        <h3 className="font-display font-bold text-2xl text-charcoal mb-2">
+          Application Received!
+        </h3>
+        <p className="font-body text-muted-foreground max-w-md mx-auto">
+          Thank you for your interest in joining The Lyfe Team. We'll review your application and get back to you soon.
+        </p>
+      </motion.div>
+    );
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="max-w-xl mx-auto space-y-5">
+      <div className="grid sm:grid-cols-2 gap-4">
+        <div>
+          <label htmlFor="name" className="block font-body font-medium text-charcoal mb-2">
+            Full Name *
+          </label>
+          <Input
+            type="text"
+            id="name"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+            placeholder="Your name"
+            className="h-12"
+          />
+        </div>
+        <div>
+          <label htmlFor="email" className="block font-body font-medium text-charcoal mb-2">
+            Email *
+          </label>
+          <Input
+            type="email"
+            id="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+            placeholder="you@example.com"
+            className="h-12"
+          />
+        </div>
+      </div>
+      
+      <div className="grid sm:grid-cols-2 gap-4">
+        <div>
+          <label htmlFor="phone" className="block font-body font-medium text-charcoal mb-2">
+            Phone (Optional)
+          </label>
+          <Input
+            type="tel"
+            id="phone"
+            name="phone"
+            value={formData.phone}
+            onChange={handleChange}
+            placeholder="(555) 123-4567"
+            className="h-12"
+          />
+        </div>
+        <div>
+          <label htmlFor="role_interest" className="block font-body font-medium text-charcoal mb-2">
+            Role Interest *
+          </label>
+          <select
+            id="role_interest"
+            name="role_interest"
+            value={formData.role_interest}
+            onChange={handleChange}
+            required
+            className="w-full h-12 px-4 rounded-md bg-background border border-input font-body text-charcoal focus:outline-none focus:ring-2 focus:ring-secondary"
+          >
+            <option value="">Select a role</option>
+            <option value="Sales">Sales</option>
+            <option value="Production">Production</option>
+            <option value="Street Team">Street Team</option>
+            <option value="Design">Design</option>
+            <option value="Marketing">Marketing</option>
+            <option value="Ambassador">Ambassador</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <label htmlFor="message" className="block font-body font-medium text-charcoal mb-2">
+          Tell Us About Yourself *
+        </label>
+        <Textarea
+          id="message"
+          name="message"
+          value={formData.message}
+          onChange={handleChange}
+          required
+          rows={5}
+          placeholder="Why do you want to join The Lyfe Team? What skills or experience do you bring?"
+          className="resize-none"
+        />
+      </div>
+
+      <Button
+        type="submit"
+        disabled={isSubmitting}
+        size="lg"
+        className="w-full bg-secondary hover:bg-secondary/90"
+      >
+        {isSubmitting ? (
+          <Loader2 className="w-5 h-5 animate-spin" />
+        ) : (
+          <>
+            <Send className="w-5 h-5 mr-2" />
+            Submit Application
+          </>
+        )}
+      </Button>
+    </form>
+  );
+};
+
 const Team = () => {
   return (
     <div className="min-h-screen">
@@ -274,7 +469,7 @@ const Team = () => {
           </div>
         </section>
 
-        {/* Join CTA */}
+        {/* Join CTA with Form */}
         <section className="section-padding bg-secondary/10">
           <div className="container-lyfe">
             <motion.div
@@ -282,24 +477,27 @@ const Team = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="text-center max-w-2xl mx-auto"
+              className="text-center max-w-2xl mx-auto mb-10"
             >
               <h2 className="heading-section mb-6">
                 Want to Join
                 <br />
                 <span className="text-secondary">Our Team?</span>
               </h2>
-              <p className="body-large mb-8">
+              <p className="body-large">
                 We're always looking for passionate individuals who believe in natural wellness 
-                and want to make a difference.
+                and want to make a difference. Fill out the form below to apply!
               </p>
-              <a
-                href="mailto:team@lyfeproducts.com"
-                className="btn-earth inline-flex items-center gap-2"
-              >
-                <Mail className="w-5 h-5" />
-                Get in Touch
-              </a>
+            </motion.div>
+            
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="bg-card rounded-3xl p-8 shadow-soft max-w-2xl mx-auto"
+            >
+              <JoinTeamForm />
             </motion.div>
           </div>
         </section>
