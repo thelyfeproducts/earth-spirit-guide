@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Loader2, ShoppingBag, Clock, Bell, CheckCircle } from "lucide-react";
+import { Loader2, ShoppingBag, Clock, Bell, CheckCircle, Heart } from "lucide-react";
 import { Link } from "react-router-dom";
 import { fetchProducts, ShopifyProduct } from "@/lib/shopify";
 import { useCartStore } from "@/stores/cartStore";
@@ -17,9 +17,82 @@ import { Badge } from "@/components/ui/badge";
 // Email validation schema
 const emailSchema = z.string().trim().email("Please enter a valid email address").max(255);
 
-// Configure your drop date here (change this for each seasonal drop)
-const DROP_DATE = new Date("2026-03-01T00:00:00");
-const DROP_NAME = "Spring Collection 2026";
+// ============================================
+// 🎁 SEASONAL DROP CONFIGURATION
+// Update these values for each holiday drop
+// ============================================
+const DROP_CONFIG = {
+  // Drop details
+  name: "Valentine's Day Collection",
+  tagline: "Limited edition romantic scents crafted with love",
+  date: new Date("2026-02-14T00:00:00"),
+  slug: "valentines-2026",
+  
+  // Styling theme (valentines | spring | summer | fall | winter | holiday)
+  theme: "valentines" as const,
+  
+  // Product search terms (how products are tagged in Shopify)
+  searchTerms: ["slow burn", "velvet kiss", "midnight jazz", "sandalwood", "vanilla bean", "black butter", "valentine"],
+  
+  // Badge text
+  badgeText: "Pre-order",
+  buttonText: "Pre-order",
+};
+// ============================================
+
+const themeStyles = {
+  valentines: {
+    gradient: "from-[#C4213B]/10 via-[#8C2339]/5 to-transparent",
+    badgeBg: "bg-[#C4213B]",
+    badgeText: "text-white",
+    accentColor: "text-[#C4213B]",
+    buttonBg: "bg-[#C4213B] hover:bg-[#8C2339]",
+    icon: Heart,
+  },
+  spring: {
+    gradient: "from-green-100 via-emerald-50 to-transparent",
+    badgeBg: "bg-emerald-500",
+    badgeText: "text-white",
+    accentColor: "text-emerald-600",
+    buttonBg: "bg-emerald-500 hover:bg-emerald-600",
+    icon: Clock,
+  },
+  summer: {
+    gradient: "from-amber-100 via-orange-50 to-transparent",
+    badgeBg: "bg-amber-500",
+    badgeText: "text-white",
+    accentColor: "text-amber-600",
+    buttonBg: "bg-amber-500 hover:bg-amber-600",
+    icon: Clock,
+  },
+  fall: {
+    gradient: "from-orange-100 via-amber-50 to-transparent",
+    badgeBg: "bg-orange-600",
+    badgeText: "text-white",
+    accentColor: "text-orange-600",
+    buttonBg: "bg-orange-600 hover:bg-orange-700",
+    icon: Clock,
+  },
+  winter: {
+    gradient: "from-sky-100 via-blue-50 to-transparent",
+    badgeBg: "bg-sky-500",
+    badgeText: "text-white",
+    accentColor: "text-sky-600",
+    buttonBg: "bg-sky-500 hover:bg-sky-600",
+    icon: Clock,
+  },
+  holiday: {
+    gradient: "from-red-100 via-green-50 to-transparent",
+    badgeBg: "bg-red-600",
+    badgeText: "text-white",
+    accentColor: "text-red-600",
+    buttonBg: "bg-red-600 hover:bg-red-700",
+    icon: Clock,
+  },
+};
+
+const currentTheme = themeStyles[DROP_CONFIG.theme];
+const ThemeIcon = currentTheme.icon;
 
 interface CountdownTime {
   days: number;
@@ -57,7 +130,7 @@ const item = {
 const PreOrdersPage = () => {
   const [products, setProducts] = useState<ShopifyProduct[]>([]);
   const [loading, setLoading] = useState(true);
-  const [timeLeft, setTimeLeft] = useState<CountdownTime | null>(calculateTimeLeft(DROP_DATE));
+  const [timeLeft, setTimeLeft] = useState<CountdownTime | null>(calculateTimeLeft(DROP_CONFIG.date));
   const [email, setEmail] = useState("");
   const [isSubscribing, setIsSubscribing] = useState(false);
   const [isSubscribed, setIsSubscribed] = useState(false);
@@ -67,20 +140,23 @@ const PreOrdersPage = () => {
   // Countdown timer
   useEffect(() => {
     const timer = setInterval(() => {
-      setTimeLeft(calculateTimeLeft(DROP_DATE));
+      setTimeLeft(calculateTimeLeft(DROP_CONFIG.date));
     }, 1000);
     return () => clearInterval(timer);
   }, []);
 
-  // Fetch pre-order products (tagged or in pre-order collection)
+  // Fetch pre-order products based on search terms
   useEffect(() => {
     const loadProducts = async () => {
       setLoading(true);
       try {
-        // Fetch products tagged as pre-order or in pre-order collection
-        // Adjust the query based on how you tag pre-order products in Shopify
-        const data = await fetchProducts(50, "tag:pre-order OR tag:preorder OR tag:coming-soon");
-        setProducts(data);
+        // Fetch all products and filter client-side for reliability
+        const data = await fetchProducts(100);
+        const filtered = data.filter((p) => {
+          const title = p.node.title.toLowerCase();
+          return DROP_CONFIG.searchTerms.some((term) => title.includes(term.toLowerCase()));
+        });
+        setProducts(filtered);
       } catch (error) {
         console.error("Failed to fetch pre-order products:", error);
       } finally {
@@ -103,7 +179,7 @@ const PreOrdersPage = () => {
     try {
       const { error } = await supabase
         .from("preorder_signups")
-        .insert({ email: result.data, collection_slug: "pre-orders" });
+        .insert({ email: result.data, collection_slug: DROP_CONFIG.slug });
 
       if (error) throw error;
 
@@ -153,14 +229,14 @@ const PreOrdersPage = () => {
 
       <main className="pt-24 pb-16">
         {/* Hero Section with Countdown */}
-        <section className="bg-gradient-to-b from-secondary/10 via-primary/5 to-transparent py-16 md:py-24">
+        <section className={`bg-gradient-to-b ${currentTheme.gradient} py-16 md:py-24`}>
           <div className="container-lyfe px-4 text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="inline-flex items-center gap-2 bg-secondary/20 text-secondary px-4 py-2 rounded-full mb-6"
+              className={`inline-flex items-center gap-2 ${currentTheme.badgeBg}/20 ${currentTheme.accentColor} px-4 py-2 rounded-full mb-6`}
             >
-              <Clock className="w-4 h-4" />
+              <ThemeIcon className="w-4 h-4" />
               <span className="font-body font-semibold text-sm">Coming Soon</span>
             </motion.div>
 
@@ -170,7 +246,7 @@ const PreOrdersPage = () => {
               transition={{ delay: 0.1 }}
               className="font-display font-black text-4xl md:text-6xl text-charcoal mb-4"
             >
-              {DROP_NAME}
+              {DROP_CONFIG.name}
             </motion.h1>
 
             <motion.p
@@ -179,7 +255,7 @@ const PreOrdersPage = () => {
               transition={{ delay: 0.2 }}
               className="font-body text-muted-foreground max-w-2xl mx-auto text-lg mb-10"
             >
-              Be the first to get our newest organic remedies. Pre-order now and secure your items before they sell out.
+              {DROP_CONFIG.tagline}. Pre-order now and secure your items before they sell out.
             </motion.p>
 
             {/* Countdown Timer */}
@@ -200,7 +276,7 @@ const PreOrdersPage = () => {
                     key={unit.label}
                     className="bg-card border border-border rounded-2xl p-4 md:p-6 min-w-[70px] md:min-w-[90px] shadow-sm"
                   >
-                    <div className="font-display font-black text-2xl md:text-4xl text-secondary">
+                    <div className={`font-display font-black text-2xl md:text-4xl ${currentTheme.accentColor}`}>
                       {unit.value.toString().padStart(2, "0")}
                     </div>
                     <div className="font-body text-muted-foreground text-xs md:text-sm mt-1">
@@ -242,7 +318,7 @@ const PreOrdersPage = () => {
                 <Button
                   type="submit"
                   disabled={isSubscribing}
-                  className="h-12 px-6 bg-secondary hover:bg-secondary/90"
+                  className={`h-12 px-6 ${currentTheme.buttonBg} text-white`}
                 >
                   {isSubscribing ? (
                     <Loader2 className="w-4 h-4 animate-spin" />
@@ -309,9 +385,9 @@ const PreOrdersPage = () => {
                       className="group bg-card rounded-2xl overflow-hidden border border-border hover:shadow-lg transition-shadow relative"
                     >
                       {/* Pre-order Badge */}
-                      <Badge className="absolute top-3 left-3 z-10 bg-secondary text-secondary-foreground">
-                        <Clock className="w-3 h-3 mr-1" />
-                        Pre-order
+                      <Badge className={`absolute top-3 left-3 z-10 ${currentTheme.badgeBg} ${currentTheme.badgeText}`}>
+                        <ThemeIcon className="w-3 h-3 mr-1" />
+                        {DROP_CONFIG.badgeText}
                       </Badge>
 
                       <Link to={`/products/${product.node.handle}`}>
@@ -340,20 +416,20 @@ const PreOrdersPage = () => {
                           {product.node.description || "Organic, handcrafted wellness"}
                         </p>
                         <div className="flex items-center justify-between gap-3">
-                          <span className="font-display font-bold text-xl text-secondary">
+                          <span className={`font-display font-bold text-xl ${currentTheme.accentColor}`}>
                             ${parseFloat(price.amount).toFixed(2)}
                           </span>
                           <button
                             onClick={() => handleAddToCart(product)}
                             disabled={isAdding || cartLoading}
-                            className="flex items-center gap-2 bg-secondary text-secondary-foreground px-4 py-2 rounded-full font-body font-semibold text-sm hover:bg-secondary/90 transition-colors disabled:opacity-50"
+                            className={`flex items-center gap-2 ${currentTheme.buttonBg} text-white px-4 py-2 rounded-full font-body font-semibold text-sm transition-colors disabled:opacity-50`}
                           >
                             {isAdding ? (
                               <Loader2 className="w-4 h-4 animate-spin" />
                             ) : (
                               <ShoppingBag className="w-4 h-4" />
                             )}
-                            Pre-order
+                            {DROP_CONFIG.buttonText}
                           </button>
                         </div>
                       </div>
