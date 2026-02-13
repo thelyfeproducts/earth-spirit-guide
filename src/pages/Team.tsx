@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import LyfeBotWidget from "@/components/LyfeBot/LyfeBotWidget";
 import { Users, Mail, Send, Loader2 } from "lucide-react";
+import { toast } from "sonner";
 import founderHeadshot from "@/assets/founder-headshot.jpeg";
 import maliHeadshot from "@/assets/mali-headshot.jpeg";
 import miracleKingHeadshot from "@/assets/miracle-king-headshot.jpeg";
@@ -250,6 +251,8 @@ const TeamSectionComponent = ({ section, index }: { section: TeamSection; index:
   </motion.div>
 );
 
+const WEB3FORMS_ACCESS_KEY = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || '';
+
 const JoinTeamSection = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -257,18 +260,44 @@ const JoinTeamSection = () => {
     position: "",
     message: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const subject = encodeURIComponent(`Team Application: ${formData.position || "General"} – ${formData.name}`);
-    const body = encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\nPosition of Interest: ${formData.position}\n\n${formData.message}`
-    );
-    window.location.href = `mailto:thelyfeproducts@gmail.com?subject=${subject}&body=${body}`;
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          subject: `Team Application: ${formData.position || "General"} – ${formData.name}`,
+          from_name: formData.name,
+          name: formData.name,
+          email: formData.email,
+          position: formData.position,
+          message: formData.message,
+        }),
+      });
+
+      const result = await response.json();
+      if (result.success) {
+        setSubmitted(true);
+        setFormData({ name: "", email: "", position: "", message: "" });
+      } else {
+        toast.error("Failed to send application", { description: "Please try again." });
+      }
+    } catch {
+      toast.error("Something went wrong", { description: "Please try again." });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -293,94 +322,126 @@ const JoinTeamSection = () => {
             </p>
           </div>
 
-          <form onSubmit={handleSubmit} className="bg-card rounded-2xl p-8 shadow-lg space-y-6">
-            <div className="grid md:grid-cols-2 gap-6">
-              <div>
-                <label htmlFor="name" className="block font-body font-semibold text-sm text-charcoal mb-2">
-                  Full Name *
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  required
-                  value={formData.name}
-                  onChange={handleChange}
-                  placeholder="Your full name"
-                  className="w-full px-4 py-3 rounded-lg border border-border bg-background font-body text-sm focus:outline-none focus:ring-2 focus:ring-secondary/50 transition-all"
-                />
-              </div>
-              <div>
-                <label htmlFor="email" className="block font-body font-semibold text-sm text-charcoal mb-2">
-                  Email Address *
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  required
-                  value={formData.email}
-                  onChange={handleChange}
-                  placeholder="your@email.com"
-                  className="w-full px-4 py-3 rounded-lg border border-border bg-background font-body text-sm focus:outline-none focus:ring-2 focus:ring-secondary/50 transition-all"
-                />
-              </div>
-            </div>
-
-            <div>
-              <label htmlFor="position" className="block font-body font-semibold text-sm text-charcoal mb-2">
-                Position of Interest *
-              </label>
-              <select
-                id="position"
-                name="position"
-                required
-                value={formData.position}
-                onChange={handleChange}
-                className="w-full px-4 py-3 rounded-lg border border-border bg-background font-body text-sm focus:outline-none focus:ring-2 focus:ring-secondary/50 transition-all"
-              >
-                <option value="">Select a position...</option>
-                <option value="Sales">Sales</option>
-                <option value="Production">Production</option>
-                <option value="Street Team">Street Team</option>
-                <option value="Design">Design</option>
-                <option value="Marketing">Marketing</option>
-                <option value="Ambassador">Ambassador</option>
-                <option value="Other">Other</option>
-              </select>
-            </div>
-
-            <div>
-              <label htmlFor="message" className="block font-body font-semibold text-sm text-charcoal mb-2">
-                Why do you want to join The Lyfe Team? *
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                required
-                rows={4}
-                value={formData.message}
-                onChange={handleChange}
-                placeholder="Tell us about yourself, your experience, and why you're passionate about natural wellness..."
-                className="w-full px-4 py-3 rounded-lg border border-border bg-background font-body text-sm focus:outline-none focus:ring-2 focus:ring-secondary/50 transition-all resize-none"
-              />
-            </div>
-
-            <button
-              type="submit"
-              className="btn-earth w-full inline-flex items-center justify-center gap-2"
+          {submitted ? (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="bg-card rounded-2xl p-8 shadow-lg text-center"
             >
-              <Send className="w-5 h-5" />
-              Submit Application
-            </button>
+              <div className="w-16 h-16 mx-auto bg-green-100 rounded-full flex items-center justify-center mb-4">
+                <Send className="w-8 h-8 text-green-600" />
+              </div>
+              <h3 className="font-display font-bold text-xl text-charcoal mb-2">Application Sent!</h3>
+              <p className="font-body text-muted-foreground mb-6">
+                Thank you for your interest in joining The Lyfe Team. We'll review your application and get back to you soon.
+              </p>
+              <button
+                onClick={() => setSubmitted(false)}
+                className="font-body font-semibold text-secondary hover:underline text-sm"
+              >
+                Submit another application
+              </button>
+            </motion.div>
+          ) : (
+            <form onSubmit={handleSubmit} className="bg-card rounded-2xl p-8 shadow-lg space-y-6">
+              <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <label htmlFor="name" className="block font-body font-semibold text-sm text-charcoal mb-2">
+                    Full Name *
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    required
+                    value={formData.name}
+                    onChange={handleChange}
+                    placeholder="Your full name"
+                    className="w-full px-4 py-3 rounded-lg border border-border bg-background font-body text-sm focus:outline-none focus:ring-2 focus:ring-secondary/50 transition-all"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="email" className="block font-body font-semibold text-sm text-charcoal mb-2">
+                    Email Address *
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="your@email.com"
+                    className="w-full px-4 py-3 rounded-lg border border-border bg-background font-body text-sm focus:outline-none focus:ring-2 focus:ring-secondary/50 transition-all"
+                  />
+                </div>
+              </div>
 
-            <p className="text-center font-body text-xs text-muted-foreground">
-              Your application will be sent to{" "}
-              <a href="mailto:thelyfeproducts@gmail.com" className="text-secondary hover:underline">
-                thelyfeproducts@gmail.com
-              </a>
-            </p>
-          </form>
+              <div>
+                <label htmlFor="position" className="block font-body font-semibold text-sm text-charcoal mb-2">
+                  Position of Interest *
+                </label>
+                <select
+                  id="position"
+                  name="position"
+                  required
+                  value={formData.position}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 rounded-lg border border-border bg-background font-body text-sm focus:outline-none focus:ring-2 focus:ring-secondary/50 transition-all"
+                >
+                  <option value="">Select a position...</option>
+                  <option value="Sales">Sales</option>
+                  <option value="Production">Production</option>
+                  <option value="Street Team">Street Team</option>
+                  <option value="Design">Design</option>
+                  <option value="Marketing">Marketing</option>
+                  <option value="Ambassador">Ambassador</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+
+              <div>
+                <label htmlFor="message" className="block font-body font-semibold text-sm text-charcoal mb-2">
+                  Why do you want to join The Lyfe Team? *
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  required
+                  rows={4}
+                  value={formData.message}
+                  onChange={handleChange}
+                  placeholder="Tell us about yourself, your experience, and why you're passionate about natural wellness..."
+                  className="w-full px-4 py-3 rounded-lg border border-border bg-background font-body text-sm focus:outline-none focus:ring-2 focus:ring-secondary/50 transition-all resize-none"
+                />
+              </div>
+
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="btn-earth w-full inline-flex items-center justify-center gap-2 disabled:opacity-50"
+              >
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="w-5 h-5 animate-spin" />
+                    Sending...
+                  </>
+                ) : (
+                  <>
+                    <Send className="w-5 h-5" />
+                    Submit Application
+                  </>
+                )}
+              </button>
+
+              <p className="text-center font-body text-xs text-muted-foreground">
+                Your application will be sent to{" "}
+                <a href="mailto:thelyfeproducts@gmail.com" className="text-secondary hover:underline">
+                  thelyfeproducts@gmail.com
+                </a>
+              </p>
+            </form>
+          )}
         </motion.div>
       </div>
     </section>
