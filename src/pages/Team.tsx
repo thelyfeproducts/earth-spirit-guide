@@ -9,6 +9,9 @@ import { toast } from "sonner";
 import { z } from "zod";
 import founderHeadshot from "@/assets/founder-headshot.jpeg";
 import maliHeadshot from "@/assets/mali-headshot.jpeg";
+import miracleKingHeadshot from "@/assets/miracle-king-headshot.jpeg";
+import malachiJonesHeadshot from "@/assets/malachi-jones-headshot.jpeg";
+import richayaDunbarHeadshot from "@/assets/richaya-dunbar-headshot.jpeg";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -72,6 +75,7 @@ const teamData: TeamSection[] = [
         name: "Richaya Dunbar",
         role: "Project Manager",
         description: "Coordinating projects and ensuring timely delivery of all initiatives.",
+        image: richayaDunbarHeadshot,
       },
     ],
   },
@@ -97,6 +101,7 @@ const teamData: TeamSection[] = [
             name: "Malachi Jones",
             role: "Head of North Carolina Sales",
             description: "Expanding the Lyfe brand presence across North Carolina.",
+            image: malachiJonesHeadshot,
           },
           {
             name: "Jared Rios",
@@ -119,6 +124,7 @@ const teamData: TeamSection[] = [
             name: "Miracle King",
             role: "Production Intern",
             description: "Learning the craft of natural product creation.",
+            image: miracleKingHeadshot,
           },
           {
             name: "Anastasia Stellers",
