@@ -1,8 +1,9 @@
 import { motion } from "framer-motion";
+import { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import LyfeBotWidget from "@/components/LyfeBot/LyfeBotWidget";
-import { Users, Mail } from "lucide-react";
+import { Users, Mail, Send, Loader2 } from "lucide-react";
 import founderHeadshot from "@/assets/founder-headshot.jpeg";
 import maliHeadshot from "@/assets/mali-headshot.jpeg";
 
@@ -230,6 +231,143 @@ const TeamSectionComponent = ({ section, index }: { section: TeamSection; index:
   </motion.div>
 );
 
+const JoinTeamSection = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    position: "",
+    message: "",
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const subject = encodeURIComponent(`Team Application: ${formData.position || "General"} – ${formData.name}`);
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\nPosition of Interest: ${formData.position}\n\n${formData.message}`
+    );
+    window.location.href = `mailto:thelyfeproducts@gmail.com?subject=${subject}&body=${body}`;
+  };
+
+  return (
+    <section className="section-padding bg-secondary/10">
+      <div className="container-lyfe">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="max-w-2xl mx-auto"
+        >
+          <div className="text-center mb-10">
+            <h2 className="heading-section mb-4">
+              Want to Join
+              <br />
+              <span className="text-secondary">Our Team?</span>
+            </h2>
+            <p className="body-large">
+              We're always looking for passionate individuals who believe in natural wellness
+              and want to make a difference. Fill out the form below to apply!
+            </p>
+          </div>
+
+          <form onSubmit={handleSubmit} className="bg-card rounded-2xl p-8 shadow-lg space-y-6">
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <label htmlFor="name" className="block font-body font-semibold text-sm text-charcoal mb-2">
+                  Full Name *
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  value={formData.name}
+                  onChange={handleChange}
+                  placeholder="Your full name"
+                  className="w-full px-4 py-3 rounded-lg border border-border bg-background font-body text-sm focus:outline-none focus:ring-2 focus:ring-secondary/50 transition-all"
+                />
+              </div>
+              <div>
+                <label htmlFor="email" className="block font-body font-semibold text-sm text-charcoal mb-2">
+                  Email Address *
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="your@email.com"
+                  className="w-full px-4 py-3 rounded-lg border border-border bg-background font-body text-sm focus:outline-none focus:ring-2 focus:ring-secondary/50 transition-all"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label htmlFor="position" className="block font-body font-semibold text-sm text-charcoal mb-2">
+                Position of Interest *
+              </label>
+              <select
+                id="position"
+                name="position"
+                required
+                value={formData.position}
+                onChange={handleChange}
+                className="w-full px-4 py-3 rounded-lg border border-border bg-background font-body text-sm focus:outline-none focus:ring-2 focus:ring-secondary/50 transition-all"
+              >
+                <option value="">Select a position...</option>
+                <option value="Sales">Sales</option>
+                <option value="Production">Production</option>
+                <option value="Street Team">Street Team</option>
+                <option value="Design">Design</option>
+                <option value="Marketing">Marketing</option>
+                <option value="Ambassador">Ambassador</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
+            <div>
+              <label htmlFor="message" className="block font-body font-semibold text-sm text-charcoal mb-2">
+                Why do you want to join The Lyfe Team? *
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                required
+                rows={4}
+                value={formData.message}
+                onChange={handleChange}
+                placeholder="Tell us about yourself, your experience, and why you're passionate about natural wellness..."
+                className="w-full px-4 py-3 rounded-lg border border-border bg-background font-body text-sm focus:outline-none focus:ring-2 focus:ring-secondary/50 transition-all resize-none"
+              />
+            </div>
+
+            <button
+              type="submit"
+              className="btn-earth w-full inline-flex items-center justify-center gap-2"
+            >
+              <Send className="w-5 h-5" />
+              Submit Application
+            </button>
+
+            <p className="text-center font-body text-xs text-muted-foreground">
+              Your application will be sent to{" "}
+              <a href="mailto:thelyfeproducts@gmail.com" className="text-secondary hover:underline">
+                thelyfeproducts@gmail.com
+              </a>
+            </p>
+          </form>
+        </motion.div>
+      </div>
+    </section>
+  );
+};
+
 const Team = () => {
   return (
     <div className="min-h-screen">
@@ -274,35 +412,8 @@ const Team = () => {
           </div>
         </section>
 
-        {/* Join CTA */}
-        <section className="section-padding bg-secondary/10">
-          <div className="container-lyfe">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="text-center max-w-2xl mx-auto"
-            >
-              <h2 className="heading-section mb-6">
-                Want to Join
-                <br />
-                <span className="text-secondary">Our Team?</span>
-              </h2>
-              <p className="body-large mb-8">
-                We're always looking for passionate individuals who believe in natural wellness 
-                and want to make a difference.
-              </p>
-              <a
-                href="mailto:team@lyfeproducts.com"
-                className="btn-earth inline-flex items-center gap-2"
-              >
-                <Mail className="w-5 h-5" />
-                Get in Touch
-              </a>
-            </motion.div>
-          </div>
-        </section>
+        {/* Join CTA with Application Form */}
+        <JoinTeamSection />
       </main>
       <Footer />
       <LyfeBotWidget />
