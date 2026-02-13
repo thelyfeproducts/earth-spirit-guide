@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import QuickShop from "@/components/QuickShop";
 import ValentinesGiftBundles from "@/components/ValentinesGiftBundles";
+import ValentinesPreorderBanner from "@/components/ValentinesPreorderBanner";
 import ShopByRemedy from "@/components/ShopByRemedy";
 import CompetitorComparison from "@/components/CompetitorComparison";
 import Testimonials from "@/components/Testimonials";
@@ -17,6 +18,7 @@ const Index = () => {
       <Header />
       <main>
         <Hero />
+        <ValentinesPreorderBanner />
         <ValentinesGiftBundles />
         <QuickShop />
         <ShopByRemedy />

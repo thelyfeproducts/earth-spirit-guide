@@ -12,6 +12,7 @@ import OurStory from "./pages/OurStory";
 import CommunityPage from "./pages/CommunityPage";
 import ProductPage from "./pages/ProductPage";
 import CollectionPage from "./pages/CollectionPage";
+import PreOrdersPage from "./pages/PreOrdersPage";
 import TestimonialsPage from "./pages/TestimonialsPage";
 import WhyOrganicPage from "./pages/WhyOrganicPage";
 import Contact from "./pages/Contact";
@@ -22,6 +23,7 @@ import Ingredients from "./pages/Ingredients";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import Donate from "./pages/Donate";
+import Reviews from "./pages/Reviews";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -50,6 +52,7 @@ const App = () => (
             <Route path="/products/:handle" element={<ProductPage />} />
             <Route path="/product/:handle" element={<ProductPage />} />
             <Route path="/collections/:slug" element={<CollectionPage />} />
+            <Route path="/pre-orders" element={<PreOrdersPage />} />
             <Route path="/testimonials" element={<TestimonialsPage />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/shipping" element={<Shipping />} />
@@ -59,6 +62,7 @@ const App = () => (
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="/donate" element={<Donate />} />
+            <Route path="/reviews" element={<Reviews />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />

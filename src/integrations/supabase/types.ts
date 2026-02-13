@@ -14,7 +14,96 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      preorder_signups: {
+        Row: {
+          collection_slug: string | null
+          created_at: string
+          email: string
+          id: string
+          product_handle: string | null
+        }
+        Insert: {
+          collection_slug?: string | null
+          created_at?: string
+          email: string
+          id?: string
+          product_handle?: string | null
+        }
+        Update: {
+          collection_slug?: string | null
+          created_at?: string
+          email?: string
+          id?: string
+          product_handle?: string | null
+        }
+        Relationships: []
+      }
+      reviews: {
+        Row: {
+          created_at: string
+          customer_email: string
+          customer_name: string
+          id: string
+          is_approved: boolean
+          product_name: string | null
+          rating: number
+          review_text: string
+        }
+        Insert: {
+          created_at?: string
+          customer_email: string
+          customer_name: string
+          id?: string
+          is_approved?: boolean
+          product_name?: string | null
+          rating: number
+          review_text: string
+        }
+        Update: {
+          created_at?: string
+          customer_email?: string
+          customer_name?: string
+          id?: string
+          is_approved?: boolean
+          product_name?: string | null
+          rating?: number
+          review_text?: string
+        }
+        Relationships: []
+      }
+      team_applications: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          message: string
+          name: string
+          phone: string | null
+          resume_url: string | null
+          role_interest: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          message: string
+          name: string
+          phone?: string | null
+          resume_url?: string | null
+          role_interest: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          message?: string
+          name?: string
+          phone?: string | null
+          resume_url?: string | null
+          role_interest?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

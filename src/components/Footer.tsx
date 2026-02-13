@@ -7,6 +7,7 @@ const footerLinks = {
     { name: "All Products", href: "/#shop" },
     { name: "Hair Care", href: "/collections/hair-care" },
     { name: "Body Care", href: "/collections/body-care" },
+    { name: "Pre-orders", href: "/pre-orders" },
   ],
   learn: [
     { name: "Our Story", href: "/our-story" },
@@ -19,6 +20,7 @@ const footerLinks = {
     { name: "Shipping", href: "/shipping" },
     { name: "Returns", href: "/returns" },
     { name: "FAQ", href: "/faq" },
+    { name: "Reviews", href: "/reviews" },
   ],
 };
 
