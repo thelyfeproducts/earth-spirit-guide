@@ -203,7 +203,7 @@ const TeamMemberCard = ({ member, index }: { member: TeamMember; index: number }
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
     transition={{ duration: 0.5, delay: index * 0.1 }}
-    className="bg-card rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
+    className="bg-card rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 w-full max-w-sm mx-auto"
   >
     <div className="aspect-square bg-muted flex items-center justify-center">
     {member.image ? (
@@ -256,7 +256,7 @@ const TeamSectionComponent = ({ section, index }: { section: TeamSection; index:
 
     {/* Direct members */}
     {section.members.length > 0 && (
-      <div className={`grid gap-8 ${section.members.length === 1 ? 'max-w-md mx-auto' : 'md:grid-cols-2 lg:grid-cols-3'}`}>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
         {section.members.map((member, idx) => (
           <TeamMemberCard key={member.name + idx} member={member} index={idx} />
         ))}
@@ -269,7 +269,7 @@ const TeamSectionComponent = ({ section, index }: { section: TeamSection; index:
         <h3 className="font-display font-semibold text-xl text-charcoal mb-6 text-center">
           {subsection.title}
         </h3>
-        <div className={`grid gap-6 ${subsection.members.length === 1 ? 'max-w-md mx-auto' : subsection.members.length === 2 ? 'md:grid-cols-2 max-w-2xl mx-auto' : 'md:grid-cols-2 lg:grid-cols-3'}`}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
           {subsection.members.map((member, idx) => (
             <TeamMemberCard key={member.name + idx} member={member} index={idx + subIdx} />
           ))}
