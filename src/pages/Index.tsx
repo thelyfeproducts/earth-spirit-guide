@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
+import StPatricksBanner from "@/components/StPatricksBanner";
 import QuickShop from "@/components/QuickShop";
 import ValentinesGiftBundles from "@/components/ValentinesGiftBundles";
 import ValentinesPreorderBanner from "@/components/ValentinesPreorderBanner";
@@ -15,6 +16,7 @@ import LyfeBotWidget from "@/components/LyfeBot/LyfeBotWidget";
 const Index = () => {
   return (
     <div className="min-h-screen">
+      <StPatricksBanner />
       <Header />
       <main>
         <Hero />

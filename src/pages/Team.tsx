@@ -17,6 +17,7 @@ import jaredRiosHeadshot from "@/assets/jared-rios-headshot.png";
 import bryceMaddoxHeadshot from "@/assets/bryce-maddox-headshot.png";
 import marioTownsonHeadshot from "@/assets/mario-townson-headshot.png";
 import jadenFuquaHeadshot from "@/assets/jaden-fuqua-headshot.png";
+import ivyannaFuquaHeadshot from "@/assets/ivyanna-fuqua-headshot.png";
 
 // Form validation schema
 const applicationSchema = z.object({
@@ -58,26 +59,38 @@ const teamData: TeamSection[] = [
     ],
   },
   {
-    title: "Head of Operations",
+    title: "Head of Operations & Administration",
     subtitle: "Leading operational excellence",
     members: [
       {
+        name: "Ivyanna Fuqua",
+        role: "Head of Operations & Administration",
+        description: "Ivyanna Fuqua leads operations and administration at The Lyfe Products, ensuring smooth day-to-day functioning and organizational excellence across all departments.",
+        image: ivyannaFuquaHeadshot,
+      },
+    ],
+  },
+  {
+    title: "Director of Sales & Performance",
+    subtitle: "Driving growth and team performance",
+    members: [
+      {
         name: "Mali Strayhorn",
-        role: "Head of Operations",
-        description: "As Head of Operations at Lyfe Products, I apply the discipline and leadership forged through collegiate football and graduation to drive operational excellence. I manage daily operations, optimize systems, and lead teams with a results-driven, execution-focused mindset built on accountability and long-term growth.",
+        role: "Director of Sales & Performance",
+        description: "As Director of Sales & Performance at Lyfe Products, I apply the discipline and leadership forged through collegiate football and graduation to drive operational excellence. I manage daily operations, optimize systems, and lead teams with a results-driven, execution-focused mindset built on accountability and long-term growth.",
         image: maliHeadshot,
       },
     ],
   },
   {
-    title: "Advisors",
-    subtitle: "Expert guidance shaping our vision",
+    title: "Head of Production & Systems",
+    subtitle: "Crafting quality products with precision",
     members: [
       {
-        name: "Dr. Sara Sherbondy",
-        role: "Innovation & Strategy Advisor",
-        description: "Dr. Sara Sherbondy brings expert-level insight in innovation and strategy, helping guide The Lyfe Products toward sustainable growth and impactful wellness solutions.",
-        image: saraSherbondyHeadshot,
+        name: "Malachi Jones",
+        role: "Head of Production & Systems",
+        description: "As Head of Production & Systems, Malachi Jones oversees all production operations and systems management, ensuring the highest quality standards across every Lyfe Products batch.",
+        image: malachiJonesHeadshot,
       },
     ],
   },
@@ -112,12 +125,6 @@ const teamData: TeamSection[] = [
             role: "Head of Connecticut Sales",
             description: "Driving growth in Connecticut through exceptional customer relationships.",
             image: treJonesHeadshot,
-          },
-          {
-            name: "Malachi Jones",
-            role: "Head of North Carolina Sales",
-            description: "Expanding the Lyfe brand presence across North Carolina.",
-            image: malachiJonesHeadshot,
           },
           {
             name: "Jared Rios",
@@ -175,6 +182,18 @@ const teamData: TeamSection[] = [
     title: "Design Team",
     subtitle: "Creating beautiful brand experiences",
     members: [],
+  },
+  {
+    title: "Advisors",
+    subtitle: "Expert guidance shaping our vision",
+    members: [
+      {
+        name: "Dr. Sara Sherbondy",
+        role: "Innovation & Strategy Advisor",
+        description: "Dr. Sara Sherbondy brings expert-level insight in innovation and strategy, helping guide The Lyfe Products toward sustainable growth and impactful wellness solutions.",
+        image: saraSherbondyHeadshot,
+      },
+    ],
   },
 ];
 
@@ -250,7 +269,7 @@ const TeamSectionComponent = ({ section, index }: { section: TeamSection; index:
         <h3 className="font-display font-semibold text-xl text-charcoal mb-6 text-center">
           {subsection.title}
         </h3>
-        <div className={`grid gap-6 ${subsection.members.length === 1 ? 'max-w-md mx-auto' : 'md:grid-cols-2 lg:grid-cols-4'}`}>
+        <div className={`grid gap-6 ${subsection.members.length === 1 ? 'max-w-md mx-auto' : subsection.members.length === 2 ? 'md:grid-cols-2 max-w-2xl mx-auto' : 'md:grid-cols-2 lg:grid-cols-3'}`}>
           {subsection.members.map((member, idx) => (
             <TeamMemberCard key={member.name + idx} member={member} index={idx + subIdx} />
           ))}
