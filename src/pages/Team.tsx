@@ -1,18 +1,22 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { z } from "zod";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import LyfeBotWidget from "@/components/LyfeBot/LyfeBotWidget";
-import { Users, Mail, Send, Loader2 } from "lucide-react";
+import { Users, Send } from "lucide-react";
 import founderHeadshot from "@/assets/founder-headshot.jpeg";
 import maliHeadshot from "@/assets/mali-headshot.jpeg";
 import miracleKingHeadshot from "@/assets/miracle-king-headshot.jpeg";
 import malachiJonesHeadshot from "@/assets/malachi-jones-headshot.jpeg";
 import richayaDunbarHeadshot from "@/assets/richaya-dunbar-headshot.jpeg";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+import anastasiaStellersHeadshot from "@/assets/anastasia-stellers-headshot.jpeg";
+import saraSherbondyHeadshot from "@/assets/sara-sherbondy-headshot.png";
+import treJonesHeadshot from "@/assets/tre-jones-headshot.png";
+import jaredRiosHeadshot from "@/assets/jared-rios-headshot.png";
+import bryceMaddoxHeadshot from "@/assets/bryce-maddox-headshot.png";
+import marioTownsonHeadshot from "@/assets/mario-townson-headshot.png";
+import jadenFuquaHeadshot from "@/assets/jaden-fuqua-headshot.png";
 
 // Form validation schema
 const applicationSchema = z.object({
@@ -66,6 +70,18 @@ const teamData: TeamSection[] = [
     ],
   },
   {
+    title: "Advisors",
+    subtitle: "Expert guidance shaping our vision",
+    members: [
+      {
+        name: "Dr. Sara Sherbondy",
+        role: "Innovation & Strategy Advisor",
+        description: "Dr. Sara Sherbondy brings expert-level insight in innovation and strategy, helping guide The Lyfe Products toward sustainable growth and impactful wellness solutions.",
+        image: saraSherbondyHeadshot,
+      },
+    ],
+  },
+  {
     title: "Project Management",
     subtitle: "Coordinating projects and initiatives",
     members: [
@@ -89,11 +105,13 @@ const teamData: TeamSection[] = [
             name: "Bryce Maddox",
             role: "Head of Colorado Sales",
             description: "Leading sales operations in Colorado with passion for natural wellness products.",
+            image: bryceMaddoxHeadshot,
           },
           {
             name: "Tre Jones",
             role: "Head of Connecticut Sales",
             description: "Driving growth in Connecticut through exceptional customer relationships.",
+            image: treJonesHeadshot,
           },
           {
             name: "Malachi Jones",
@@ -105,6 +123,7 @@ const teamData: TeamSection[] = [
             name: "Jared Rios",
             role: "Head of Texas Sales",
             description: "Leading Texas sales operations with dedication to customer success.",
+            image: jaredRiosHeadshot,
           },
         ],
       },
@@ -128,6 +147,7 @@ const teamData: TeamSection[] = [
             name: "Anastasia Stellers",
             role: "Production Intern",
             description: "Supporting production operations and quality control.",
+            image: anastasiaStellersHeadshot,
           },
         ],
       },
@@ -141,11 +161,13 @@ const teamData: TeamSection[] = [
         name: "Jaden Fuqua",
         role: "Street Team Member",
         description: "Community outreach and brand representation.",
+        image: jadenFuquaHeadshot,
       },
       {
         name: "Mario Townson",
         role: "Street Team Member",
         description: "Spreading the Lyfe brand through local engagement.",
+        image: marioTownsonHeadshot,
       },
     ],
   },
