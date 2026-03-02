@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import lyfePeace from "@/assets/lyfe-peace.png";
+import { FloatingClovers, Rainbow } from "./StPatricksDecorations";
 
 const Hero = () => {
   return (
@@ -10,6 +11,14 @@ const Hero = () => {
         <div className="absolute bottom-20 right-10 w-48 h-48 bg-accent/10 rounded-full blur-3xl" />
         <div className="absolute top-1/2 left-1/4 w-24 h-24 bg-primary/5 rounded-full blur-2xl" />
       </div>
+
+      {/* St. Patrick's Day – Rainbow arc */}
+      <div className="absolute top-16 left-0 right-0 opacity-25 pointer-events-none">
+        <Rainbow className="w-full h-40" />
+      </div>
+
+      {/* St. Patrick's Day – Floating Clovers */}
+      <FloatingClovers />
 
       <div className="container-lyfe">
         <div className="grid lg:grid-cols-2 gap-12 items-center">

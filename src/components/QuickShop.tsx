@@ -6,6 +6,7 @@ import { fetchProducts, ShopifyProduct } from "@/lib/shopify";
 import { useCartStore } from "@/stores/cartStore";
 import { toast } from "sonner";
 import ValentinesBadge, { getValentineBadgeType } from "./ValentinesBadge";
+import { EmojiClovers } from "./StPatricksDecorations";
 
 const container = {
   hidden: { opacity: 0 },
@@ -100,7 +101,8 @@ const QuickShop = () => {
   ];
 
   return (
-    <section id="shop" className="section-padding bg-card/50">
+    <section id="shop" className="section-padding bg-card/50 relative overflow-hidden">
+      <EmojiClovers />
       <div className="container-lyfe">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

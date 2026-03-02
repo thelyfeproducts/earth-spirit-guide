@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Send, Check } from "lucide-react";
 import lyfePointing from "@/assets/lyfe-pointing.png";
 import { CTAHerbs } from "./FloatingHerbs";
+import { EmojiClovers, PotOfGold } from "./StPatricksDecorations";
 
 const FinalCTA = () => {
   const [email, setEmail] = useState("");
@@ -21,6 +22,18 @@ const FinalCTA = () => {
     <section className="section-padding bg-secondary/10 relative overflow-hidden">
       {/* Floating Herbs */}
       <CTAHerbs />
+
+      {/* St. Patrick's Day – Emoji Clovers */}
+      <EmojiClovers />
+
+      {/* St. Patrick's Day – Pot of Gold (bottom left) */}
+      <motion.div
+        className="absolute bottom-4 left-6 pointer-events-none"
+        animate={{ y: [0, -6, 0] }}
+        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <PotOfGold className="w-16 h-16 opacity-70" />
+      </motion.div>
       
       {/* Background decoration */}
       <div className="absolute inset-0 pointer-events-none">

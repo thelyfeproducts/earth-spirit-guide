@@ -5,7 +5,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop";
 import { useCartSync } from "./hooks/useCartSync";
-import StPatricksBanner from "./components/StPatricksBanner";
 import Index from "./pages/Index";
 import Team from "./pages/Team";
 import Ambassadors from "./pages/Ambassadors";
@@ -42,7 +41,6 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <CartSyncProvider>
-          <StPatricksBanner />
           <ScrollToTop />
           <Routes>
             <Route path="/" element={<Index />} />
